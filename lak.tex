@@ -1,0 +1,1481 @@
+\documentclass[11pt]{article}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{hyperref}
+\usepackage{polyglossia} % Eesti keele tugi
+\setdefaultlanguage{english}
+\usepackage{csquotes}% Eesti jutumärgid \enquote{}
+
+\usepackage{enumitem}% Listid
+\setlist[itemize]{topsep=-\parskip, partopsep=0em, parsep=0em, itemsep=0em, leftmargin=*}% Itemize spacing
+\setlist[enumerate]{topsep=-\parskip, partopsep=0em, parsep=0em, itemsep=0em, leftmargin=*}% Itemize spacing
+\usepackage[]{titlesec}% Kompaktsed pealkirjad
+\titleformat{\paragraph}{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+\titlespacing*{\paragraph}{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+% \titleformat*{\subparagraph}{\itshape}
+
+\usepackage{microtype}
+
+\setcounter{secnumdepth}{4}
+
+\usepackage{geometry}% Paigutus
+\geometry{
+    paper=a4paper, % Paper size, change to letterpaper for US letter size
+    % top=1cm, % Top margin
+    % bottom=1cm, % Bottom margin
+    % left=0.5cm, % Left margin
+    % right=0.5cm, % Right margin
+    % foot=0.5cm, % Footer-margin distance
+    % margin = 2.5 cm,
+    % landscape,
+     % showframe, % Uncomment to show how the type block is set on the page
+}
+
+\setlength{\parindent}{0em}% Taandridu pole
+
+\usepackage{multicol}
+\setlength{\columnseprule}{0.4pt}
+\usepackage[strict]{changepage}
+
+\usepackage{parskip}
+
+\usepackage{amsmath}
+\usepackage{mathtools}
+
+% \renewcommand{\C}{$\clubsuit$}
+% \newcommand{\D}{$\diamondsuit$}
+% \renewcommand{\H}{$\heartsuit$}
+% \renewcommand{\S}{$\spadesuit$}
+% \newcommand{\N}{N}
+
+\DeclareSymbolFont{extraup}{U}{zavm}{m}{n}
+\DeclareMathSymbol{\varheart}{\mathalpha}{extraup}{86}
+\DeclareMathSymbol{\vardiamond}{\mathalpha}{extraup}{87}
+\DeclareMathSymbol{\varclub}{\mathalpha}{extraup}{84}
+\DeclareMathSymbol{\varspade}{\mathalpha}{extraup}{81}
+
+\renewcommand{\C}{\texorpdfstring{\textcolor{ForestGreen}{\raisebox{-0.017em}{\ensuremath{\varclub}}}}{C}}
+\newcommand{\D}{\texorpdfstring{\textcolor{YellowOrange}{\raisebox{-0.35pt}{\ensuremath{\vardiamond}}}}{D}}
+\renewcommand{\H}{\texorpdfstring{\textcolor{Red}{\raisebox{-0.06em}{\ensuremath{\varheart}}}}{H}}
+\renewcommand{\S}{\texorpdfstring{\raisebox{-0.03em}{\ensuremath{\varspade}}}{S}}
+\newcommand{\N}{\texorpdfstring{\textcolor{Cerulean}{\raisebox{0.15em}{\scalebox{0.72}{\ensuremath{\bigodot}}}}}{NT}}
+\newcommand{\+}{\textsuperscript{+}}
+\renewcommand{\P}{\texorpdfstring{{\footnotesize{PASS}}}{PASS}}
+\newcommand{\pdfP}{\texorpdfstring{\P{}}{PASS}}
+\newcommand{\X}{{\footnotesize{DBL}}}
+\newcommand{\XX}{{\footnotesize{RDBL}}}
+\newcommand{\m}{m}
+\newcommand{\M}{M}
+
+\usepackage[super]{nth}
+
+\usepackage{environ}
+\usepackage{makecell}
+
+\newenvironment{bidtable}{%
+	\begin{tabular}{l l}%
+}{%
+	\end{tabular}%
+}
+
+\newcommand\followups[1]{
+	\multicolumn{2}{l}{
+		\makecell[l]{
+			\hspace{2mm}
+			\begin{tabular}{l l}
+				#1
+			\end{tabular}
+		}
+	}
+}
+
+\title{LAK Precision}
+\author{Kaarel Kivisalu --- Lee Ann Madissoon}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\section{List of Openings}
+
+\begin{bidtable}
+    \hyperref[sec:1C]{1\C} & 16\+ unBAL or 17+ BAL \\
+    \hyperref[sec:1D]{1\D} & 10--15, 2\+\D, denies a 5-card major unless has 6 diamonds, \\
+    \hyperref[sec:1H]{1\H} & 10--15, 5\+\H \\
+    \hyperref[sec:1S]{1\S} & 10--15, 5\+\S \\
+    \hyperref[sec:1N]{1\N} & $\begin{dcases}
+        \text{14--16, BAL} & \text{\nth{1}, \nth{2} and \nth{3} NV}\\
+        \text{15--17, BAL} & \text{\nth{3} VUL and \nth{4}} \\
+    \end{dcases}$\\
+    \hyperref[sec:2C]{2\C} & 10--15, 6\+\C \\
+    \hyperref[sec:2D]{2\D} & 10--15, 4414/4405/4315/3415 \\
+    2\M & 3--10 $\begin{dcases}
+        \text{5\+\M} & \text{NV}\\
+        \text{6\+\M} & \text{VUL}\\
+    \end{dcases}$\\
+    2\N & $\begin{dcases}
+        \text{19-20} & \text{\nth{1}, \nth{2} and \nth{3} NV}\\
+        \text{20-21} & \text{\nth{3} VUL and \nth{4}} \\
+    \end{dcases}$\\
+    3$X$ & 3--9, preempt, \\
+    3\N & to play \\
+    4$X$ & preempt \\
+    5\m & preempt \\
+    5\M & 11 tricks, missing AK trumps \\
+\end{bidtable}
+
+\section[1\C]{1\C---} \label{sec:1C}
+
+\begin{bidtable}
+    \hyperref[1C1D]{1\D} & 0--7 \\
+    \hyperref[1C1H]{1\H} & 8--11, denies 5\+\S \\
+    \hyperref[1C1S]{1\S} & 8\+, 5\+\S \\
+    1\N & 12\+, 5\+\H \\
+    2\C & 12\+, 5\+\C \\
+    2\D & 12\+, 5\+\D \\
+    2\H & 14\+, BAL \\
+    2\S & 12\+, (4441) \\
+    \followups{
+      2\N & asks \\
+    }\\
+    2\N & 12--13, BAL \\
+    3$X$ & Nat 7 weak \\
+\end{bidtable}
+
+Passed hand responses:
+
+\begin{bidtable}
+    \hyperref[1C1D]{1\D} & 0--7 \\
+    1\H & 8--10, 5\+\H \\
+    1\S & 8--10, 5\+\S \\
+    1\N & 8--10, BAL\\
+    2\C & 8--10, 5\+\C \\
+    2\D & 8--10, 5\+\D \\
+    2\S & 8--10, (4441) \\
+    3$X$ & Nat 7 weak \\
+\end{bidtable}
+
+\subsection[1\C--1\D]{1\C---1\D---} \label{1C1D}
+
+\begin{bidtable}
+    \P & (5)6\+\D, MIN, 1\N/2\D dangerous \\
+    \hyperref[1C1D1H]{1\H} & 4\+\H\ (if 4, (4441), (5440), or 5\+\m), F1 \\
+    \hyperref[1C1D1S]{1\S} & 4\+\S\ (if 4, (4441), (5440), or 5\+\m), F1 \\
+    1\N & 17--18(19), BAL\\
+    \followups{
+        system on &  \\
+    }\\
+    2\C & 16--21, 6\+\C\ or 5\C 4\D, NF\\
+    2\D & 16--21, 6\+\D\ or 5\D 4\C, NF\\
+    2\H & 22\+, 5\+\H, GF\\
+    2\S & 22\+, 5\+\S, GF\\
+    2\N & (21)22--24, BAL\\
+    \followups{
+        system on &  \\
+    }\\
+    3\C & 22\+, 6\+\C\ or 5\C 4\D, GF\\
+    3\D & 22\+, 6\+\D\ or 5\D 4\C, GF\\
+    3\H & \H\ flag, GF\\
+    3\S & \S\ flag, GF\\
+    3\N & 25--27, BAL\\
+    4\H & to play (good long suit, weak)\\
+    4\S & to play (good long suit, weak)\\
+\end{bidtable}
+
+\subsubsection[1\C--1\D--1\H]{1\C---1\D---1\H} \label{1C1D1H}
+
+\begin{bidtable}
+    \hyperref[1C1D1H1S]{1\S}  & 0--7, 4\+\S, denies 4\+\H, F1 \\
+    \hyperref[1C1D1H1N]{1\N}  & 0--5, denies 4\+\H\ and 4\+\S, NF \\
+    \hyperref[1C1D1H2C]{2\C}  & 6--7, denies 3\+\H\ and 4\+\S, F1 \\
+    \hyperref[1C1D1H2D]{2\D}  & 5--7, 3\H, F1 \\
+    2\H & 0--4, 4--5\H, NF \\
+    \followups{
+        see 1\H---2\H--- &  \\
+    }\\
+    2\S & 4--6, great 6\+\S, NF\\
+    2\N & 5--7, unBAL, mini-splinter, 4\H \\
+    \followups{
+        3\C & asks \\
+        3\H & to play \\
+        4\H & to play \\
+    }\\
+    3\C & 4--6, great 6\+\C, NF\\
+    3\D & 4--6, great 6\+\D, NF\\
+    3\H & 5--7, 4\H\+, BAL, INV \\
+    3\S & 6--7, 5\+\H, 0--1\S \\
+    4\C & 6--7, 5\+\H, 0--1\C \\
+    4\D & 6--7, 5\+\H, 0--1\D \\
+\end{bidtable}
+
+\paragraph{1\C---1\D---1\H---1\S---} \label{1C1D1H1S}
+
+\begin{bidtable}
+    1\N & 1444 likely, NF \\
+    2\C\D & 4\+ cards, could be 54\+, NF \\
+    2\H & 6\+\H \\
+    2\S & $\begin{dcases}
+        \text{16--19, 3\S} & \\
+        \text{16--17, 4\S} & \\
+    \end{dcases}$ \\
+    2\N & 21--22, likely 0--1 \S \\
+    3\C & 4\H, 5\+\C, GF \\
+    3\D & 4\H, 5\+\D, GF \\
+    3\H & long good suit, INV \\
+    3\S & $\begin{dcases}
+        \text{20--21, 3\S} & \\
+        \text{18--19, 4\S} & \\
+    \end{dcases}$ \\
+    3\N/4\H & to play \\
+    4\C\D & 20\+, 4\+\S, splinter \\
+\end{bidtable}
+
+\paragraph{1\C---1\D---1\H---1\protect\N---} \label{1C1D1H1N}
+
+\begin{bidtable}
+    \P & typically 44(14) \\
+    2\C\D & 4\+ cards, could be 54\+, NF \\
+    2\H & 6\+\H \\
+    2\S & 21\+, 5\H 4\S, GF \\
+    2\N & 22--23, INV, NF \\
+    3\C & 4\H, 5\+\C, GF \\
+    3\D & 4\H, 5\+\D, GF \\
+    3\H & long good suit, INV \\
+    3\N/4\H & to play \\
+\end{bidtable}
+
+\paragraph{1\C---1\D---1\H---2\C---} \label{1C1D1H2C}
+
+\begin{bidtable}
+    2\D & MIN, asks responder to show doubleton support or other major\\
+    2\H & 6\+\H, NF \\
+    2\S & 21\+, 5\H 4\S, F1 \\
+    2\N & waiting, GF \\
+    3\C & 4\H, 5\+\C, GF \\
+    3\D & 4\H, 5\+\D, GF \\
+    3\H & \H\ flag, GF \\
+\end{bidtable}
+
+\paragraph{1\C---1\D---1\H---2\D---} \label{1C1D1H2D}
+
+\begin{bidtable}
+    2\H & to play, usually 4\H \\
+    2\S & 4\+\S \\
+    2\N & artificial GF \\
+    3\C & 4\H, 5\+\C, GF \\
+    3\D & 4\H, 5\+\D, GF \\
+    3\H & 5\+\H, INV \\
+    3\N & to play \\
+\end{bidtable}
+
+
+\subsubsection[1\C--1\D--1\S]{1\C---1\D---1\S} \label{1C1D1S}
+
+\begin{bidtable}
+    \hyperref[1C1D1S1N]{1\N}  & 0--5, 4\+\S, NF \\
+    \hyperref[1C1D1S2C]{2\C}  & 6--7, denies 4\+\S\ and 5\+\H, F1 \\
+    \hyperref[1C1D1S2D]{2\D}  & 5--7, 3\S, F1 \\
+    2\H & 6--7, 5\+\H, denies 3\+\S, F1 \\
+    2\S & 0--4, 4--5\S, NF \\
+    \followups{
+        see 1\S---2\S--- &  \\
+    }\\
+    2\N & 5--7, unBAL, mini-splinter, 4\S \\
+    \followups{
+        3\C & asks \\
+        3\S & to play \\
+        4\S & to play \\
+    }\\
+    3\C & 4--6, great 6\+\C, NF\\
+    3\D & 4--6, great 6\+\D, NF\\
+    3\H & 4--6, great 6\+\D, NF\\
+    3\S & 5--7, 4\S\+, BAL, INV \\
+    4\C & 6--7, 5\+\S, 0--1\C \\
+    4\D & 6--7, 5\+\S, 0--1\D \\
+    4\H & 6--7, 5\+\S, 0--1\H \\
+\end{bidtable}
+\paragraph{1\C---1\D---1\S---1\protect\N---} \label{1C1D1H1N}
+
+\begin{bidtable}
+    \P & typically 44(14) \\
+    2\C\D & 4\+ cards, could be 54\+, NF \\
+    2\H & 21\+, 5\S 4\H, GF \\
+    2\S & 6\+\S \\
+    2\N & 22--23, INV, NF \\
+    3\C & 4\S, 5\+\C, GF \\
+    3\D & 4\S, 5\+\D, GF \\
+    3\S & long good suit, INV \\
+    3\N/4\S & to play \\
+\end{bidtable}
+
+\paragraph{1\C---1\D---1\S---2\C---} \label{1C1D1S2C}
+
+\begin{bidtable}
+    2\D & MIN, asks responder to show doubleton support or other major\\
+    2\H & 5\+\S 4\+\H, MIN \\
+    2\S & 6\+\S \\
+    2\N & waiting, GF \\
+    3\C & 4\S, 5\+\C, GF \\
+    3\D & 4\S, 5\+\D, GF \\
+    3\S & \S\ flag, GF \\
+\end{bidtable}
+
+\paragraph{1\C---1\D---1\S---2\D---} \label{1C1D1S2D}
+
+\begin{bidtable}
+    2\H & 4\+\H \\
+    2\S & to play, usually 4\S \\
+    2\N & artificial GF \\
+    3\C & 4\S, 5\+\C, GF \\
+    3\D & 4\S, 5\+\D, GF \\
+    3\S & 5\+\S, INV \\
+    3\N & to play \\
+\end{bidtable}
+
+\subsection[1\C--1\H]{1\C---1\H---} \label{1C1H}
+
+Usually no slam when opener has minimum hand (16--19).
+
+\begin{bidtable}
+    1\S & 5\+\S \\
+    1\N & 17--18(19) or 24(25)\+, BAL \\
+    2\C & 6\+\C or 5\C 4\D \\
+    2\D & 6\+\D or 5\D 4\C \\
+    2\H & 5\+\H \\
+    2\S & (4441) \\
+    \followups{
+      2\N & asks \\
+    }\\
+    2\N & 21--23(22--24), BAL \\
+    3\C\D\H\S & natural, self sufficient suit, slam interest, demand cue-bids \\
+\end{bidtable}
+
+After 1\C---1\H\ a jump shift shows a splinter (singleton or void) with support (4 or more cards) for partner's last bid suit.
+
+\subsection[1\C--1\S]{1\C---1\S---} \label{1C1S}
+
+\subsection[Waiting 2\protect\N]{Waiting 2\protect\N}
+
+In non-fit auctions 2\N\ implies a hand that has no side 5-card suit, no great 7-card suit, and no great support for partner's minor.
+
+Example:
+
+1\C---1\H---2\D---2\H---
+
+\begin{bidtable}
+    2\S & 4\+\S (shorter than \D), denies 3\+\H \\
+    2\N & waiting, may have 4\C, denies 3\+\H \\
+    3\C & 5\+\D 5\+\C, denies 3\+\H \\
+    3\D & 7\+\D\ (or 6 very good ones), denies 3\+\H \\
+    3\H & \H\ flag, hearts is trump \\
+    3\S/4\C & splinter for hearts \\
+    4\H & very bad raise \\
+\end{bidtable}
+
+\subsection{The Implied Cue-bid}
+
+Before a fit is agreed, bidding a suit that is unreasonable as a possible trump suit at the level of 3\D\ or higher implies a fit with partner’s last bid suit. This is known as an ``Implied Cue-bid''.
+
+The logic is: you need at least two ways to raise partner to show the difference between a bad or good hand for the auction to date.
+\subsection[Interference over 1\C]{Interference over 1\C}
+
+\subsubsection[1\C--(\X)]{1\C---(\X)---}
+
+If GF is established, further doubles are for penalty.
+
+\begin{bidtable}
+    \hyperref[1CXPbid]{\P} & 0--5 \\
+    \XX & 6--7 \\
+    1\D\H\S 2\C & 8\+ \\
+    1\N & 8\+, BAL \\
+    \followups{
+        2\C & stayman \\
+        other & natural \\
+    }\\
+    2\D\H\S & 5--7, 6-card suit \\
+    3\C\D\H\S & 5--7, 7-card suit \\
+\end{bidtable}
+
+\subsubsection[1\C--(\X)--\pdfP--(bid)]{1\C---(\X)---\P---(bid)---} \label{1CXPbid}
+
+\begin{bidtable}
+    \X & takeout or 23\+ \\
+    bid & natural ``overcall'' \\
+    cue & Michaels \\
+    2\N & Unusual \\
+\end{bidtable}
+
+\subsubsection[1\C--(1X or 2X)]{1\C---(1$X$ or 2$X$)---}
+
+Trap is usually with 5 or more cards in their suit (with sure defensive tricks and unlimited strength) and is preparing to pass a reopening takeout double by opener.
+
+If GF is established, further doubles are for penalty.
+
+\begin{bidtable}
+    \P & 0--5 or trap \\
+    \X & $\begin{dcases}
+        \text{6-7} & \text{always}\\
+        \text{8\+, BAL, with stopper, GF (cue later to reveal)} & \text{if 2-level overcall}\\
+    \end{dcases}$ \\
+    non-jump new suit & 8\+, 5\+ cards, GF \\
+    \N\ bid & 8\+, BAL, with stopper, GF \\
+    \followups{
+        cheapest \C & stayman \\
+        other & natural \\
+    }\\
+    2-level cue & 8\+, BAL, without stopper, GF \\
+    jump shift & 5--7 with a long suit and strength in the suit \\
+    3-level cue & 3-suited hand (short in opponent's suit), GF \\
+\end{bidtable}
+
+\subsubsection[1\C--(3X or 4X)]{1\C---(3$X$ or 4$X$)---}
+
+\begin{bidtable}
+    \P & 0--6 (bad 7) or trap \\
+    \followups{
+     \X & takeout \\
+    }\\
+    \X & 7\+, no suit to bid below 3\N, GF \\
+    3\N & to play usually, with stopper \\
+    new suit & 5\+ cards, GF \\
+
+\end{bidtable}
+
+\section[1\D]{1\D---} \label{sec:1D}
+
+\begin{bidtable}
+    \hyperref[1D1H]{1\H} & 6\+, 4\+\H, F1 \\
+    \hyperref[1D1S]{1\S} & 6\+, 4\+\S, F1 \\
+    1\N & 7--bad 11, BAL, no 4M, NF \\
+    \hyperref[1D2C]{2\C} & 11\+, (4)5\+\C, no major unless GF and 6\+\C, F1 \\
+    \hyperref[1D2D]{2\D} & 11\+, (4)5\+\D, no major unless GF and 6\+\D, F1 \\
+    \hyperref[1D2S]{2\H} & 0--10, 5\S 4--5\H \\
+    \hyperref[1D2S]{2\S} & 11\+, 5\S 4--5\H, INV opposite 11--13 BAL \\
+    \hyperref[1D2N]{2\N} & good 11--13, BAL, no 4M, INV \\
+    3\C & 6--10, 54 mm, P/C \\
+    3\D & 5--10, 6\+\D \\
+    3\H & 6--9, 7\+\H \\
+    3\S & 6--9, 7\+\S \\
+    3\N & 13--16, BAL, no 4M \\
+    4\C & 6--10, 55\+ mm, P/C \\
+    4\D & 6--9, 7\+\D \\
+    4\H & good 7 or 8\+\H, preemptive \\
+    4\S & good 7 or 8\+\S, preemptive \\
+\end{bidtable}
+
+\subsection[1\D--1\H]{1\D---1\H---} \label{1D1H}
+
+\begin{bidtable}
+    1\S & 4\S, other bids deny 4\S \\
+    1\N & 10--13(14), no singleton, BAL \\
+    2\C & 8\+ cards in the minors, not 6\D 4\C \\
+    2\D & 6\+\D \\
+    2\H & $\begin{dcases}
+        \text{10--13(14), 4\H, BAL} & \\
+        \text{10--12, 4\H, unBAL} & \\
+    \end{dcases}$ \\
+    2\S & $\begin{dcases}
+        \text{14--15, 4\S 5\+\D} & \\
+        \text{5\S 6\+\D} & \\
+    \end{dcases}$ \\
+    2\N & 13--15, 6\+\D, BAL \\
+    3\C & 13--15, 55+ mm \\
+    3\D & 13--15, 6\+\D \\
+    3\H & 13--15, 4\H, unBAL
+\end{bidtable}
+
+\subsection[1\D--1\S]{1\D---1\S---} \label{1D1S}
+
+\begin{bidtable}
+    1\N & 10--13(14), no singleton, BAL \\
+    2\C & 8\+ cards in the minors, not 6\D 4\C \\
+    2\D & 6\+\D \\
+    2\H & $\begin{dcases}
+        \text{14--15, 4\H 5\+\D} & \\
+        \text{5\H 6\+\D} & \\
+    \end{dcases}$ \\
+    2\S & $\begin{dcases}
+        \text{10--13(14), 4\S, BAL} & \\
+        \text{10--12, 4\S, unBAL} & \\
+    \end{dcases}$ \\
+    2\N & 13--15, 6\+\D, BAL \\
+    3\C & 13--15, 55+ mm \\
+    3\D & 13--15, 6\+\D \\
+    3\S & 13--15, 4\S, unBAL \\
+\end{bidtable}
+
+\subsection[1\D--2\C]{1\D---2\C---} \label{1D2C}
+
+\begin{bidtable}
+    2\D & 5\+\D, 0--3\C, unBAL \\
+    \followups{
+        3\C & 11--12, 5\+\C, INV \\
+        3\D & NF \\
+        other & GF \\
+    }\\
+    2\H & 11-13(14), BAL \\
+    \followups{
+        2\S & puppet to 2\N \\
+        \followups{
+            2\N & forced \\
+            \followups{
+                3\C & 5\+\C, GF \\
+                3\D & 5\C 4\D, GF \\
+                3\H & 4\H 6\C, GF \\
+                3\S & 4\S 6\C, GF \\
+                3\N & S/O \\
+            }\\
+        }\\
+        2\N & asks 4\+ card minor, ST, BAL, GF \\
+        3\C & 11--12, 5\+\C, INV \\
+        3\H & 5\H 6\C, GF \\
+        3\S & 5\S 6\C, GF \\
+        3\N & prefers to declare, S/O \\
+    }\\
+    2\S & 4\+\C, some splinter, GF \\
+    \followups{
+        2\N & asks \S\H\C \\
+        \followups{
+            3\C & \S\ splinter \\
+            3\D & \H\ splinter \\
+            3\H & \C\ splinter \\
+        }\\
+    }\\
+    2\N & 10--12, 4441 \\
+    3\C & (41)53, GF \\
+    \followups{
+        3\D & asks \\
+        \followups{
+            3\H & 4\H \\
+            3\S & 4\S \\
+        }\\
+    }\\
+    3\D & very good 6\+\D, GF \\
+    3\H & 5\H 6\D, GF \\
+    3\S & 5\S 6\D, GF \\
+    3\N & 13--15, 4441 \\
+\end{bidtable}
+
+\subsection[1\D--2\D]{1\D---2\D---} \label{1D2D}
+
+\begin{bidtable}
+    2\H & 10-13(14), BAL \\
+    \followups{
+        2\S & puppet to 2\N \\
+        \followups{
+            2\N & forced \\
+            \followups{
+                3\C & 54\+ mm (could be 4\D 5\C), GF \\
+                3\D & 5\+\D, GF \\
+                3\H & 4\H 6\D, GF \\
+                3\S & 4\S 6\D, GF \\
+                3\N & S/O \\
+            }\\
+        }\\
+        2\N & asks 4\+ card minor, ST, BAL, GF \\
+        3\C & 11--12, 54\+ mm (could be 4\D 5\C), INV \\
+        3\D & 11--12, 5\+\D, INV \\
+        3\H & 5\S 6\D, GF \\
+        3\S & 5\S 6\D, GF \\
+        3\N & Prefers to declare, S/O \\
+    }\\
+    2\S & 4\+\D, some splinter, GF \\
+    \followups{
+        2\N & asks \S\H\C \\
+        \followups{
+            3\C & \S\ splinter \\
+            3\D & \H\ splinter \\
+            3\H & \C\ splinter \\
+        }\\
+    }\\
+    2\N & 10--12, 6\D, BAL\\
+    3\C & (41)35, GF \\
+    \followups{
+        3\D & asks \\
+        \followups{
+            3\H & 4\H \\
+            3\S & 4\S \\
+        }\\
+    }\\
+    3\D & very good 6\+\D, GF \\
+    3\H & 5\H 6\D, GF \\
+    3\S & 5\S 6\D, GF \\
+    3\N & 13--15, 6\D, BAL\\
+\end{bidtable}
+
+\subsection[1\D--2\S]{1\D---2\S---} \label{1D2S}
+
+1\D---2\H--- is similar but the responder is limited.
+
+\begin{bidtable}
+    \P & preference for \S, MIN \\
+    2\N & asks \\
+    \followups{
+      3\C & 5\S 4\H, MIN \\
+      3\D & 5\S 4\H, MAX \\
+      3\H & 5\S 5\H, MIN \\
+      3\S & 5\S 5\H, MAX \\
+    }\\
+    3\C & 55\+ mm \\
+    3\D & 6\+\D \\
+    3\H & preference for \H, MIN \\
+    3\N & to play \\
+    4\H & to play \\
+    4\S & to play \\
+\end{bidtable}
+
+\subsection[1\D--2\protect\N]{1\D---2\protect\N---} \label{1D2N}
+
+\begin{bidtable}
+    \P & 10--12 \\
+    3\C & mm, \C better, 10--12, S/O \\
+    3\D & mm, \D better, 10--12, S/O \\
+    3\H & good 4\H, 0-1\S \\
+    3\H & good 4\S, 0-1\H \\
+    3\N & 13--15 \\
+    4\H & 5\H 6\D \\
+    4\S & 5\H 6\D \\
+\end{bidtable}
+
+\subsection{Interference over 1\D}
+
+Negative doubles are used. 2-level free bids (2\D\ is a free bid) are F1. After 1 of a major overcall, a jump in clubs still shows both minors. Support (re)doubles are on.
+
+As a responder assume that opener has 10--13 BAL until told otherwise.
+
+\section{1\H} \label{sec:1H}
+
+\begin{bidtable}
+    1\S & 4\+\S, F1 (GF with 4\S is 2\C) \\
+    1\N & 7--12, semiforcing, no fit \\
+    2\C & $\begin{dcases}
+        \text{2\+\C, BAL, GF} & \\
+        \text{5\+\C, GF} & \\
+    \end{dcases}$\\
+    2\D & 5\+\D, GF \\
+    2\H & 7--bad 11, 3\H\ usually \\
+    2\S & 6\+\S, less than INV \\
+    2\N & 4\+\H, (BAL or 14\+ splinter), GF \\
+    3\C & $\begin{dcases}
+        \text{good 11--12, 3\+\H, INV} & \\
+        \text{weak splinter} & \\
+    \end{dcases}$\\
+    3\D & 7--10, 4\H \\
+    3\H & 0--6, 4\H \\
+    3\S & 12--13, any splinter \\
+    \followups{
+      3\N & asks LMH \\
+      4\H & does not care \\
+    }\\
+    3\N & 10--12, 0\S \\
+    4\C & 10--12, 0\C \\
+    4\D & 10--12, 0\D \\
+    4\H & to play \\
+    4\S & to play \\
+\end{bidtable}
+
+\subsection[1\H--1\S]{1\H---1\S---} \label{1H1S}
+
+\begin{bidtable}
+    1\N & 10--13, BAL \\
+    2\C & 4\+\C, may have 3\S \\
+    2\D & 4\+\D, may have 3\S \\
+    2\H & 6\+\H, may have 4\m \\
+    2\S & 10--13, 4\S or 3\S unBAL \\
+    2\N & 6\+\H, 3\S \\
+    3\C & 14--15, 5\C \\
+    3\D & 14--15, 5\D \\
+    3\H & long \H suit, INV, NF \\
+    3\S & 14--15, 4\S \\
+    4\m & void splinter \\
+    4\H & 12--14, 8.5 tricks, 7--8 \H missing one of the top 5 honors \\
+    4\S & 11 cards in \S and \H, MIN \\
+\end{bidtable}
+
+\subsection[1\H--1\protect\N]{1\H---1\protect\N---} \label{1H1N}
+
+\begin{bidtable}
+    (bid) \\
+    \followups{
+      \X & takeout \\
+    }\\
+    \P & 10--13, $\begin{dcases}
+        \text{BAL} & \\
+        \text{4\S 5\H, no 4\m} & \\
+    \end{dcases}$\\
+    2\C & 4\+\C \\
+    2\D & 4\+\D \\
+    2\H & 6\+\H \\
+    2\S & 14--15, 4\S 5\H \\
+    2\N & $\begin{dcases}
+        \text{6\H 4\m} & \\
+        \text{6\H 5\S, superMAX} & \\
+    \end{dcases}$\\
+    3\C & 14--15, 5\C, good suits, NF \\
+    3\D & 14--15, 5\D, good suits, NF \\
+    3\H & trick-based INV \\
+\end{bidtable}
+
+\subsection[1\H--2\C]{1\H---2\C---} \label{1H2C}
+
+\begin{bidtable}
+    (bid) \\
+    \followups{
+      \X & penalty \\
+      3\C & 3\C, unBAL \\
+      3 cue & 4\+\C, shortness in opp's suit
+    }\\
+    2\D & 4\+\D, denies 4\S \\
+    2\H & 6\+\H, 1-suiter or with 4 weak \D \\
+    2\S & 4\+\S, may have 6\S or 45(04) \\
+    2\N & 10--13, 5\H(332) \\
+    3\C & 5\H 4/5\C, unBAL \\
+    3\D & 6\+\H 4\+\C \\
+    3\H & 2524 \\
+    3\S & great long \H \\
+\end{bidtable}
+
+\subsection[1\H--2\D]{1\H---2\D---} \label{1H2D}
+
+\begin{bidtable}
+    2\H & 6\+\H, denies 4\+\S \\
+    2\S & 4\+\S, denies 6\+\H unless 6\+\H 5\+\S \\
+    2\N & $\begin{dcases}
+        \text{11-33, 5\H(332) } & \\
+        \text{5\H 4\C without 3\D} & \\
+    \end{dcases}$\\
+    3\C & 5\+\H 5\C \\
+    3\D & $\begin{dcases}
+        \text{3\D} & \\
+        \text{2542} & \\
+    \end{dcases}$\\
+    3\H & great long \H \\
+    3\S & 4\+\D, 0-1\S \\
+    3\N & 4504 \\
+    4\C & 4\+\D, 0-1\C \\
+\end{bidtable}
+
+\subsection[1\H--2\protect\N]{1\H---2\protect\N} \label{1H2N}
+
+\begin{bidtable}
+    (bid) \\
+    \followups{
+      \X & shortness in their suit \\
+      \P & waiting \\
+    }\\
+    3\C & 10--13 \\
+    \followups{
+      3\D & asks shortness, chooses not to show shortness \\
+      \followups{
+        3\H & BAL \\
+        3\S & some void (R asks LMH) \\
+        3\N 4\C\D & singleton LMH \\
+      }\\
+      3\H & some void (R asks LMH) \\
+      3\S\N 4\C & singleton \C\D\S \\
+    }\\
+    3\D & 14--15, asks shortness, chooses not to show shortness \\
+    \followups{
+      3\H & BAL \\
+      3\S & some void (R asks LMH) \\
+      3\N 4\C\D & singleton LMH \\
+    }\\
+    3\H & 14--15, some void (R asks LMH) \\
+    3\S\N 4\C & 14--15, singleton LMH \\
+\end{bidtable}
+
+\subsection[1\H--3\C]{1\H---3\C---} \label{1H3C}
+
+\begin{bidtable}
+    3\D & interest in game or slam \\
+    \followups{
+      3\H & bad INV \\
+      3\S 4\C\D & LMH splinter \\
+      3\N & 3\H(433) good INV, NF \\
+      4\H & good INV \\
+    }\\
+    3\H & double-negative \\
+    4\H & accepts INV but no splinter \\
+\end{bidtable}
+
+\subsection{Reverse Drury}
+
+After \nth{3} hand opening.
+
+\begin{bidtable}
+    2\C & Drury response \\
+    \followups{
+      2\D & 11\+ \\
+      2\H & 8--10 \\
+      other & 11\+, natural \\
+    }\\
+\end{bidtable}
+
+\section{1\S} \label{sec:1S}
+
+\begin{bidtable}
+    1\N & 7--12, semiforcing, no fit \\
+    2\C & $\begin{dcases}
+        \text{2\+\C, BAL, GF} & \\
+        \text{5\+\C, GF} & \\
+    \end{dcases}$\\
+    2\D & 5\+\D, GF \\
+    2\H & 5\+\H, GF \\
+    2\S & 7--bad 11, 3\S\ usually \\
+    2\N & 4\+\S, GF \\
+    3\C & 11\+, 6\+\H, INV\+ \\
+    3\D & $\begin{dcases}
+        \text{good 11--12, 3\+\S, INV} & \\
+        \text{weak splinter} & \\
+    \end{dcases}$\\
+    3\H & 7--10, 4\S \\
+    3\S & 0--6, 4\S \\
+    3\N & 12--13, any splinter \\
+    4\C & 10--12, 0\C \\
+    4\D & 10--12, 0\D \\
+    4\H & 10--12, 0\H \\
+    4\S & to play \\
+\end{bidtable}
+
+\subsection{1\S---1\protect\N---} \label{1S1N}
+
+\begin{bidtable}
+    (bid) \\
+    \followups{
+      \X & takeout, could be 6(331) \\
+    }\\
+    \P & 10--13, BAL \\
+    2\C & 4\+\C, unBAL \\
+    2\D & 4\+\D, unBAL \\
+    2\H & 4\+\H, may have 6\S 4\H \\
+    2\S & 6\+\S, may have 4\m \\
+    3\C & 14--15, 5\C, good suits, NF \\
+    3\D & 14--15, 5\D, good suits, NF \\
+    3\S & trick-based INV \\
+\end{bidtable}
+
+\subsection[1\S--2\C]{1\S---2\C---} \label{1S2C}
+
+\begin{bidtable}
+    (bid) \\
+    \followups{
+      \X & penalty \\
+      3\C & 3\C, unBAL \\
+      3 cue & 4\+\C, shortness in opp's suit
+    }\\
+    2\D & 4\+\D, denies 4\H \\
+    2\H & 4\+\H, may have 6\S 4\+\H \\
+    2\S & 4\+\S, 1-suiter or with 4 weak \D \\
+    2\N & 10--13, 5\S(332) \\
+    3\C & 5\S 4/5\C, unBAL \\
+    3\D & 6\+\S 4\+\C \\
+    3\H & 5224 \\
+    3\S & great long \S \\
+\end{bidtable}
+
+\subsection[1\S--2\D]{1\S---2\D---} \label{1S2D}
+
+\begin{bidtable}
+    2\H & 4\+\H \\
+    2\S & 6\+\S, denies 4\+\H \\
+    2\N & $\begin{dcases}
+        \text{5\S(332) } & \\
+        \text{5\S 4\C without 3\D} & \\
+    \end{dcases}$\\
+    3\C & 5\+\S 5\C \\
+    3\D & $\begin{dcases}
+        \text{3\D} & \\
+        \text{5242} & \\
+    \end{dcases}$\\
+    3\H & 4\+\D, 0-1\H \\
+    3\S & great long \S \\
+    3\N & 5404 \\
+    4\C & 4\+\D, 0-1\C \\
+\end{bidtable}
+
+\subsection{1\S---2\H---} \label{1S2H}
+
+\begin{bidtable}
+    2\S & 6\+\S, may have 4\m \\
+    2\N & 5233 or 5\S 4\m withour 3\H \\
+    3\C & 5\+\S 5\C, no \H fit \\
+    3\D & 5\+\S 5\H, no \H fit \\
+    3\H & 3\+\H \\
+    3\S & great long \S \\
+    3\N & 5044 \\
+    4\C & 3\+\H, 0\C \\
+    4\D & 3\+\H, 0\D \\
+    4\H & 3\H, MIN \\
+\end{bidtable}
+
+\subsection[1\S--2\protect\N]{1\S---2\protect\N} \label{1S2N}
+
+\begin{bidtable}
+    (bid) \\
+    \followups{
+      \X & shortness in their suit \\
+      \P & waiting \\
+    }\\
+    3\C & 10--13 \\
+    \followups{
+      3\D & asks shortness, chooses not to show shortness \\
+      \followups{
+        3\H & BAL \\
+        3\S & some void (R asks LMH) \\
+        3\N 4\C\D & singleton LMH \\
+      }\\
+      3\H & some void (R asks LMH) \\
+      3\S\N 4\C & singleton \C\D\H \\
+    }\\
+    3\D & 14--15, asks shortness, chooses not to show shortness \\
+    \followups{
+      3\H & BAL \\
+      3\S & some void (R asks LMH) \\
+      3\N 4\C\D & singleton LMH \\
+    }\\
+    3\H & 14--15, some void (R asks LMH) \\
+    3\S\N 4\C & 14--15, singleton LMH \\
+\end{bidtable}
+
+\subsection{1\S---3\C---} \label{1S3C}
+
+\begin{bidtable}
+    3\D & accepts INV \\
+    3\H & declines INV, may have short \H \\
+    3\S & great \S, short \H, NF \\
+    3\N & accepts INV, no interest in long \H or 4\m \\
+    4\m & natural \\
+    4\H & accepts INV, MIN \\
+    4\S & great \S, short \H, to play \\
+\end{bidtable}
+
+\subsection{1\S---3\D---} \label{1S3D}
+
+\begin{bidtable}
+    3\D & interest in game or slam \\
+    3\S & double negative \\
+    4\S & accepts INV but no splinter \\
+\end{bidtable}
+
+\subsection{Reverse Drury}
+
+After \nth{3} hand opening.
+
+\begin{bidtable}
+    2\C & 11--12, 3\+\S, INV \\
+    \followups{
+      2\D & 11\+ \\
+      2\H & 4\+\H \\
+      2\S & 8--10 \\
+      other & 11\+, natural \\
+    }\\
+\end{bidtable}
+
+\section[1\protect\N]{1\protect\N---} \label{sec:1N}
+
+\begin{bidtable}
+    2\C & stayman (including 5\M INV) \\
+    \followups{
+      2\D & no 4\+\M \\
+      2\H & 4--5 \H, may have 4\S \\
+      2\S & 4--5\S, no 4\H \\
+    }\\
+    2\D & transfer to \H (including 5\S 5\H INV to game or slam) \\
+    \followups{
+      2\H & accept transfer \\
+    }\\
+    2\H & transfer to \S \\
+    \followups{
+      2\S & accept transfer \\
+    }\\
+    2\S & $\begin{dcases}
+        \text{transfer to \C} & \\
+        \text{ask strength} & \\
+    \end{dcases}$ \\
+    \followups{
+      2\N & MIN \\
+      3\C & MAX \\
+    }\\
+    2\N & transfer to \D \\
+    \followups{
+      3\D & accept transfer \\
+    }\\
+    3\C & 54 mm, NF \\
+    3\D & 54 mm, GF \\
+    3\H & \H\ shortness, minors, GF \\
+    3\S & \S\ shortness, minors, GF \\
+    3\N & to play \\
+    4\C & \\
+    4\D & 6\+\H, transfer to \H \\
+    4\H & 6\+\S, transfer to \S \\
+\end{bidtable}
+
+\subsection[1\protect\N--2\C--2\D]{1\protect\N---2\C---2\D---} \label{1N2C2D}
+
+\begin{bidtable}
+    2\H & weak, 4\S 4\H \\
+    \followups{
+      2\S & 3\S 2\H \\
+    }\\
+    2\S & 5\S, INV \\
+    2\N & INV, may have 5\H \\
+    3\C & 5\+\C 4\M, unBAL, GF \\
+    3\D & 5\+\D 4\M, unBAL, GF \\
+    3\H & 5\S 4\+\H, GF \\
+    3\S & 5\H 4\S, GF \\
+    3\N & to play \\
+    4\C & splinter, ST \\
+    4\D & splinter, ST \\
+    4\H & to play \\
+    4\S & to play \\
+\end{bidtable}
+
+\subsection[1\protect\N--2\C--2\H]{1\protect\N---2\C---2\H---} \label{1N2C2H}
+
+\begin{bidtable}
+    2\S & 5\S, INV\\
+    2\N & 4\S, INV \\
+    \followups{
+      3\H & 5\H, accept \\
+    }\\
+    3\C & 4\S 5\+\C, unBAL, GF \\
+    3\D & 4\S 5\+\D, unBAL, GF \\
+    3\H & 4\H, INV \\
+    3\S & any splinter raise (R asks LMH) \\
+    3\N & 4\S, GF \\
+    4\C & RCK \H \\
+    4\D & ST in \H, BAL \\
+    4\H & to play \\
+\end{bidtable}
+
+\subsection[1\protect\N--2\C--2\S]{1\protect\N---2\C---2\S---} \label{1N2C2S}
+
+\begin{bidtable}
+    2\N & 4\H, INV \\
+    3\C & 4\H 5\+\C, unBAL, GF \\
+    3\D & 4\H 5\+\D, unBAL, GF \\
+    3\H & \S flag, unBAL, ST \\
+    3\S & 4\S, INV \\
+    3\N & 4\H, to play \\
+    4\C & RCK \S \\
+    4\D & ST in \S, BAL \\
+    4\S & to play \\
+\end{bidtable}
+
+\subsection[1\protect\N--2\D--2\H]{1\protect\N---2\D---2\H---} \label{1N2D2H}
+
+\begin{bidtable}
+    2\S & $\begin{dcases}
+        \text{5\H 5 other, INV} & \\
+        \text{5\S 5\H, GF} & \\
+        \text{6\+\H, mild ST, splinter} & \\
+    \end{dcases}$\\
+    \followups{
+      2\N & waiting \\
+      \followups{
+        3\C & 5\H 5\C, INV \\
+        3\D & 5\H 5\D, INV \\
+        3\H & 5\S 5\H, INV \\
+        3\S & 5\S 5\H, ST \\
+        3\N 4\C\D & 6\+\H mild ST, LMH splinter \\
+      }\\
+      3\H & declines INV, 3\H \\
+      4\H & accepts INV, 3\H \\
+    }\\
+    2\N & 4\+\C, GF \\
+    \followups{
+      3\C & no \H fit \\
+      \followups{
+        3\D & short \D \\
+        3\H & short \S \\
+        3\S & 2524, ST \\
+        3\N 4\C & LH void, 55 \\
+      }\\
+      3\D & \H fit \\
+      \followups{
+        3\H & BAL, ST \\
+        3\S & some void, ST (R asks LH)\\
+        3\N 4\C & LH singleton, ST \\
+        4\H & to play \\
+      }\\
+      3\N & values in other suits, usually 2\H 3\C \\
+    }\\
+    3\C & 4\+\D, GF \\
+    \followups{
+      3\D & no \H fit \\
+      \followups{
+        3\H & short \C \\
+        3\S & short \S \\
+        3\N & 2542, ST \\
+        3\C 4\D & LH void, 55 \\
+      }\\
+      3\H & \H fit \\
+      \followups{
+        3\S & BAL, ST \\
+        3\N & some void, ST (R asks LH)\\
+        4\C\D & LH singleton, ST \\
+        4\H & to play \\
+      }\\
+      3\N & values in other suits, usually 2\H 3\C \\
+    }\\
+    3\D & 6\+\H, INV to game or slam \\
+    \followups{
+      3\H & declines INV \\
+      3\S & accepts INV \\
+    }\\
+    3\H & 6\+\H, mild INV (needs 3\H, MAX) \\
+    3\S 4\m & void auto-splinter \\
+    3\N & COG, partner expecter to bid 4\H with most 3-fits \\
+    4\H & strong 6/7 \H hand, BAL, ST \\
+\end{bidtable}
+
+\subsection[1\protect\N--2\H--2\S]{1\protect\N---2\H---2\S---} \label{1N2D2H}
+
+\begin{bidtable}
+    2\N & 4\+\C, GF \\
+    \followups{
+      3\C & no \S fit \\
+      \followups{
+        3\D & short \D \\
+        3\H & short \H \\
+        3\S & 5224, ST \\
+        3\N 4\C & LH void, 55 \\
+      }\\
+      3\D & \S fit \\
+      \followups{
+        3\H & BAL, ST \\
+        3\S & some void, ST (R asks LH)\\
+        3\N 4\C & LH singleton, ST \\
+        4\S & to play \\
+      }\\
+      3\N & values in other suits, usually 2\S 3\C \\
+    }\\
+    3\C & 4\+\D, GF \\
+    \followups{
+      3\D & no \H fit \\
+      \followups{
+        3\H & short \C \\
+        3\S & short \H \\
+        3\N & 5242, ST \\
+        4\C\D & LH void, 55 \\
+      }\\
+      3\H & \H fit \\
+      \followups{
+        3\S & BAL, ST \\
+        3\N & some void, ST (R asks LH)\\
+        4\C\D & LH singleton, ST \\
+        4\S & to play \\
+      }\\
+      3\N & values in other suits, usually 2\S 3\C \\
+    }\\
+    3\D & 6\+\S 5\+\H, GF \\
+    \followups{
+      3\H & \H flag \\
+      3\S & \S flag \\
+      3\N & 22 majors \\
+      4\M & to play \\
+    }\\
+    3\H & 6\+\S, INV to game or slam \\
+    \followups{
+      3\S & declines INV \\
+      3\N & accepts INV \\
+    }\\
+    3\S & 6\+\S, mild INV \\
+    3\N & COG, partner expecter to bid 4\S with most 3-fits \\
+    4\C\D\H & void auto-splinter \\
+    4\S & strong 6/7 \H hand, BAL, ST \\
+\end{bidtable}
+
+\subsection{Interference over 1\protect\N}
+
+\subsubsection[1\protect\N--2\C--(\X)]{1\protect\N---2\C---(\X)---}
+
+\begin{bidtable}
+    \P & 4\C, no 4M \\
+    \XX & good 4\+\C \\
+    2\D & 4\+\D, no 4M \\
+    2\H & 4\H \\
+    2\S & 4\S, no 4\H \\
+\end{bidtable}
+
+\section[2\C]{2\C---} \label{sec:2C}
+
+\begin{bidtable}
+    \hyperref[2C2D]{2\D} & 11\+, asks, INV+ \\
+    2\H & 8--11, 5\+\H, NF \\
+    2\S & 8--11, 5\+\S, NF \\
+    2\N & puppet to 3\C\ (to play or some 55 GF) \\
+    \followups{
+      \hyperref[2C2N3C]{3\C} & forced \\
+    }\\
+    3\C\D\H & 11\+, 6\+ cards in the next higher suit, INV\+ \\
+    \followups{
+      transfer & decline INV (even with singleton) \\
+      other & accept INV \\
+    }\\
+    3\S & 6\S 4\H GF \\
+    3\N & to play \\
+    4\C & 5--9, preemptive, al least 3\C usually 4\C \\
+    4\H & to play \\
+    4\S & to play \\
+    5\C & to play \\
+\end{bidtable}
+
+\subsection[2\C--2\D]{2\C---2\D---} \label{2C2D}
+
+\begin{bidtable}
+    \hyperref[2C2D2H]{2\H} & 4\S\ or 4\H \\
+    \hyperref[2C2D2S]{2\S} & 12--15, no 4-card major \\
+    2\N & 14--15, stoppers in both majors, no 4-card major \\
+    \followups{
+        3\D & ST in \C \\
+        3\H & 5\H, GF \\
+        3\S & 5\S, GF \\
+    }\\
+    3\C & 10--11, no 4-card major \\
+    \followups{
+        3\D & ST in \C \\
+        3\H & 5\H, GF \\
+        3\S & 5\S, GF \\
+    }\\
+    3\D\H\S & 5-card suit, GF \\
+\end{bidtable}
+
+\subsubsection[2\C--2\D--2\H]{2\C---2\D---2\H---} \label{2C2D2H}
+
+\begin{bidtable}
+    2\S & asks \\
+    \followups{
+      2\N/3\C & 4\H/4\S, 10--13 \\
+      \followups{
+        \P/3\C & S/O, wrong major \\
+        3\D & ST in \C \\
+        3\M & INV \\
+        3o\M & ST in M \\
+        games & to play \\
+      }\\
+      3\D/3\H & 4\H/4\S, 14--15 \\
+      \followups{
+        3\M & ST in M \\
+        games & to play \\
+      }\\
+    }\\
+    2\N & INV, no interest in the major \\
+    3\C & INV, no interest in the major \\
+    3\D & ST in \C \\
+\end{bidtable}
+
+\subsubsection[2\C--2\D--2\S]{2\C---2\D---2\S---} \label{2C2D2S}
+
+\begin{bidtable}
+    2\N & asks strength \\
+    \followups{
+      3\C & 12--13 \\
+      3\D & 14--15, 0-1\D \\
+      3\H & 14--15, 0-1\H \\
+      3\S & 14--15, 0-1\S \\
+      3\N & 14--15, no shortness \\
+    }\\
+    3\C & ``the breakes'', to play \\
+    3\D & ST in \C \\
+    3\H & 5\H, GF \\
+    3\S & 5\S, GF \\
+\end{bidtable}
+
+
+\subsection[2\C--2\protect\N--3\C]{2\C---2\protect\N---3\C---} \label{2C2N3C}
+
+\begin{bidtable}
+    \P & preemptive raise in \C \\
+    3\D & 5\S 5\H, GF \\
+    \followups{
+        3\H & \H\ flag \\
+        3\S & \S\ flag \\
+        3\N/4\C & no fit \\
+    }\\
+    3\H & 5\H 5\D, GF \\
+    \followups{
+        3\S & \H\ flag \\
+        3\N/4\C & no fit \\
+        4\D & \D\ fit \\
+    }\\
+    3\S & 5\S 5\D, GF \\
+    \followups{
+        4\H & \S\ flag \\
+        3\N/4\C & no fit \\
+        4\D & \D\ fit \\
+    }\\
+\end{bidtable}
+
+\subsection{Interface over 2\C}
+
+Over opponent's double, system on, \XX\ indicates 10\+ HCP with a defensive hand, and activates penalty double. After overcall, negative double, new suit at 2-lefel (F1), compete in \C\, new suit at 3-level (GF), cue-bid a good club raise, or sign off in game.
+
+\section[2\D]{2\D---} \label{sec:2D}
+
+\begin{bidtable}
+    2\H & to play \\
+    \followups{
+      2\S & 4315 \\
+    }\\
+    2\S & to play \\
+    \hyperref[2D2N]{2\N} & asks \\
+    3\C & to play \\
+    3\D & 11\+, good 6\+\D \\
+    3\H & 7--9, 5\H \\
+    \followups{
+      4\H & 4\H, MAX \\
+    }\\
+    3\S & 7--9, 5\S \\
+    \followups{
+      4\S & 4\S, MAX \\
+    }\\
+    3\N & to play \\
+    4\H & to play \\
+    4\S & to play \\
+\end{bidtable}
+
+\subsection[2\D--2\protect\N]{2\D---2\protect\N---} \label{2D2N}
+
+3-card majors are shown to make responder declarer.
+
+\begin{bidtable}
+    3\C & MIN \\
+    \followups{
+      3\D asks for a 3-card major \\
+      \followups{
+        3\H & 4315 \\
+        3\S & 3415 \\
+        3\N & 44 majors \\
+      }\\
+    }\\
+    3\D & MAX, 44 majors, GF \\
+    \followups{
+      3\H & sets \H\ for cues \\
+      3\S & sets \S\ for cues \\
+    }\\
+    3\H & MAX, 4315 \\
+    3\S & MAX, 3415 \\
+\end{bidtable}
+
+\subsection{Mulberry} \label{MB}
+
+Used for 3-suited hands. For RKC it is necessary for both players to understant what the trump suit is. For the RKC coding, we rank the suits in order of known length in the hand which is responding to RKC. Ties (or unknown) go to the lower suit.
+
+\begin{bidtable}
+    4\C & puppet to 4\D\ (for RCK) \\
+    \followups{
+        4\D & forced \\
+        \followups{
+            4\H & RCK for longest suit  \\
+            4\S & RCK for second longest suit \\
+            4\N & RCK for third longest suit \\
+            5\C & very strong ST in \C \\
+            5\D & very strong ST in \D \\
+            5\H & very strong ST in \H \\
+            5\S & very strong ST in \S \\
+            5\N & very strong ST in \N \\
+      }\\
+    }\\
+    4\D & puppet to 4\H\ (to sign off) \\
+    \followups{
+        4\H & forced \\
+        \followups{
+          \P & to play \\
+          4\S & to play \\
+          4\N & RCK for shortest suit \\
+          5\C & to play \\
+          5\D & to play \\
+        }\\
+    }\\
+    4\H & ST in \H \\
+    4\S & ST in \S \\
+    4\N & ST in \N \\
+    5\C & ST in \C \\
+    5\D & ST in \D \\
+\end{bidtable}
+
+\subsection{Interference over 2\D}
+
+Doubles are all penalty. 2\N\ is still asking, if available. Responder's bid in one of opener's 3 suits is to play, jump is a mixed raise.
+
+If opponents double 2\D, \XX\ asks for better major, \P\ to request opener to also \P.
+
+\section{Slam Bidding}
+
+\subsection{Kickback Roman Keycard Blackwood}
+
+Without Kickback (keycards are Aces and trump K):
+
+\begin{bidtable}
+    4\N & RKC \\
+    \followups{
+      5\C & 1/4 keycards \\
+      5\D & 0/3 keycards \\
+      5\H & 2 keycard, no trump Q \\
+      5\S & 2 keycard, trump Q \\
+    }\\
+\end{bidtable}
+
+With Kickback ($X$ is trump):
+
+\begin{bidtable}
+    4$X+1$ &  KRCK \\
+    \followups{
+      4$X+2$ &  1/4 keycards \\
+      4$X+3$ &  0/3 keycards \\
+      4$X+4$ &  2 keycard, no trump Q \\
+      4$X+5$ &  2 keycard, trump Q \\
+    }\\
+\end{bidtable}
+
+Next step queries trump queen (if not known):
+
+\begin{bidtable}
+    $Y$ & trump Q ask \\
+    \followups{
+      $Y+1$ & no trump Q \\
+      $Y+2$ & trump Q \\
+    }\\
+\end{bidtable}
+
+Next step queries \#kings (then \#queens, ...):
+
+\begin{bidtable}
+    $Z$ & \#kings ask \\
+    \followups{
+    $Z+1$ & 0/3 kings \\
+    $Z+2$ & 1/4 kings \\
+    $Z+3$ & 2 kings \\
+    }\\
+\end{bidtable}
+
+\subsection{Is it Kickback?}
+
+The answer is that if a 4-level jump bid could be construed as Kickback, and
+there is any way to bid that suit naturally and forcing below game, then it is
+Kickback.
+
+If there are two suits, then the cheapest ``impossible'' bid is Kickback for the
+lower suit and the next ``impossible'' bis is Kickback for the higher suit.
+
+\subsection{Serious 3NT and Last Train}
+
+When a major suit is trumps and slam is not yet ruled out, 3NT is not natural, but rather a waiting bid that shows a good hand in context. If you bybass 3NT, you deny a good hand in context.
+
+The bid one under 4 of the major also shows a good hand in context, and nothing about the cue-bid suit.
+
+Example:
+
+1\H---2\C---2\H---3\H---
+
+\begin{bidtable}
+    3\S & cue-bid, does not say whether serious or not \\
+    3\N & Serious 3NT (13--15 as 1\H was 10--15), denies a spade cue \\
+    4\C & cue-bid, non-serious hand (10--12), denies a space cue, min but not the pits \\
+    4\D & Last Train, non-serious hand (10--12), no spade or club cue \\
+    4\H & the worst hand (10-11), bad distribution, honor location and slam cards \\
+\end{bidtable}
+
+\end{document}
