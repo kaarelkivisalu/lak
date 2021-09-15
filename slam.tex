@@ -1,0 +1,93 @@
+\section{Slam Bidding}
+
+\subsection{Kickback Roman Keycard Blackwood}
+
+Without Kickback (keycards are Aces and trump K):
+
+\begin{bidtable}
+    4\N & RKC \\
+    \followups{
+      5\C & 1/4 keycards \\
+      5\D & 0/3 keycards \\
+      5\H & 2 keycard, no trump Q \\
+      5\S & 2 keycard, trump Q \\
+    }\\
+\end{bidtable}
+
+With Kickback ($X$ is trump):
+
+\begin{bidtable}
+    4$X+1$ &  KRCK \\
+    \followups{
+      4$X+2$ &  1/4 keycards \\
+      4$X+3$ &  0/3 keycards \\
+      4$X+4$ &  2 keycard, no trump Q \\
+      4$X+5$ &  2 keycard, trump Q \\
+    }\\
+\end{bidtable}
+
+Next step queries trump queen (if not known):
+
+\begin{bidtable}
+    $Y$ & trump Q ask \\
+    \followups{
+      $Y+1$ & no trump Q \\
+      $Y+2$ & trump Q \\
+    }\\
+\end{bidtable}
+
+Next step queries \#kings (then \#queens, ...):
+
+\begin{bidtable}
+    $Z$ & \#kings ask \\
+    \followups{
+    $Z+1$ & 0/3 kings \\
+    $Z+2$ & 1/4 kings \\
+    $Z+3$ & 2 kings \\
+    }\\
+\end{bidtable}
+
+\subsection{Is it Kickback?}
+
+The answer is that if a 4-level jump bid could be construed as Kickback, and
+there is any way to bid that suit naturally and forcing below game, then it is
+Kickback.
+
+If there are two suits, then the cheapest ``impossible'' bid is Kickback for the
+lower suit and the next ``impossible'' bis is Kickback for the higher suit.
+
+\subsection{Preemptive Roman Keycard Blackwood} \label{PRKC}
+
+% https://bridge-tips.co.il/wp-content/uploads/2020/06/aa_poor_man.pdf
+Over our preempts (2\H\S, 3\D\H\S) 4\C\ asks (over 3\C, 4\D asks), then
+
+\begin{bidtable}
+$S_1$ & 0 keycards \\
+$S_2$ & 1 keycard, no trump queen \\
+$S_3$ & 1 keycard, with trump queen \\
+$S_4$ & 2 keycards, no trump queen \\
+$S_5$ & 2 keycards, with trump queen \\
+\end{bidtable}
+
+\subsection{Serious 3NT and Last Train}
+
+When a major suit is trumps and slam is not yet ruled out, 3NT is not natural, but rather a waiting bid that shows a good hand in context. If you bybass 3NT, you deny a good hand in context.
+
+The bid one under 4 of the major also shows a good hand in context, and nothing about the cue-bid suit.
+
+Example:
+
+1\H---2\C---2\H---3\H---
+
+\begin{bidtable}
+    3\S & cue-bid, does not say whether serious or not \\
+    3\N & Serious 3NT (13--15 as 1\H was 10--15), denies a spade cue \\
+    4\C & cue-bid, non-serious hand (10--12), denies a space cue, min but not the pits \\
+    4\D & Last Train, non-serious hand (10--12), no spade or club cue \\
+    4\H & the worst hand (10-11), bad distribution, honor location and slam cards \\
+\end{bidtable}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "lak"
+%%% End:

@@ -1,0 +1,96 @@
+\usepackage[dvipsnames]{xcolor}
+\usepackage{hyperref}
+\hypersetup{colorlinks=false}
+\usepackage{polyglossia} % Eesti keele tugi
+\setdefaultlanguage{english}
+%\usepackage{csquotes}% Eesti jutumärgid \enquote{}
+
+\usepackage{enumitem}% Listid
+\setlist[itemize]{topsep=-\parskip, partopsep=0em, parsep=0em, itemsep=0em, leftmargin=*}% Itemize spacing
+\setlist[enumerate]{topsep=-\parskip, partopsep=0em, parsep=0em, itemsep=0em, leftmargin=*}% Itemize spacing
+\usepackage[]{titlesec}% Kompaktsed pealkirjad
+\titleformat{\paragraph}{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+\titlespacing*{\paragraph}{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+% \titleformat*{\subparagraph}{\itshape}
+
+\usepackage{microtype}
+
+\setcounter{secnumdepth}{4}
+
+\usepackage{geometry}% Paigutus
+\geometry{
+    paper=a4paper, % Paper size, change to letterpaper for US letter size
+    % top=1cm, % Top margin
+    % bottom=1cm, % Bottom margin
+    % left=0.5cm, % Left margin
+    % right=0.5cm, % Right margin
+    % foot=0.5cm, % Footer-margin distance
+     margin = 2.5 cm,
+    % landscape,
+     % showframe, % Uncomment to show how the type block is set on the page
+}
+
+\setlength{\parindent}{0em}% Taandridu pole
+
+\usepackage{multicol}
+\setlength{\columnseprule}{0.4pt}
+\usepackage[strict]{changepage}
+
+\usepackage{parskip}
+
+\usepackage{amsmath}
+\usepackage{mathtools}
+
+% \renewcommand{\C}{$\clubsuit$}
+% \newcommand{\D}{$\diamondsuit$}
+% \renewcommand{\H}{$\heartsuit$}
+% \renewcommand{\S}{$\spadesuit$}
+% \newcommand{\N}{N}
+
+\DeclareSymbolFont{extraup}{U}{zavm}{m}{n}
+\DeclareMathSymbol{\varheart}{\mathalpha}{extraup}{86}
+\DeclareMathSymbol{\vardiamond}{\mathalpha}{extraup}{87}
+\DeclareMathSymbol{\varclub}{\mathalpha}{extraup}{84}
+\DeclareMathSymbol{\varspade}{\mathalpha}{extraup}{81}
+
+\newcommand{\C}{\texorpdfstring{\textcolor{ForestGreen}{\raisebox{-0.017em}{\ensuremath{\varclub}}}}{C}}
+\newcommand{\D}{\texorpdfstring{\textcolor{YellowOrange}{\raisebox{-0.35pt}{\ensuremath{\vardiamond}}}}{D}}
+\renewcommand{\H}{\texorpdfstring{\textcolor{Red}{\raisebox{-0.06em}{\ensuremath{\varheart}}}}{H}}
+\renewcommand{\S}{\texorpdfstring{\raisebox{-0.03em}{\ensuremath{\varspade}}}{S}}
+\newcommand{\N}{\texorpdfstring{\textcolor{Cerulean}{\raisebox{0.15em}{\scalebox{0.72}{\ensuremath{\bigodot}}}}}{NT}}
+\newcommand{\+}{\textsuperscript{+}}
+\renewcommand{\P}{\texorpdfstring{{\footnotesize{PASS}}}{PASS}}
+\newcommand{\pdfP}{\texorpdfstring{\P{}}{PASS}}
+\newcommand{\X}{{\footnotesize{DBL}}}
+\newcommand{\XX}{{\footnotesize{RDBL}}}
+\newcommand{\m}{m}
+\newcommand{\M}{M}
+\newcommand{\mm}{mm}
+\newcommand{\MM}{MM}
+
+\usepackage[super]{nth}
+
+\usepackage{environ}
+\usepackage{makecell}
+
+\newenvironment{bidtable}{%
+	\begin{tabular}{l l}%
+}{%
+	\end{tabular}%
+}
+
+\newcommand\followups[1]{
+	\multicolumn{2}{l}{
+		\makecell[l]{
+			\hspace{2mm}
+			\begin{tabular}{l l}
+				#1
+			\end{tabular}
+		}
+	}
+}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "lak"
+%%% TeX-engine: luatex
+%%% End:
