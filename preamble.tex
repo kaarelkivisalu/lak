@@ -1,4 +1,4 @@
-\usepackage[dvipsnames]{xcolor}
+\usepackage[dvipsnames, table]{xcolor}
 
 \usepackage{hyperref}
 \hypersetup{colorlinks=false}
@@ -145,21 +145,23 @@
 \usepackage{makecell}
 
 \newenvironment{bidtable}{%
-	\begin{tabular}{l l}%
-}{%
-	\end{tabular}%
+  \begin{tabular}{l l}%
+    }{%
+  \end{tabular}%
 }
 
 \newcommand\followups[1]{
-	\multicolumn{2}{l}{
-		\makecell[l]{
-			\hspace{2mm}
-			\begin{tabular}{l l}
-				#1
-			\end{tabular}
-		}
-	}
+  \multicolumn{2}{l}{
+    \makecell[l]{
+      \hspace{2mm}
+      \begin{tabular}{l l}
+        #1
+      \end{tabular}
+    }
+  }
 }
+
+\newcommand{\hl}{\rowcolor{yellow!40}}
 %%% Local Variables:
 %%% mode: latex
 %%% TeX-master: "lak"
