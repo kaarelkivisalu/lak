@@ -1,0 +1,12 @@
+## Core latex/pdflatex auxiliary files:
+*.aux
+*.fdb_latexmk
+*.fls
+*.synctex.gz
+*.log
+*.out
+*.toc
+
+## Emacs stuff
+*.*~
+.auctex-auto/
