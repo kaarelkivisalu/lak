@@ -1,5 +1,7 @@
 \section{General approach}
 
+All bids specified in further sections override general approach bids.
+
 \subsection[(bid)--overcall--(pass)]{(bid)---overcall---(pass)---}
 
 \begin{bidtable}
@@ -13,6 +15,30 @@
     \text{nat, INV} & \text{else} \\
   \end{dcases}$\\
 \end{bidtable}
+
+\subsection[(bid)--overcall--(\X)]{(bid)---overcall---(\X)---}
+
+\begin{bidtable}
+  \XX & $\begin{dcases}
+    \text{\emph{Rosenkranz double}\footnotemark} & \text{at 1 level}\\
+    \text{strength} & \text{else}\\
+  \end{dcases}$\\
+  direct raise any level & PRE \\
+  new suit & $\begin{dcases}
+    \text{FNJ} & \text{opposite 2 level overcall at 3 level} \\
+    \text{natural} & \text{else} \\
+  \end{dcases}$\\
+  non-game jump in new suit & FJ \\
+  cheapest cue & good raise \\
+  jump cue to 3 level & MIX with 4\+ cards \\
+  jump cue to 4 level & splinter \\
+  2\N & $\begin{dcases}
+    \text{INV\+ raise with 4\+ cards} & \text{opposite 1\M\ overcall} \\
+    \text{MIX} & \text{opposite 2 level overcall} \\
+    \text{nat, INV} & \text{else} \\
+  \end{dcases}$\\
+\end{bidtable}
+\footnotetext{Lead your suit, I have a top honour (AKQ) but not enough to support you.}
 
 \section{Against Strong 1\C}
 
