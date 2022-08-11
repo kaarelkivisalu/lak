@@ -1,77 +1,91 @@
 \section{Leads} \label{sec:}
 
-
-\begin{table}[h]
-  \centering
-  \begin{tabular}{l|l|l|l|l}
-    You have supported partner's bid     & Vs. Suit  & Vs. NT    \\
-    \hline
-    xx or Hx or HH                       & Lead high & Lead high \\
-    xxx                                  & Lead low  & Lead low  \\
-    Hxx                                  &           & Lead low  \\
-    \hline
-    You have NOT supported partner's bid & Vs. Suit  & Vs. NT    \\
-    \hline
-    xxx                                  & Lead high & Lead high \\
-    xxxx                                 &           & Lead high \\
-    Hxx or Hxxx                          &           & Lead low  \\
-  \end{tabular}
-  \caption{Leading a suit partner has bid.}
-\end{table}
-
-Against NT from smallish cards lead 2nd if return is not wanted, 4th if return is wanted.
-
-\begin{table}[!h]
-  \centering
-  \begin{adjustbox}{width=1.1\textwidth,center=\textwidth}
-    \begin{tabular}{l|l|l}
-      Lead  & Vs. NT                                                              & Notes               \\
-      \hline
-      Ace   & AKQ(+), AKJ(+), Ax, AK, [AQJ10(+) with entries]                     & Attitude, unblock   \\
-      King  & KQJ(+), KQ10(+), KQx, AKx, KQ                                       & Count               \\
-      Queen & KQ109(+), QJ10(+), QJ9(+), QJ(x), [AQx], [AQJ10(+) without entries] & Attitude, unblock J \\
-      Jack  & J109(+), J108(+), J10(x), [AJx], [KJx]                              & \nth{1}             \\
-      10    & 1098(+), 1097(+), 109x, 10x, AJ10, KJ10                             & \nth{1} or \nth{3}  \\
-      9     & H|109, AK109, [AQ109(+)], see below                                 & \nth{1} or \nth{3}  \\
-      Hi-X  & Xx, Xxx, xXxx                                                       & Discouraging        \\
-      Lo-X  & HxxX(+), HHxX(+), HxX, A10X, K10X, Q10X                             & Encouraging         \\
-    \end{tabular}
-\end{adjustbox}
-  \caption{Leading a suit partner has not bid vs. NT. $\mathrm{H}\geq10$, \underline{YY} means adjacent cards, Y|Y means non-adjacent cards, rare combinations in [].}
-\end{table}
-
-\begin{table}[!h]
-  \centering
-  % \begin{adjustbox}{width=1.2\textwidth,center=\textwidth}
-    \begin{tabular}{l|l|l}
-      Lead  & Vs. Suit & Notes \\
-      \hline
-      Ace   & AH, Ax, Axx        &       \\
-      King  & KH         &       \\
-      Queen & QH         &       \\
-      Jack  & J10         &       \\
-      10    & 10x         &       \\
-      9     &          &       \\
-      Hi-X  & Xx         &       \\
-      Lo-X  & HxX(x), H|HX(x), xxX         &       \\
-    \end{tabular}
-  % \end{adjustbox}
-  \caption{Leading a suit partner has not bid vs. suit. $\mathrm{H}\geq10$, \underline{YY} means adjacent cards, Y|Y means non-adjacent cards, rare combinations in [].}
-\end{table}
-
-
-
+General style:
 \begin{itemize}
-  \item \nth{2}/\nth{4} in \N.
-  \item \nth{1}/\nth{3}/\nth{5} in suit.
-  \item Higest from sequence.
+  \item Reverse attitude (low = \enc, high = \disc)
+  \item Standard count (Hi/Lo = even)
+  \item Attitude on A or Q (denies A)
+  \item If needed unblock on K, else count on K
+  \item \nth{1}, \nth{3} or \nth{5} in suit
+  \item \nth{4} in NT with honor
+  \item \nth{2} in NT without honor
+  \item In partner's suit always \nth{1}, \nth{3} or \nth{5}
+  \item 10 or 9 is always \nth{1} or \nth{3}
+  \item MUD for weak 3-counts
 \end{itemize}
+\vspace{1em}
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|l|l|}
+    \hline
+    & Lead & In Partner's Suit \\ \hline
+    Suit & \nth{1}/\nth{3}/\nth{5} & \nth{1}/\nth{3}/\nth{5}\\ \hline
+    Notrump & \nth{4} (\nth{2} without honor)& \nth{1}/\nth{3}/\nth{5} \\ \hline
+    Subsequent & \nth{1}/\nth{3}/\nth{5} & \nth{1}/\nth{3}/\nth{5}\\ \hline
+  \end{tabular}
+  \caption{Opening leads style.}
+\end{table}
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|l|l|}
+    \hline
+    Card & Combination & Signal \\
+    \hline
+    Ace   & AK(+), Ax                  & \att                          \\ \grayline
+    King  & AK(+), KQ(+)               & If needed unblock, else count \\ \grayline
+    Queen & KQ(+), QJ(+), Qx           & \att                          \\ \grayline
+    Jack  & J10(+), Jx                 & Count                         \\ \grayline
+    10    & HJ10(+), 109(+), 10x       & Count                         \\ \grayline
+    9     & H109(+), 98(+), 9x         & Count                         \\ \grayline
+    Hi-X  & Xx, xXx                    & Count                         \\ \grayline
+    Lo-X  & xxXx, HxX(x), xxxxX, HxxxX & Count                         \\ \hline
+  \end{tabular}
+  \caption{Leads vs Suit.}
+\end{table}
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|l|l|}
+    \hline
+    Card & Combination & Signal \\
+    \hline
+    Ace   & AK(+), Ax             & \att                          \\ \grayline
+    King  & AK(+), KQ(+)          & If needed unblock, else count \\ \grayline
+    Queen & KQ(+), QJ(+), Qx      & \att                          \\ \grayline
+    Jack  & J10(+), Jx            & Count                         \\ \grayline
+    10    & HJ10(+), 109(+), 10x  & Count                         \\ \grayline
+    9     & H109(+), 98(+), 9x    & Count                         \\ \grayline
+    Hi-X  & Xx, xXx, xXxx(+)      & Count                         \\ \grayline
+    Lo-X  & HxxX(+), HHxX(+), HxX & Count                         \\ \hline
+  \end{tabular}
+  \caption{Leads vs NT.}
+\end{table}
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|l|l|l|}
+    \hline
+    & Partner's Lead & Declarer's Lead & Discarding \\ \hline
+    1      & Lo = \enc    & Hi/Lo = Even & odd=\enc, even=S/P \\ \grayline
+    2 Suit & Hi/Lo = Even &              &                    \\ \grayline
+    3      & S/P          &              &                    \\ \hline
+    1      & Lo = \enc    & Hi/Lo = Even & S/P                \\ \grayline
+    2 NT   & Hi/Lo = Even &              &                    \\ \grayline
+    3      & S/P          &              &                    \\ \hline
+  \end{tabular}
+  \caption{Signals in order of priority.}
+\end{table}
+
+For suit preference (S/P) a high card suggests the higher suit and a low card the lower suit.
+
 
 \section{Discards} \label{sec:}
 
 \begin{itemize}
-  \item Odd-Even in suit.
-  \item Lavinthal in \N.
+  \item Italian (aka. Odd-Even) in suit. This means odd=\enc, even Hi/Lo.
+  \item Lavinthal in NT. This means Hi/Lo.
 \end{itemize}
 %%% Local Variables:
 %%% mode: latex

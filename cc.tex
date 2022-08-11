@@ -50,6 +50,10 @@ margin=0.5cm,
 \newcommand{\M}{M}
 \newcommand{\mm}{mm}
 \newcommand{\MM}{MM}
+\newcommand{\att}{\textsc{att}}
+\newcommand{\enc}{\textsc{enc}}
+\newcommand{\disc}{\textsc{disc}}
+\newcommand{\mud}{\textsc{mud}}
 
 \newcommand\tick{\ensuremath{\surd}}
 
@@ -130,8 +134,8 @@ margin=0.5cm,
     Subsequent & \nth{1}/\nth{3}/\nth{5} & \nth{1}/\nth{3}/\nth{5}\\ \hline
   \end{tabular}
   \begin{tabular}{|p{7mm} p{76.78mm}|}
-      Other: & from AK or KQ both honours are possible \\
-             & 10 and 9 are \nth{1} or \nth{3}\\
+      Other: & from AK or KQ both honours are possible, \\
+             & 10 and 9 are \nth{1} or \nth{3}, \mud\ from xxx \\
     \hline
 
   \end{tabular}
@@ -140,34 +144,32 @@ margin=0.5cm,
   \end{tabular}
 
   \resizebox{92.49mm}{!}{%
-    \begin{tabular}{|l|p{45mm}|p{42mm}|}
-      Lead  & Vs. Suit                     & Vs. NT                  \\ \hline
-      Ace   & AK(+), Ax                    & AK(+), Ax               \\ \grayline
-      King  & AK(+), KQ(+), Kx             & AK(+), KQ(+), Kx        \\ \grayline
-      Queen & KQ(+), QJ(+), Qx             & KQ(+), QJ(+), Qx        \\ \grayline
-      Jack  & J10(+), Jx                   & J10(+), Jx              \\ \grayline
-      10    & HJ10(+), 109(+), 10x(x)      & HJ10(+), 109(+), 10x(x) \\ \grayline
-      9     & H109(+), 98(+), 9x           & H109(+), 98(+), 9x(x)   \\ \grayline
-      Hi-X  & Xx                           & Xx, Xxx, xXxx(+)        \\ \grayline
-      Lo-X  & xxX(x), HxX(x), xxxxX, HxxxX & HxxX(+), HHxX(+), HxX   \\ \hline
+    \begin{tabular}{|l|p{42mm}|p{37mm}|}
+      Lead  & Vs. Suit                   & Vs. NT                \\ \hline
+      Ace   & AK(+), Ax                  & AK(+), Ax             \\ \grayline
+      King  & AK(+), KQ(+)               & AK(+), KQ(+)          \\ \grayline
+      Queen & KQ(+), QJ(+), Qx           & KQ(+), QJ(+), Qx      \\ \grayline
+      Jack  & J10(+), Jx                 & J10(+), Jx            \\ \grayline
+      10    & HJ10(+), 109(+), 10x       & HJ10(+), 109(+), 10x  \\ \grayline
+      9     & H109(+), 98(+), 9x         & H109(+), 98(+), 9x    \\ \grayline
+      Hi-X  & Xx, xXx                    & Xx, xXx, xXxx(+)      \\ \grayline
+      Lo-X  & xxXx, HxX(x), xxxxX, HxxxX & HxxX(+), HHxX(+), HxX \\ \hline
   \end{tabular}}
   \begin{tabular}{| p{88mm} |}
     \textbf{SIGNALS IN ORDER OF PRIORITY} \\ \hline
   \end{tabular}
   \resizebox{92.49mm}{!}{%
-  \begin{tabular}{| p{8mm} | p{21mm} | p{30mm} | p{15mm} |}
-           & Partner's Lead & Declarer's Lead & Discarding \\ \hline
-    1      & Lo = ENC       & Hi/Lo = Even    & S/P        \\ \grayline
-    2 Suit & Hi/Lo = Even   &                 &            \\ \grayline
-    3      & S/P            &                 &            \\ \hline
-    1      & Lo = ENC       & Smith: Lo = ENC & S/P        \\ \grayline
-    2 NT   & Hi/Lo = Even   & Hi/Lo = Even    &            \\ \grayline
-    3      & S/P            &                 &            \\ \hline
+  \begin{tabular}{| p{8mm} | p{21mm} | p{21mm} | p{30mm} |}
+           & Partner's Lead & Declarer's Lead & Discarding         \\ \hline
+    1      & Lo = \enc      & Hi/Lo = Even    & Odd=\enc, even=S/P \\ \grayline
+    2 Suit & Hi/Lo = Even   &                 &                    \\ \grayline
+    3      & S/P            &                 &                    \\ \hline
+    1      & Lo = \enc      & Hi/Lo = Even    & S/P                \\ \grayline
+    2 NT   & Hi/Lo = Even   &                 &                    \\ \grayline
+    3      & S/P            &                 &                    \\ \hline
   \end{tabular}}
   \begin{tabular}{| p{88mm} |}
-    Signals: ATT on A or Q, count/unblock on K\\
-    S/P vs. Suit: Italian (Odd=ENC, Even=Hi/Lo)\\
-    S/P vs. NT: Lavinthal (Even=Hi/Lo) \\
+    Signals: \att\ on A or Q, count/unblock on K\\
     \hline
     \cellcolor[gray]{0.9} \textbf{DOUBLES} \\ \hline
     \textbf{TAKEOUT DOUBLES} \\ \hline
