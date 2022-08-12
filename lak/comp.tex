@@ -110,7 +110,7 @@ As a responder assume that opener has 10--13 BAL until told otherwise.
 \subsection[1\D--(1\S)]{1\D---(1\S)---}
 
 \begin{bidtable}
-  \X & negative \\
+  \X & 4\H \\
   1\N & nat, does not promise stopper \\
   2\C & 5\+\C, F1 \\
   2\D & 5\+\D, F1 \\
@@ -133,27 +133,271 @@ Same as \lcnameref{sec:(1N)}.
 
 \section[Interference over 1\H]{Interference over 1\H}
 
-\subsection[1\H--(2\protect\N)]{1\H---(2\protect\N\ minors)---} \label{sec:1M(2N)}
+Fit-jumps are frequently used.
+
+Responders first bid general structure: cue-bid is INV\+ with 3 fit, jump-cue is splinter, 2\N\ is INV\+ with 4\+ fit, jump in an unbid suit is a fit-jump.
+
+\subsection[1\H--(\X)]{1\H---(\X)---}
+
+\begin{bidtable}
+  \XX & strength\\
+  1\S & 4\+\S, F1\\
+  \hl 1\N & TRF to \C, F2\C \\
+  \hl 2\C & TRF to \D, F2\D \\
+  \hl 2\D & 8\+, 3\+\H, F2\H\\
+  2\H & 0--7, 3\+\H\\
+  \hl 2\S & FJ to 3\H\\
+  \hl 2\N & 4\+\H, INV\+\\
+  \hl 3\m & FJ to 3\H\\
+  3\H & 4\+\H, PRE \\
+  3\S & FJ to 4\H\\
+  3\N & to play\\
+  4\m & FJ to 4\H\\
+  4\H & to play\\
+\end{bidtable}
+
+\subsection[1\H--(1\S)]{1\H---(1\S)---}
+
+\begin{bidtable}
+  \X & takeout\\
+  1\N & nat\\
+  2\m & nat, F1\\
+  2\H & 3\+\H\\
+  2\S & 3\H, INV\+\\
+  \hl 2\N & 4\+\H, INV\+\\
+  \hl 3\m & FJ to 3\H \\
+  3\H & PRE, 4\+\H\\
+  3\S & splinter \\
+  3\N & to play, with stopper\\
+  \hl 4\m & FJ to 4\H \\
+  4\H & to play \\
+  5\m & to play\\
+\end{bidtable}
+
+\subsection[1\H--(1\protect\N)]{1\H---(1\protect\N)---}
+
+\begin{bidtable}
+  \X & strength\\
+  \hl 2\C & 5\+\S 3\+\H \\
+  \hl 2\D & 8\+, 3\+\H, F2\H\\
+  2\H & 0--7, 3\+\H\\
+  2\S & nat, NF\\
+  \hl 3\m & FJ to 3\H\\
+  3\H & PRE \\
+  \hl 3\S & FJ to 4\H\\
+  \hl 4\m & FJ to 4\H\\
+  4\H & to play\\
+  4\S & to play\\
+  5\m & to play\\
+\end{bidtable}
+
+\subsection[1\H--(2\m)]{1\H---(2\m)---}
+
+\begin{bidtable}
+  \X & takeout\\
+  2\D & nat, F1\\
+  2\H & 3\+\H\\
+  2\S & nat, F1\\
+  \hl 2\N & 4\+\H, INV\+\\
+  \hl 3\C\ (over 2\D) & nat, FG (PH: FNJ to 3\H) \\
+  \hl 3\D\ (over 2\C) & FJ to 3\H \\
+  3\m & 3\H, INV\+\\
+  3\H & 4\+\H, PRE\\
+  \hl 3\S & FJ to 4\H \\
+  3\N & to play, with stopper\\
+  4\m & splinter \\
+  \hl 4o\m & FJ to 4\H \\
+  4\H & to play\\
+  4\S & to play\\
+  5o\m & to play\\
+\end{bidtable}
+
+\subsection[1\H--(2\H\ Michaels)]{1\H---(2\H\ Michaels)---}
+
+\begin{bidtable}
+  \X & strength\\
+  2\S & 3\+\H, INV\+\\
+  \hl 2\N & \C\ or \D\\
+  \hl 3\m & FNJ to 3\H\\
+  3\H & MIX\\
+  3\N & to play, with \S\ stopper\\
+  \hl 4\m & FJ to 4\H\\
+  4\H & preemptive\\
+\end{bidtable}
+
+\subsection[1\H--(2\S)]{1\H---(2\S)---}
+
+\begin{bidtable}
+  \X  & takeout\\
+  \hl 2\N & 4\+\H, INV\+\\
+  \hl 3\m & nat, FG (PH: FNJ to 3\H)\\
+  3\H & 3\+\H, NF\\
+  \hl 3\S & \H flag, FG\\
+  3\N & to play, with stopper\\
+  \hl 4\m & FJ to 4\H \\
+  \hl 4\H & MIX\\
+  5\m & to play\\
+\end{bidtable}
+
+\subsection[1\H--(2\protect\N\ minors)]{1\H---(2\protect\N\ minors)---}
 
 \begin{bidtable}
   \X & penalty interest against at least one suit \\
   \hl 3\C & 5\+ \S, GF\\
   \hl 3\D & 11\+, 3\+\H, INV\+\\
-  \hl 3\H & 7-10, 3\+\H\\
+  \hl 3\H & MIX\\
   3\S & nat, NF\\
+  4\m & splinter\\
+  4\H & to play\\
+\end{bidtable}
+
+\subsection[1\H--(3\m)]{1\H---(3\m)---}
+
+\begin{bidtable}
+  \X  & takeout\\
+  \hl 3\D\ (over 3\C) & nat, FG (PH: FNJ to 3\H)\\
+  3\H & 3\+\H, NF\\
+  \hl 3\S & nat, FG (PH: FNJ to 4\H) \\
+  3\N & to play, with stopper\\
+  \hl 4\m & \H\ flag, FG\\
+  4\C (over 3\D) & nat, FG\\
+  \hl 4\D (over 3\C) & FJ\\
+  \hl 4\H & MIX\\
+  4\S & to play\\
+  5o\m & to play\\
+\end{bidtable}
+
+\subsection[1\H--(3\S)]{1\H---(3\S)---}
+
+\begin{bidtable}
+  \X  & takeout\\
+  3\N & to play, with stopper\\
+  \hl 4\m & nat, FG (PH: FNJ to 4\H) \\
+  4\H & to play\\
+  5\m & to play\\
+\end{bidtable}
+
+\subsection[1\H--(4\m)]{1\H---(3\m)---}
+
+\begin{bidtable}
+  \X  & takeout\\
+  \hl 4\D\ (over 4\C) & nat, FG (PH: FNJ to 4\H) \\
+  4\H & to play\\
+  4\S & to play\\
+  5\C (over 4\D)& to play\\
+  5\D (over 4\C)& to play\\
 \end{bidtable}
 
 
 \section[Interference over 1\S]{Interference over 1\S}
 
-\subsection[1\S--(2\protect\N)]{1\S---(2\protect\N\ minors)---}
+Fit-jumps are frequently used. Cue-bid is usually INV\+ with 3 fit, jump-cue is splinter. 2\N\ is often INV\+ with 4\+ fit.
+
+\subsection[1\S--(\X)]{1\S---(\X)---}
+
+\begin{bidtable}
+  \XX & strength\\
+  \hl 1\N & TRF to \C, F2\C \\
+  \hl 2\C & TRF to \D, F2\D \\
+  \hl 2\D & TRF to \H, F2\H \\
+  \hl 2\H & 8\+, 3\+\S, F2\S\\
+  2\S & 0--7, 3\+\S\\
+  \hl 2\N & 4\+\S, INV\+\\
+  \hl 3\C\D\H & FJ to 3\S\\
+  3\S & 4\+\S, PRE \\
+  3\N & to play\\
+  \hl 4\C\D\H & FJ to 4\S\\
+  4\S & to play\\
+  5\m & to play\\
+\end{bidtable}
+
+\subsection[1\S--(1\protect\N)]{1\S---(1\protect\N)---}
+
+\begin{bidtable}
+  \X & strength\\
+  \hl 2\C & 5\+\H\ 3\+\S \\
+  \hl 2\D & 8\+, 3\+\S, F2\S\\
+  2\H & nat, NF\\
+  2\S & 0--7, 3\+\S\\
+  \hl 3\C\D\H & FJ to 3\S\\
+  3\S & PRE \\
+  \hl 4\C\D\H & FJ to 4\H\\
+  4\S & to play\\
+  5\m & to play\\
+\end{bidtable}
+
+\subsection[1\S--(2$X$)]{1\S---(2$X$)---}
+
+\begin{bidtable}
+  \X & takeout\\
+  2\D\H & nat, F1\\
+  2\S & 3\+\S\\
+  \hl 2\N & 4\+\S, INV\+\\
+  \hl 3\C\ (over 2\D\H) & nat, FG (PH: FNJ to 3\S) \\
+  \hl 3\D\ (over 2\C) & FJ to 3\H \\
+  \hl 3\D\ (over 2\H) & nat, FG (PH: FNH to 3\S) \\
+  \hl 3\H\ & FJ to 3\S \\
+  3$X$ & 3\S, INV\+\\
+  3\S & 4\+\H, PRE\\
+  3\N & to play, with stopper\\
+  4$X$ & splinter \\
+  4$Y$ & FJ to 4\S \\
+  4\S & to play \\
+  5\m\ (not $X$) & to play\\
+\end{bidtable}
+
+\subsection[1\S--(2\S\ Michaels)]{1\S---(2\S\ Michaels)---}
+
+\begin{bidtable}
+  \X & strength\\
+  \hl 2\N & \C\ or \D\\
+  \hl 3\C\D\H & FNJ to 3\S\\
+  3\S & MIX\\
+  3\N & to play, with \S\ stopper\\
+  \hl 4\C\D\H & FJ to 4\S\\
+  4\S & PRE\\
+  5\m & to play\\
+\end{bidtable}
+
+\subsection[1\S--(2\protect\N\ minors)]{1\S---(2\protect\N\ minors)---}
 
 \begin{bidtable}
   \X & penalty interest against at least one suit \\
-  \hl 3\C & 5\+ \H, GF\\
+  \hl 3\C & 5\+\H, GF\\
   \hl 3\D & 11\+, 3\+\S, INV\+\\
   3\H & nat, NF\\
-  \hl 3\S & 7-10, 3\+\S\\
+  3\S & MIX\\
+  4\m & splinter\\
+  4\H & to play\\
+  4\S & to play\\
+  5\m & to play\\
+\end{bidtable}
+
+\subsection[1\S--(3$X$)]{1\S---(3$X$)---}
+
+\begin{bidtable}
+  \X  & takeout\\
+  \hl 3\D\H & nat, FG (PH: FNJ to 3\S) \\
+  3\S & 3\+\S, NF\\
+  3\N & to play, with stopper\\
+  \hl 4$X$ & \S\ flag\\
+  \hl 4$Y$ (not jump) & nat, FG (PH: FNJ to 4\S) \\
+  \hl 4$Y$ (jump) & FJ to 4\S\\
+  4\H & to play\\
+  \hl 4\S & MIX\\
+  5\m\ (not $X$) & to play\\
+\end{bidtable}
+
+
+\subsection[1\S--(4$X$)]{1\S---(4$X$)---}
+
+\begin{bidtable}
+  \X  & takeout\\
+  \hl 4\D\ (over 4\C) & nat, FG (PH: FNJ to 4\S) \\
+  4\H & to play\\
+  4\S & to play\\
+  5\C\ (over 4\D)& to play\\
+  5\D\ (over 4\C)& to play\\
 \end{bidtable}
 
 
