@@ -3,9 +3,9 @@
 \begin{bidtable}
     2\C &\emph{Stayman} $\begin{dcases}
       \text{below INV, short \C} & \\
-      \text{5\M, INV} & \\
+      \text{\colorbox{yellow!40}{5\M, INV}} & \\
       \text{4\M, INV\+} & \\
-      \text{54 or 64 \MM, INV\+} & \\
+      \text{\colorbox{yellow!40}{54 or 64 \MM, INV\+}} & \\
     \end{dcases}$\\
     \followups{
       \hyperref[1N2C2D]{2\D} & no 4\+\M \\
@@ -14,14 +14,14 @@
     }\\
     2\D & transfer to \H\ $\begin{dcases}
       \text{5\+\H\ below INV or GF} & \\
-      \text{5\S 5\+\H\ INV\+} & \\
+      \text{\colorbox{yellow!40}{5\S 5\+\H\ INV\+}} & \\
     \end{dcases}$\\
     \followups{
       \hyperref[1N2D2H]{2\H}  & accept transfer \\
     }\\
     2\H & transfer to \S\ $\begin{dcases}
       \text{5\+\S\ below INV or GF} & \\
-      \text{6\+\S5\+\H, GF} & \\
+      \text{\colorbox{yellow!40}{6\+\S5\+\H, GF}} & \\
     \end{dcases}$\\
     \followups{
       \hyperref[1N2H2S]{2\S} & accept transfer \\
@@ -71,8 +71,8 @@
     % }\\
     3\C & 5\+\C 4\M, GF \\% (3\D = R for LMH short, 3\M = noise with \C interest, 3\N = no interest)
     3\D & 5\+\D 4\M, GF \\% (3\M = noise with \D interest, 3\N = no interest)
-    3\H & 5\S 4\H, GF \\% (3\S = 2\S 3\H, 3\N = to play, 4\C = good \S raise, 4\S = bad \S raise)
-    3\S & 5\H 4\S, GF \\% (4\C = good \H raise, 4\H = bad \H raise)
+    \hl 3\H & 5\S 4\H, GF \\% (3\S = 2\S 3\H, 3\N = to play, 4\C = good \S raise, 4\S = bad \S raise)
+    \hl 3\S & 5\H 4\S, GF \\% (4\C = good \H raise, 4\H = bad \H raise)
     3\N & to play \\
     4\D & \emph{Delayed Texas}, 6\H 4\S\\
     4\H & \emph{Delayed Texas}, 6\S 4\H\\
@@ -86,7 +86,7 @@
     2\S & 5\S, INV\\
     2\N & 4\S, INV \\
     \followups{
-      3\H & 5\H, accept \\
+      \hlf 3\H & \hlf 5\H, accept \\
     }\\
     3\C & 4\S 5\+\C, GF \\
     % \followups{
@@ -108,10 +108,10 @@
     %   4\m & great hand for \D\\
     % }\\
     3\H & 4\H, INV \\
-    3\S & any splinter raise (R asks LMH) \\
+    \hl 3\S & any splinter raise (R asks LMH) \\
     3\N & to play\\
-    4\C & RKC \H \\
-    4\D & \emph{Last Train} (ST in \H, BAL) \\
+    \hl 4\C & RKC \H \\
+    \hl 4\D & \emph{Last Train} (ST in \H, BAL) \\
     4\H & to play \\
     4\S & bad quant \\
     4\N & good quant \\
@@ -134,12 +134,12 @@
     %   3\S & 5\S\\
     %   4\m & great hand for \D\\
     % }\\
-    3\H & \S\ flag, unBAL, ST \\
+    \hl 3\H & \S\ flag, unBAL, ST \\
     3\S & 4\S, INV \\
     3\N & to play \\
-    4\C & RKC \S \\
-    4\D & bad quant \\
-    4\H & \emph{Last Train} (ST in \S, BAL) \\
+    \hl 4\C & RKC \S \\
+    \hl 4\D & bad quant \\
+    \hl 4\H & \emph{Last Train} (ST in \S, BAL) \\
     4\S & to play \\
     4\N & good quant \\
 \end{bidtable}
@@ -147,27 +147,27 @@
 \subsection[1\protect\N--2\D--2\H]{1\protect\N---2\D---2\H---} \label{1N2D2H}
 
 \begin{bidtable}
-    2\S & $\begin{dcases}
+    \hl 2\S & $\begin{dcases}
         \text{5\H\ 5 other, INV} & \\
         \text{5\S 5\H, GF} & \\
         \text{6\+\H, mild ST, splinter} & \\
     \end{dcases}$\\
     \followups{
-      2\N & waiting \\
+      \hl 2\N & waiting \\
       \followups{
-        3\C & 5\H 5\C, INV \\
+        \hl 3\C & 5\H 5\C, INV \\
         3\D & 5\H 5\D, INV \\
         3\H & 5\S 5\H, INV \\
         3\S & 5\S 5\H, ST \\
         3\N 4\C\D & 6\+\H\ mild ST, LMH splinter \\
       }\\
-      3\H & declines INV, 3\H \\
-      4\H & accepts INV, 3\+\H \\
+      \hl 3\H & declines INV, 3\H \\
+      \hl 4\H & accepts INV, 3\+\H \\
     }\\
-    2\N & 6\+\H, INV to game or slam \\
+    \hl 2\N & 6\+\H, INV to game or slam \\
     \followups{
-      3\H & declines INV \\
-      3\S & accepts INV \\
+      \hl 3\H & declines INV \\
+      \hl 3\S & accepts INV \\
     }\\
     3\C & 4\+\C, GF \\ %followups were for this bid as 2N
     % \followups{
@@ -205,8 +205,8 @@
     %   }\\
     %   3\N & values in other suits, usually 2\H 3\C \\
     % }\\
-    3\H & 6\+\H, mild INV (needs 3\H, MAX) \\
-    3\S 4\m & void auto-splinter \\
+    \hl 3\H & 6\+\H, mild INV (needs 3\H, MAX) \\
+    \hl 3\S 4\m & void auto-splinter \\
     3\N & COG, partner expected to bid 4\H\ with most 3-fits \\
     4\H & strong 6/7 \H\ hand, BAL, ST \\
     4\S & 5\H(332), bad quant \\
@@ -216,7 +216,7 @@
 \subsection[1\protect\N--2\H--2\S]{1\protect\N---2\H---2\S---} \label{1N2H2S}
 
 \begin{bidtable}
-    2\N & 6\+\S 5\+\H, GF \\
+    \hl 2\N & 6\+\S 5\+\H, GF \\
     \followups{
       3\H & \H\ flag \\
       3\S & \S\ flag \\
@@ -259,14 +259,14 @@
     %   }\\
     %   3\N & values in other suits, usually 2\S 3\C \\
     % }\\
-    3\H & 6\+\S, INV to game or slam \\
+    \hl 3\H & 6\+\S, INV to game or slam \\
     \followups{
       3\S & declines INV \\
       3\N & accepts INV \\
     }\\
-    3\S & 6\+\S, mild INV \\
+    \hl 3\S & 6\+\S, mild INV \\
     3\N & COG, partner expecter to bid 4\S\ with most 3-fits \\
-    4\C\D\H & void auto-splinter \\
+    \hl 4\C\D\H & void auto-splinter \\
     4\S & strong 6/7 \S\ hand, BAL, ST \\
     4\N & 5\S(332), quant
 \end{bidtable}
@@ -276,7 +276,7 @@
 \begin{bidtable}
   2\N & MIN \\
   \followups{
-    \P & to play\\
+    \hl \P & to play\\
     3\C & 6\+\C, to play\\
     3\D & 6\C 4\D, GF\\
     3\M & 6\+\C, short \M, GF\\
@@ -287,7 +287,7 @@
   }\\
   3\C & MAX\\
   \followups{
-    \P & to play\\
+    \hl \P & to play\\
     3\D & 6\C 4\D, GF\\
     3\M & 6\+\C, short \M, GF\\
     3\N & was invite to 3\N \\
@@ -303,7 +303,7 @@
 \begin{bidtable}
   3\C & rejects a \D-based invite, may have MAX but 2\D \\
   \followups{
-    \P & 55 \mm, no game\\
+    \hl \P & 55 \mm, no game\\
     3\D & to play\\
     3\M & 6\+\D, short \M, GF\\
     3\N & 6\+\D, to play\\
@@ -314,7 +314,7 @@
   }\\
   3\D & 3\+\D, accepts 3\D-based invite, with side stops \\
   \followups{
-    \P & 55 \mm, no game\\
+    \hl \P & 55 \mm, no game\\
     3\M & 6\+\D, short \M, GF\\
     3\N & 6\+\D, was invite to game\\
     4\C & 6\+\D, short \C, GF\\
