@@ -2,6 +2,6 @@
 
 Lee Ann Madissoon --- Kaarel Kivisalu bridge system.
 
-[System notes](https://github.com/kaarelkivisalu/lak/raw/main/lak.pdf)
+[System notes](https://kaarelkivisalu.github.io/lak/lak.pdf)
 
-[Convention card](https://github.com/kaarelkivisalu/lak/raw/main/cc.pdf)
+[Convention card](https://kaarelkivisalu.github.io/lak/cc.pdf)
