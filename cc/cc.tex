@@ -1,28 +1,39 @@
 \documentclass{article}
 
 \usepackage[T1]{fontenc}
-
-\usepackage{hyperref}
-
+\usepackage[english]{babel}
 \usepackage[dvipsnames]{xcolor}
-
-\usepackage[
-a4paper,
-landscape,
-margin=0.5cm,
-%showframe
-]{geometry}
 \usepackage{colortbl}
 \usepackage{multirow}
 \usepackage{tikz}
 \usepackage{microtype}
 \usepackage{adjustbox}
 \usepackage{makecell}
-
 \usepackage{amsmath}
 \usepackage{mathtools}
-
 \usepackage[super]{nth}
+\usepackage{microtype}
+\usepackage{parskip}
+
+\usepackage{hyperref}% Should be usually the last package
+\usepackage[a4paper, landscape, margin=0.5cm]{geometry}% Should be after hyperref
+
+\newenvironment{bidtable}{%
+  \begin{tabular}{l l}%
+    }{%
+  \end{tabular}%
+}
+
+\newcommand\followups[1]{
+  \multicolumn{2}{l}{
+    \makecell[l]{
+      \hspace{2mm}
+      \begin{tabular}{l l}
+        #1
+      \end{tabular}
+    }
+  }
+}
 
 \newcommand{\grayline}{\arrayrulecolor{lightgray}\hline\arrayrulecolor{black}}
 
@@ -52,7 +63,11 @@ margin=0.5cm,
 \newcommand{\M}{M}
 \newcommand{\mm}{mm}
 \newcommand{\MM}{MM}
+\newcommand{\oM}{oM}
+\newcommand{\om}{om}
 \newcommand{\att}{\textsc{att}}
+\newcommand{\cnt}{\textsc{ct}}
+\newcommand{\unblock}{\textsc{ub}}
 \newcommand{\enc}{\textsc{enc}}
 \newcommand{\disc}{\textsc{disc}}
 \newcommand{\mud}{\textsc{mud}}
@@ -76,11 +91,12 @@ margin=0.5cm,
       Level 1 = 8--17, 5\+\ suit\\
       Level 2 = 11--17, 5\+\ suit\\
       \\
+      \\
       \hline
       \textbf{\N \ OVERCALL} \\ \hline
       15--17 (14--18) (semi)BAL, at least partial stopper, system on\\
-      \\
       Reopen: 12--15, does not promise stopper, system on\\
+      \\
       \\
       \hline
       \textbf{JUMP OVERCALLS} \\ \hline
@@ -91,8 +107,8 @@ margin=0.5cm,
       \textbf{DIRECT \& JUMP CUE BIDS} \\ \hline
       Direct: 55\+ (MM over 1m, oM and m over 1M)\\
       3X over 2X: asks for stopper\\
-      \\
       Vs art 1\D: 2\D = nat, 2\H = 55\+ MM\\
+      \\
       \\
       \hline
       \textbf{VS. NT} \\ \hline
@@ -101,6 +117,8 @@ margin=0.5cm,
       2\D\ = 6\+\M \\
       2\M\ = 5\M\ + 4\+\m\\
       2\N\ = 55\+mm \\
+      \\
+      \\
       \hline
       \textbf{VS. PREEMPTS} \\ \hline
       T/O \X\ thru 4\D, (2$X$)--\X: Lebensohl \ref{lebensohl}\\
@@ -117,10 +135,11 @@ margin=0.5cm,
       \X\ = MM \\
       any \N\ = mm\\
       \\
+      \\
       \hline
       \textbf{OVER OPPONENTS' TAKEOUT DOUBLE} \\ \hline
       \XX\ = INV\+ strength\\
-      \\
+      \rule{0pt}{14.4pt}\\
       \hline
     \end{tabular}
   \end{adjustbox}
@@ -182,11 +201,20 @@ margin=0.5cm,
     \cellcolor[gray]{0.9} \textbf{DOUBLES} \\ \hline
     \textbf{TAKEOUT DOUBLES} \\ \hline
     \\
-    %\rule{0pt}{16.3pt}\\
+    \\
+    \\
+    \\
+    \\
+    \\
     \hline
     \textbf{MISCELLANEOUS DOUBLES/REDOUBLES} \\ \hline
     Support double.\\
     \\
+    \\
+    \\
+    \\
+    \\
+    \rule{0pt}{14.3pt}\\
     \hline
   \end{tabular}
 \end{adjustbox}
@@ -202,17 +230,21 @@ margin=0.5cm,
     \cellcolor[gray]{0.9} \textbf{WBF CONVENTION CARD} \\
     \hline
     \\
-     \textbf{CATEGORY:} \textcolor{blue}{Blue}\\
-     \textbf{NCBO:} Estonia \\
-     \textbf{EVENT:} All events \\
+    \textbf{CATEGORY:} \textcolor{blue}{Blue}\\
+    \textbf{NCBO:} Estonia \\
+    \textbf{EVENT:} All events \\
     \textbf{PLAYERS:} Kaarel \underline{Kivisalu} --- Lee Ann \underline{Madissoon} \\
     \\
     \hline
     \cellcolor[gray]{0.9} \textbf{SYSTEM SUMMARY} \\ \hline
     \textbf{GENERAL APPROACH AND STYLE} \\ \hline
     Precision. Strong 1\C, nebulous 1\D, 5-card majors.\\
-    1\N : 14--16/15--17\\
-    2/1: GF\\
+    1\N : 14--16 \nth{1}, \nth{2}, \nth{3} NV/15--17 \nth{3} VUL, \nth{4}\\
+    2/1: INV\+\\
+    \\
+    \\
+    \\
+    \\
     \\
     \hline
     \textbf{SPECIAL BIDS THAT MAY REQUIRE DEFENSE} \\ \hline
@@ -220,17 +252,30 @@ margin=0.5cm,
     1\D--2\H/\S\ = 5\S 4--5\H\ below INV/INV\+\\
     2\D\ = 10-15, short \D \\
     \\
+    \\
+    \\
+    \\
+    \\
     \hline
     \textbf{SPECIAL FORCING PASS SEQUENCES} \\ \hline
+    \\
+    \\
+    \\
     \\
     \hline
     \textbf{IMPORTANT NOTES} \\ \hline
     \\
+    \\
+    \\
+    \\
     \hline
     \textbf{PSYCHICS:} \\ \hline
-    Happens if \nth{3} seat or  NV vs. VUL\\
+    % Happens if \nth{3} seat or  NV vs. VUL\\
+    Rare\\
     \\
-    %\rule{0pt}{10.8pt}\\
+    \\
+    \\
+    \rule{0pt}{16pt}\\
     \hline
   \end{tabular}
 \end{adjustbox}
@@ -238,9 +283,9 @@ margin=0.5cm,
 \newpage
 \setlength{\tabcolsep}{1mm}
 \noindent
-\begin{tabular}{| p{10mm} | p{8mm} | p{12mm} | p{8mm} | p{54mm} | p{64mm} | p{66mm} | p{45mm} |}
+\begin{tabular}{| p{10mm} | p{8mm} | p{12mm} | p{8mm} | p{54mm} | p{64mm} | p{66mm} | p{47.74mm} |}
   \hline
-  \cellcolor[gray]{0.9}  \textbf{OPEN} & \cellcolor[gray]{0.9} \textbf{ART} & \cellcolor[gray]{0.9} \textbf{MIN CRDS} & \cellcolor[gray]{0.9} \textbf{NEG. DBL} & \cellcolor[gray]{0.9} \textbf{DESCRIPTION} & \cellcolor[gray]{0.9} \textbf{RESPONSES} & \cellcolor[gray]{0.9} \textbf{SUBSEQUENT ACTION} & \cellcolor[gray]{0.9} \textbf{COMPETITIVE \& \cellcolor[gray]{0.9} PASSED HAND BIDDING} \\ \hline
+  \cellcolor[gray]{0.9}  \textbf{OPEN} & \cellcolor[gray]{0.9} \textbf{ART} & \cellcolor[gray]{0.9} \textbf{MIN CRDS} & \cellcolor[gray]{0.9} \textbf{NEG. DBL} & \cellcolor[gray]{0.9} \textbf{DESCRIPTION} & \cellcolor[gray]{0.9} \textbf{RESPONSES} & \cellcolor[gray]{0.9} \textbf{SUBSEQUENT ACTION} & \cellcolor[gray]{0.9} \textbf{COMPETITIVE \& PASSED HAND BIDDING} \\ \hline
   1\C & \centering\tick & 0 & 4\H & \makecell[tl]{a) 16\+ unBAL\\b) 17--18, 21\+ BAL, \nth{1}, \nth{2}, \nth{3} NV\\c) 18--19, 22\+ BAL, \nth{3} VUL, \nth{4}} & \makecell[tl]{1\D=0--7, 1\H=<5\S\ 8--11, 1\S=5\+\S\ 8\+,\\ 1\N=5\+\H\ 12\+, 2\m=5\+\m\ 12\+,\\ 2\H=14\+ BAL, 2\S=(4441) 12\+,\\1\N=12--13 BAL, 3\C\D\H\S=nat 7 weak} & \makecell[tl]{2\S--2\N=asks (3X=short X)\\1\D: 1\M=F1\\1\D--1\N/2\N: system on}& PH: 1\M=5\+\M\ 8--10, 1\N=8--10 BAL, 2\m=5\+\m\ 8--10 \\ \hline
   1\D & \centering\tick & 2 & 4\H & \makecell[tl]{10--15, 2\+\D,\\ denies a 5-card major unless has 6\+\D} & 1\M=4\+\M\ 6\+, 1\N=7--11, 2\m=5\+\m\ INV F1, 2\H/\S=5\S4\+\H\ below INV/INV, 2\N=INV, 3\C=mm weak, 3\N=to play, 3\D\+=PRE & 1X--1Y--1Z: 2\C=puppet to 2\D (INV or long \D), 2\D=art GF, 2\M=NF  & \\ \hline
   1\H & & 5 (4 \nth{3}) & 4\D & \makecell[tl]{10--15, 5\+\H,\\can be 4\H\ and/or light in \nth{3}} & 2\N=11--12 or 17\+, 3\+\H & \makecell[tl]{2\N: 3\m=4\+\m, 3\H=MIN, 3\S/4\m=splinter,\\ 3\N=MAX BAL, 4\H=MAX 6\+\H\\ 1\H--1\S--1\N: 2\C=puppet to 2\D (INV or\\ long \D), 2\D=art GF, 2\M=NF} & \\ \hline
@@ -261,11 +306,12 @@ margin=0.5cm,
   5\M & \centering\tick &  & & 11 tricks, missing AK trumps &  &  & \\ \hline
 \end{tabular}
 
-\noindent
-\begin{tabular}{| p{139.92mm} | p{139.92mm} |}
+\vspace{-\parskip}
+\begin{tabular}{| p{141.29mm} | p{141.29mm} |}
   \cellcolor[gray]{0.9} \textbf{HIGH LEVEL BIDDING} & \cellcolor[gray]{0.9} \textbf{ADDITIONAL NOTES} \\ \hline
   \nth{1} and \nth{2} round cues together, Italian style.&\\
   Roman Keycard Blackwood 1430, Kickback, Last train, Serious 3\N.&\\
+  \rule{0pt}{17.9pt} & \\
   \hline
 \end{tabular}
 
