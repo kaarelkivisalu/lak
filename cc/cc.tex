@@ -14,6 +14,7 @@
 \usepackage[super]{nth}
 \usepackage{microtype}
 \usepackage{parskip}
+\usepackage{multicol}
 
 \usepackage{hyperref}% Should be usually the last package
 \usepackage[a4paper, landscape, margin=0.5cm]{geometry}% Should be after hyperref
@@ -125,8 +126,8 @@
       \N\ nat with stopper (except 4\N\ over 3/4\M)\\
       % 2\m: 4\m\ = 55\+\MM ()\\
       % 2\M: \\
-      % 2\N\ 55\+ \mm: \\ 
-      % 3\m: \\ 
+      % 2\N\ 55\+ \mm: \\
+      % 3\m: \\
       % 3\M: \\
       \\
       \\
@@ -285,25 +286,89 @@
 \noindent
 \begin{tabular}{| p{10mm} | p{8mm} | p{12mm} | p{8mm} | p{54mm} | p{64mm} | p{66mm} | p{47.74mm} |}
   \hline
-  \cellcolor[gray]{0.9}  \textbf{OPEN} & \cellcolor[gray]{0.9} \textbf{ART} & \cellcolor[gray]{0.9} \textbf{MIN CRDS} & \cellcolor[gray]{0.9} \textbf{NEG. DBL} & \cellcolor[gray]{0.9} \textbf{DESCRIPTION} & \cellcolor[gray]{0.9} \textbf{RESPONSES} & \cellcolor[gray]{0.9} \textbf{SUBSEQUENT ACTION} & \cellcolor[gray]{0.9} \textbf{COMPETITIVE \& PASSED HAND BIDDING} \\ \hline
-  1\C & \centering\tick & 0 & 4\H & \makecell[tl]{a) 16\+ unBAL\\b) 17--18, 21\+ BAL, \nth{1}, \nth{2}, \nth{3} NV\\c) 18--19, 22\+ BAL, \nth{3} VUL, \nth{4}} & \makecell[tl]{1\D=0--7, 1\H=<5\S\ 8--11, 1\S=5\+\S\ 8\+,\\ 1\N=5\+\H\ 12\+, 2\m=5\+\m\ 12\+,\\ 2\H=14\+ BAL, 2\S=(4441) 12\+,\\1\N=12--13 BAL, 3\C\D\H\S=nat 7 weak} & \makecell[tl]{2\S--2\N=asks (3X=short X)\\1\D: 1\M=F1\\1\D--1\N/2\N: system on}& PH: 1\M=5\+\M\ 8--10, 1\N=8--10 BAL, 2\m=5\+\m\ 8--10 \\ \hline
-  1\D & \centering\tick & 2 & 4\H & \makecell[tl]{10--15, 2\+\D,\\ denies a 5-card major unless has 6\+\D} & 1\M=4\+\M\ 6\+, 1\N=7--11, 2\m=5\+\m\ INV F1, 2\H/\S=5\S4\+\H\ below INV/INV, 2\N=INV, 3\C=mm weak, 3\N=to play, 3\D\+=PRE & 1X--1Y--1Z: 2\C=puppet to 2\D (INV or long \D), 2\D=art GF, 2\M=NF  & \\ \hline
-  1\H & & 5 (4 \nth{3}) & 4\D & \makecell[tl]{10--15, 5\+\H,\\can be 4\H\ and/or light in \nth{3}} & 2\N=11--12 or 17\+, 3\+\H & \makecell[tl]{2\N: 3\m=4\+\m, 3\H=MIN, 3\S/4\m=splinter,\\ 3\N=MAX BAL, 4\H=MAX 6\+\H\\ 1\H--1\S--1\N: 2\C=puppet to 2\D (INV or\\ long \D), 2\D=art GF, 2\M=NF} & \\ \hline
-  1\S & & 5 (4 \nth{3}) & 4\H     & \makecell[tl]{10--15, 5\+\S,\\can be 4\S\ and/or light in \nth{3}} & 2\N: 11-12 or 17\+, 3\+\S & \makecell[tl]{2\N: 3\m/\H=4\+\m/\H, 3\S=MIN, 3\N=\\MAX BAL, 4\m/\H=splinter, 4\S=MAX 6\+\S}& \\ \hline
-  1\N & & & 4\H                   & \makecell[tl]{a) 14--16 BAL \nth{1}, \nth{2}, \nth{3} NV\\b) 15--17 BAL \nth{3} VUL, \nth{4}}  & Stayman, transfers, 2\S=\C\ or range ask, 2\N=\D\ or \mm\ weak, 3\C=Puppet Stayman, 3\D=\mm\ GF, 3\M=short \M\ GF, 4\C=Gerber, 4\D\H=Texas, 4\S\N=QUANT & 1\N--2\C--2\D: 2\H=weak \MM & 1\N--(2$X$ not \C): Lebensohl \ref{lebensohl} \\ \hline
-  2\C & & 6 & 4\H                 & 10--15, 6\+\C & 2\D=ask, 2\M=NF, 2\N=puppet to 3\C\ (to play or 55 GF), 3\C\D\H=INV\+ in \D\H\S, 3\S=6\S4\H\ GF & 2\D: 2\H=4\M, 2\S=12--15 no 4\M, 2\N=14--15 no 4\M\ with stoppers, 3\C=10--11 no 4\M, 3\D\H\S=GF & \\ \hline
-  2\D & \centering\tick & 0 & & \makecell[tl]{10--15, short \D:\\4405, 4414, 3415, 4315} & 2\H=NF (correct w 3\H), 2\S/3\C=NF, 2\N=ask, 3\D=\D INV, 3\M=INV & \makecell[tl]{2\N: 3\C=MIN, 3\D=44 \MM,\\ 3\H=4315, 3\S=3415,\\ 2\N--3\C--3\D: 3\M=3\M, 3\N=44\MM} & \\ \hline
-  2\H & & 6 (5) & & \makecell[tl]{a) (0)3--9, 5\+\H\ NV, 6\+\H\ VUL\\b) 10--13, 6\+\H\ in \nth{4}} & 2\S/3\m=F1, 2\N=ask  & 2\N: 3\C=MIN bad suit, 3\D=MIN good suit (at least KQ or 7\+\H), 3\H=MAX bad suit, 3\S=MAX good suit (at least KQ or 7\+\H)
- & \\ \hline
-  2\S & & 6 (5) & & \makecell[tl]{a) (0)3--9, 5\+\S\ NV, 6\+\S\ VUL\\b) 10--13, 6\+\S\ in \nth{4}} & 2\N=ask, 3\m/\H=F1  & 2\N: 3\C=MIN bad suit, 3\D=MIN good suit (at least KQ or 7\+\S), 3\H=MAX bad suit, 3\S=MAX good suit (at least KQ or 7\+\S) & \\ \hline
-  2\N & & & 4\H & \makecell[tl]{a) 19--20 BAL \nth{1}, \nth{2}, \nth{3} NV\\b) 20--21 BAL \nth{3} VUL, \nth{4}} & 3\C=Stayman, 3\D\H=transfers, 3\S=54\+\mm\ or 6\+\m\ at least mild S/T, 4\C=Gerber, 4\D\H=6\+\M, S/T, 4\S/\N=QUANT &  & \\ \hline
-  3X & & 7 (6) & & preemptive, (0)3--9 &  &  & \\ \hline
-  3\N & \centering\tick & & & Gambling, 7\+\m\ with AKQ, no other A or K & \P=stoppers in all other suits, 4\C = P/C, 4\D=asks, 5\C=P/C, (5\D = to play) & 4\D: 4\M=0/1 \M, 4\N = 22(72), 5\m = 0/1 other \m & \\ \hline
-  4\m & & 8 (7) & & preemptive, (0)3--9 &  &  & \\ \hline
-  4\M & & 7 & & to play &  &  & \\ \hline
-  4\N & \centering\tick& & & Blackwood &  &  & \\ \hline
-  5\m & & 8 & & to play &  &  & \\ \hline
-  5\M & \centering\tick &  & & 11 tricks, missing AK trumps &  &  & \\ \hline
+  \cellcolor[gray]{0.9}  \textbf{OPEN} & \cellcolor[gray]{0.9} \textbf{ART} & \cellcolor[gray]{0.9} \textbf{MIN CRDS} & \cellcolor[gray]{0.9} \textbf{NEG DBL} & \cellcolor[gray]{0.9} \textbf{DESCRIPTION} & \cellcolor[gray]{0.9} \textbf{RESPONSES} & \cellcolor[gray]{0.9} \textbf{SUBSEQUENT ACTION} &  \cellcolor[gray]{0.9} \textbf{COMPETITIVE \& PASSED HAND BIDDING} \\ \hline
+
+  1\C & \centering\tick & 0 & 4\H
+  & \makecell[tl]{a) 16\+ unBAL\\b) 17--18, 21\+ BAL, \nth{1}, \nth{2}, \nth{3} NV\\c) 18--19, 22\+ BAL, \nth{3} VUL, \nth{4}}
+  & \makecell[tl]{1\D=0--7, 1\H=<5\S\ 8--11, 1\S=5\+\S\ 8\+,\\ 1\N=5\+\H\ 12\+, 2\m=5\+\m\ 12\+,\\ 2\H=14\+ BAL, 2\S=(4441) 12\+,\\1\N=12--13 BAL, 3\C\D\H\S=nat 7 weak}
+  & \makecell[tl]{2\S--2\N=asks (3X=short X)\\1\D: 1\M=F1\\1\D--1\N/2\N: system on}
+  & PH: 1\M=5\+\M\ 8--10, 1\N=8--10 BAL, 2\m=5\+\m\ 8--10 \\ \hline
+
+  1\D & \centering\tick & 2 & 4\H
+  & \makecell[tl]{10--15, 2\+\D,\\ denies a 5-card major unless has 6\+\D}
+  & 1\M=4\+\M\ 6\+, 1\N=7--11, 2\m=5\+\m\ INV F1, 2\H/\S=5\S4\+\H\ below INV/INV, 2\N=INV, 3\C=mm weak, 3\N=to play, 3\D\+=PRE
+  & 1X--1Y--1Z: 2\C=puppet to 2\D (INV or long \D), 2\D=art GF, 2\M=NF
+  & \\ \hline
+
+  1\H & & 5 (4 \nth{3}) & 4\D
+  & \makecell[tl]{10--15, 5\+\H,\\can be 4\H\ and/or light in \nth{3}}
+  & 2\N=11--12 or 17\+, 3\+\H
+  & \makecell[tl]{2\N: 3\m=4\+\m, 3\H=MIN, 3\S/4\m=splinter,\\ 3\N=MAX BAL, 4\H=MAX 6\+\H\\ 1\H--1\S--1\N: 2\C=puppet to 2\D (INV or\\ long \D), 2\D=art GF, 2\M=NF}
+  & \\ \hline
+
+  1\S & & 5 (4 \nth{3}) & 4\H
+  & \makecell[tl]{10--15, 5\+\S,\\can be 4\S\ and/or light in \nth{3}}
+  & 2\N: 11-12 or 17\+, 3\+\S
+  & \makecell[tl]{2\N: 3\m/\H=4\+\m/\H, 3\S=MIN, 3\N=\\MAX BAL, 4\m/\H=splinter, 4\S=MAX 6\+\S}
+  & \\ \hline
+
+  1\N & & & 4\H
+  & \makecell[tl]{a) 14--16 BAL \nth{1}, \nth{2}, \nth{3} NV\\b) 15--17 BAL \nth{3} VUL, \nth{4}}
+  & Stayman, transfers, 2\S=\C\ or range ask, 2\N=\D\ or \mm\ weak, 3\C=Puppet Stayman, 3\D=\mm\ GF, 3\M=short \M\ GF, 4\C=Gerber, 4\D\H=Texas, 4\S\N=QUANT
+  & 1\N--2\C--2\D: 2\H=weak \MM & 1\N--(2$X$ not \C): Lebensohl \ref{lebensohl} \\ \hline
+
+  2\C & & 6 & 4\H
+  & 10--15, 6\+\C
+  & 2\D=ask, 2\M=NF, 2\N=puppet to 3\C\ (to play or 55 GF), 3\C\D\H=INV\+ in \D\H\S, 3\S=6\S4\H~GF
+  & 2\D: 2\H=4\M, 2\S=12--15 no 4\M, 2\N=14--15 no 4\M\ with stoppers, 3\C=10--11 no 4\M, 3\D\H\S=GF
+  & \\ \hline
+
+  2\D & \centering\tick & 0 &
+  & \makecell[tl]{10--15, short \D:\\4405, 4414, 3415, 4315}
+  & \raggedright 2\H=NF (correct w 3\H), 2\S/3\C=NF, 2\N=ask, 3\D=\D\ INV, 3\M=INV
+  & \makecell[tl]{2\N: 3\C=MIN, 3\D=44 \MM,\\ 3\H=4315, 3\S=3415,\\ 2\N--3\C--3\D: 3\M=3\M, 3\N=44\MM}
+  & \\ \hline
+
+  2\H & & 6 (5) &
+  & \makecell[tl]{a) (0)3--9, 5\+\H\ NV, 6\+\H\ VUL\\b) 10--13, 6\+\H\ in \nth{4}}
+  & 2\S/3\m=F1, 2\N=ask
+  & 2\N: 3\C=MIN bad suit, 3\D=MIN good suit (at least KQ or 7\+\H), 3\H=MAX bad suit, 3\S=MAX good suit (at least KQ or 7\+\H)
+  & \\ \hline
+
+  2\S & & 6 (5) &
+  & \makecell[tl]{a) (0)3--9, 5\+\S\ NV, 6\+\S\ VUL\\b) 10--13, 6\+\S\ in \nth{4}}
+  & 2\N=ask, 3\m/\H=F1
+  & 2\N: 3\C=MIN bad suit, 3\D=MIN good suit (at least KQ or 7\+\S), 3\H=MAX bad suit, 3\S=MAX good suit (at least KQ or 7\+\S)
+  & \\ \hline
+
+  2\N & & & 4\H & \makecell[tl]{a) 19--20 BAL \nth{1}, \nth{2}, \nth{3} NV\\b) 20--21 BAL \nth{3} VUL, \nth{4}} & \makecell[tl]{Stayman, transfers, 3\S=54\+\mm\ or\\ 6\+\m\ mild S/T+, 4\C=Gerber,\\ 4\D\H=6\+\M, S/T, 4\S/\N=QUANT} & & \\ \hline
+
+  3X & & 7 (6) &
+  & preemptive, (0)3--9
+  &
+  &
+  & \\ \hline
+
+  3\N & \centering\tick & &
+  & Gambling, 7\+\m\ with AKQ, no other A or K
+  & \P=stoppers in all other suits, 4\C = P/C, 4\D=asks, 5\C=P/C, (5\D = to play)
+  & 4\D: 4\M=0/1 \M, 4\N = 22(72), 5\m = 0/1 other \m
+  & \\ \hline
+
+  4\m & & 8 (7) &
+  & preemptive, (0)3--9 &  &  & \\ \hline
+
+  4\M & & 7 &
+  & to play &  &  & \\ \hline
+
+  4\N & \centering\tick& &
+  & Blackwood &  &  & \\ \hline
+
+  5\m & & 8 &
+  & to play &  &  & \\ \hline
+
+  5\M & \centering\tick & &
+  & 11 tricks, missing AK trumps &  &  & \\ \hline
 \end{tabular}
 
 \vspace{-\parskip}
@@ -315,9 +380,9 @@
   \hline
 \end{tabular}
 
-\renewcommand{\thesection}{Section \Alph{section}:}
+\renewcommand{\thesection}{\Alph{section}:}
 \renewcommand{\thesubsection}{[\Alph{section}\arabic{subsection}]}
-\twocolumn
+\begin{multicols*}{3}
 \section{Conventions used}
 \subsection{Lebensohl} \label{lebensohl}
 
@@ -335,19 +400,19 @@
     \followups{system on\\}\\
     3\C & usually forced\\
     \followups{
-      \P & below INV, \C\ suit\\    
+      \P & below INV, \C\ suit\\
       3$Y$ below $X$ & 5\+$Y$, below INV\\
-      3$X$ & asks 4 card \M, with stopper\\ 
+      3$X$ & asks 4 card \M, with stopper\\
       3$Y$ above $X$ & 5\+$Y$, INV\\
-      3\N & to play, with stopper   
+      3\N & to play, with stopper
     }\\
     3\D\H\S4\C & 18\+, 5\+ strong suit \\
     3\N & 18\+, semiBAL, with stopper\\
   }\\
   3$Y$ below $X$ & 5\+$Y$, INV\\
-  3$X$ & asks 4 card \M, no stopper\\ 
+  3$X$ & asks 4 card \M, no stopper\\
   3$Y$ above $X$ & 5\+$Y$, GF\\
-  3\N & to play, no stopper\\   
+  3\N & to play, no stopper\\
   4$Y$ below $X$ & 5\+$Y$, GF\\
 \end{bidtable}
 
@@ -358,6 +423,7 @@
 \section{Back of card}
 \section{Others}
 \section{Prepared defences}
+\end{multicols*}
 
 
 \end{document}
