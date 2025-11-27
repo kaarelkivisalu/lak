@@ -1,0 +1,277 @@
+\documentclass[a6paper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{colortbl}
+\usepackage{multirow}
+\usepackage{tikz}
+\usepackage{microtype}
+\usepackage{adjustbox}
+\usepackage{makecell}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage[super]{nth}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{multicol}
+\usepackage{tabularx}
+
+\usepackage{hyperref}% Should be usually the last package
+\usepackage[margin=0.5cm]{geometry}% Should be after hyperref
+
+\newenvironment{bidtable}{%
+  \begin{tabular}{l l}%
+    }{%
+  \end{tabular}%
+}
+
+\newcommand\followups[1]{
+  \multicolumn{2}{l}{
+    \makecell[l]{
+      \hspace{2mm}
+      \begin{tabular}{l l}
+        #1
+      \end{tabular}
+    }
+  }
+}
+
+\newcommand{\grayline}{\arrayrulecolor{lightgray}\hline\arrayrulecolor{black}}
+
+% \newcommand\C{\ensuremath{\clubsuit}}
+% \newcommand\D{\ensuremath{\diamondsuit}}
+% \renewcommand\H{\ensuremath{\heartsuit}}
+% \renewcommand\S{\ensuremath{\spadesuit}}
+
+\DeclareSymbolFont{extraup}{U}{zavm}{m}{n}
+\DeclareMathSymbol{\varheart}{\mathalpha}{extraup}{86}
+\DeclareMathSymbol{\vardiamond}{\mathalpha}{extraup}{87}
+\DeclareMathSymbol{\varclub}{\mathalpha}{extraup}{84}
+\DeclareMathSymbol{\varspade}{\mathalpha}{extraup}{81}
+
+\newcommand{\C}{\texorpdfstring{\textcolor{ForestGreen}{\raisebox{-0.017em}{\ensuremath{\varclub}}}}{C}}
+\newcommand{\D}{\texorpdfstring{\textcolor{YellowOrange}{\raisebox{-0.35pt}{\ensuremath{\vardiamond}}}}{D}}
+\renewcommand{\H}{\texorpdfstring{\textcolor{Red}{\raisebox{-0.06em}{\ensuremath{\varheart}}}}{H}}
+\renewcommand{\S}{\texorpdfstring{\raisebox{-0.03em}{\ensuremath{\varspade}}}{S}}
+
+
+\newcommand\N{{\footnotesize NT}}
+\newcommand{\+}{\textsuperscript{+}}
+\renewcommand{\P}{\texorpdfstring{{\footnotesize{PASS}}}{PASS}}
+\newcommand{\X}{{\footnotesize{DBL}}}
+\newcommand{\XX}{{\footnotesize{RDBL}}}
+\newcommand{\m}{m}
+\newcommand{\M}{M}
+\newcommand{\mm}{mm}
+\newcommand{\MM}{MM}
+\newcommand{\oM}{oM}
+\newcommand{\om}{om}
+\newcommand{\att}{\textsc{att}}
+\newcommand{\cnt}{\textsc{ct}}
+\newcommand{\unblock}{\textsc{ub}}
+\newcommand{\enc}{\textsc{enc}}
+\newcommand{\disc}{\textsc{disc}}
+\newcommand{\mud}{\textsc{mud}}
+
+\newcommand\tick{\ensuremath{\surd}}
+
+\renewcommand{\arraystretch}{1.2}
+\setlength{\lineskip}{0pt}
+%\setlength{\tabcolsep}{2mm}
+
+\begin{document}
+
+% System declaration
+SYSTEMDEKLARATION
+
+% For
+för
+
+Lee Ann \underline{Madissoon}
+204952
+
+Kaarel \underline{Kivisalu}
+206481
+
+% Basic system
+Grundsystem: Precisionsklöver
+
+% Number of dots
+Antal prickar: 4
+
+% Opening bids that may require special defensive methods
+Öppningsbud som kan kräva speciella försvarsmetoder:\\
+1\C=16\+\\
+1\D=10-15, 2\+\D\\
+2\C=10-15, 6\+\C\\
+2\D=10-15, short \D
+
+
+\newpage
+
+\begin{tabularx}{\textwidth}{|l|l|l|l|X|}
+\hline
+% Dots & Bid & No of cards & Description & Response \\
+% Prickar & Bud & Ant kort & Beskrivning & Svar \\
+P & Bud & A & B& S\\
+\hline
+& 1\C & 0 &16\+ &1\D=0-7, 1\H=8-11,<5\S\\
+\hline
+3 & 1\D &2& 10-15 &\\
+\hline
+& 1\H &5& 10-15 &\\
+\hline
+& 1\S &5& 10-15 &\\
+\hline
+& 1\N && \makecell[l]{14-16 BAL 1:a, 2:a, 3:e NV\\ 15-17 BAL 3:e VUL, 4:e} &\\
+\hline
+& 2\C &6&10-15&\\
+\hline
+1 & 2\D &&\makecell[l]{10-15 \\ 4405/4414/3415/4315}&\\
+\hline
+& 2\H &5&&\\
+\hline
+& 2\S &5&&\\
+\hline
+& 2\N && \makecell[l]{19-20 BAL 1:a, 2:a, 3:e NV\\ 20-21 BAL 3:e VUL, 4:e} &\\
+\hline
+& 3\C\D &6&&\\
+\hline
+& 3\H\S &6&&\\
+\hline
+& 3\N &&&\\
+\hline
+& 4\C\D &7&&\\
+\hline
+& 4\H\S &7&&\\
+\hline
+\end{tabularx}
+
+
+\newpage
+
+% Slam conventions
+Slamkonventioner
+
+\begin{tabularx}{\linewidth}{|X|}
+\hline
+RKCB 1430, Kickback, Last train, Serious 3NT\\
+\hline
+DOPI, ROPI\\
+\hline
+\end{tabularx}
+
+% Other conventions
+Övriga konventioner
+
+\begin{tabularx}{\linewidth}{|X|}
+\hline
+Lebensohl, XYZ\\
+\hline
+\end{tabularx}
+
+% Defensive bids
+Försvarsbud
+
+\begin{tabularx}{\linewidth}{|l|X|}
+\hline
+1NT & 15-17 (14-18) \\
+\hline
+2NT & \\
+\hline
+% Simple cue
+Enkelt överbud & \\
+\hline
+% Jump cue
+Dubbelt överbud & \\
+\hline
+% Jump overcall
+Hoppinkliv & 2\N= \\
+\hline
+%Against 1NT
+Mot 1NT & \X=penalty, 2\C=54\+\MM, 2\D=6\+\M, 2\M=5\M 4\+\m, 2\N=55\+\mm\\
+\hline
+%Against strong 1C
+Mot stark 1\C & \X=\MM, \N=\mm \\
+\hline
+%Against multi 2D
+Mot multi 2\D & \\
+\hline
+%Against weak 2DHS
+Mot svaga 2\D\H\S & \\
+\hline
+%Against 3CD
+Mot 3\C\D & \\
+\hline
+%Against 3HS
+Mot 3\H\S & \\
+\hline
+\end{tabularx}
+
+% Other defensive conventions
+Övriga försvarskonventioner
+
+\begin{tabularx}{\linewidth}{|X|}
+\hline
+\\
+\hline
+\end{tabularx}
+
+\newpage
+
+% Opening leads
+Utspel
+
+\begin{tabularx}{\linewidth}{|l|X|}
+\hline
+% Against suit
+Mot färg & 10-12, MUD\\
+\hline
+% Against NT
+Mot sang & 11-regeln, MUD\\
+\hline
+\end{tabularx}
+
+% Leads (after the opening lead)
+Vändor
+
+\begin{tabularx}{\linewidth}{|l|X|}
+\hline
+% Towards declarer
+Genom spelföraren & \\
+\hline
+% Towards dummy
+Genom träkarlen & \\
+\hline
+% In partner's suit
+I partnerns färg & 1-3-5 \\
+\hline
+\end{tabularx}
+
+% Signals
+Markeringar
+
+\begin{tabularx}{\linewidth}{|l|X|}
+\hline
+% Strength, schneider=low encourages
+Styrka & Schneider \\
+\hline
+% Length, Malmö=low-high even, Omvänd=reverse
+Längd & Omvänd Malmö \\
+\hline
+% Other
+Övriga & Lavinthal, Italienska\\
+\hline
+\end{tabularx}
+
+% Doubles
+Dubblingar
+
+\begin{tabularx}{\linewidth}{|X|}
+\hline
+Support doubles\\
+\hline
+\end{tabularx}
+
+\end{document}
