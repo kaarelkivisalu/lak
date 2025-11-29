@@ -16,6 +16,7 @@
 \usepackage{parskip}
 \usepackage{multicol}
 \usepackage{tabularx}
+\usepackage{graphicx}
 
 \usepackage{hyperref}% Should be usually the last package
 \usepackage[margin=0.5cm]{geometry}% Should be after hyperref
@@ -37,7 +38,7 @@
   }
 }
 
-\newcommand{\grayline}{\arrayrulecolor{lightgray}\hline\arrayrulecolor{black}}
+\newcommand{\yline}{\arrayrulecolor{lightgray}\hline\arrayrulecolor{black}}
 
 % \newcommand\C{\ensuremath{\clubsuit}}
 % \newcommand\D{\ensuremath{\diamondsuit}}
@@ -59,20 +60,31 @@
 \newcommand\N{{\footnotesize NT}}
 \newcommand{\+}{\textsuperscript{+}}
 \renewcommand{\P}{\texorpdfstring{{\footnotesize{PASS}}}{PASS}}
-\newcommand{\X}{{\footnotesize{DBL}}}
-\newcommand{\XX}{{\footnotesize{RDBL}}}
-\newcommand{\m}{m}
-\newcommand{\M}{M}
-\newcommand{\mm}{mm}
-\newcommand{\MM}{MM}
-\newcommand{\oM}{oM}
-\newcommand{\om}{om}
-\newcommand{\att}{\textsc{att}}
-\newcommand{\cnt}{\textsc{ct}}
-\newcommand{\unblock}{\textsc{ub}}
-\newcommand{\enc}{\textsc{enc}}
-\newcommand{\disc}{\textsc{disc}}
+\newcommand{\X}{X}
+\newcommand{\XX}{XX}
+\newcommand{\m}{lå}
+\newcommand{\M}{hö}
+\newcommand{\mm}{lålå}
+\newcommand{\MM}{höhö}
+% \newcommand{\oM}{oM}
+% \newcommand{\om}{om}
+% \newcommand{\att}{\textsc{att}}
+% \newcommand{\cnt}{\textsc{ct}}
+% \newcommand{\unblock}{\textsc{ub}}
+% \newcommand{\enc}{\textsc{enc}}
+% \newcommand{\disc}{\textsc{disc}}
 \newcommand{\mud}{\textsc{mud}}
+
+\newcommand{\bal}{\textsc{bal}}
+\newcommand{\nv}{\textsc{ozon}}
+\newcommand{\vul}{\textsc{zon}}
+\newcommand{\inv}{\textsc{inv}}
+\newcommand{\nat}{\textsc{nat}}
+\newcommand{\nf}{\textsc{okr}}
+\newcommand{\pup}{\textsc{pup}}
+\newcommand{\trf}{\textsc{öf}}
+\newcommand{\gf}{\textsc{utgkr}}
+
 
 \newcommand\tick{\ensuremath{\surd}}
 
@@ -80,7 +92,15 @@
 \setlength{\lineskip}{0pt}
 %\setlength{\tabcolsep}{2mm}
 
+
+\usepackage{tikz}
+
+
 \begin{document}
+
+\begin{center}
+\includegraphics[width=0.8\textwidth]{logo.eps}
+\end{center}
 
 % System declaration
 SYSTEMDEKLARATION
@@ -98,7 +118,7 @@ Kaarel \underline{Kivisalu}
 Grundsystem: Precisionsklöver
 
 % Number of dots
-Antal prickar: 4
+Antal prickar: 4 \textbullet\,\textbullet\,\textbullet\,\textbullet
 
 % Opening bids that may require special defensive methods
 Öppningsbud som kan kräva speciella försvarsmetoder:\\
@@ -110,43 +130,33 @@ Antal prickar: 4
 
 \newpage
 
-\begin{tabularx}{\textwidth}{|l|l|l|l|X|}
+
+
+{
+\setlength{\tabcolsep}{2pt}
+\begin{tabularx}{\textwidth}{
+  |@{\hspace{2pt}}c@{\hspace{2pt}}|
+  l|
+  @{\hspace{2pt}}c@{\hspace{2pt}}|
+  p{105.64pt}|
+  X|
+}
 \hline
 % Dots & Bid & No of cards & Description & Response \\
-% Prickar & Bud & Ant kort & Beskrivning & Svar \\
-P & Bud & A & B& S\\
-\hline
-& 1\C & 0 &16\+ &1\D=0-7, 1\H=8-11,<5\S\\
-\hline
-3 & 1\D &2& 10-15 &\\
-\hline
-& 1\H &5& 10-15 &\\
-\hline
-& 1\S &5& 10-15 &\\
-\hline
-& 1\N && \makecell[l]{14-16 BAL 1:a, 2:a, 3:e NV\\ 15-17 BAL 3:e VUL, 4:e} &\\
-\hline
-& 2\C &6&10-15&\\
-\hline
-1 & 2\D &&\makecell[l]{10-15 \\ 4405/4414/3415/4315}&\\
-\hline
-& 2\H &5&&\\
-\hline
-& 2\S &5&&\\
-\hline
-& 2\N && \makecell[l]{19-20 BAL 1:a, 2:a, 3:e NV\\ 20-21 BAL 3:e VUL, 4:e} &\\
-\hline
-& 3\C\D &6&&\\
-\hline
-& 3\H\S &6&&\\
-\hline
-& 3\N &&&\\
-\hline
-& 4\C\D &7&&\\
-\hline
-& 4\H\S &7&&\\
-\hline
+\rotatebox{90}{\footnotesize Prickar} & Bud & \rotatebox{90}{\footnotesize Ant kort\,} & Beskrivning & Svar\\ \hline
+& 1\C & 0 &16\+ & \footnotesize \makecell[l]{1\D=0--7, 1\H=<5\S\ 8--11,\\ 1\S=5\+\S\ 8\+, 1\N=5\+\H\ 12\+,\\ 2\H=14\+ \bal, 2\S=(4441) 12\+} \\ \hline
+\rotatebox[origin=c]{90}{\textbullet\textbullet\textbullet}& 1\D &2& 10--15 & \footnotesize \makecell[l]{1\M=4\+\M\ 6\+, 1\N=7--11,\\ 2\m=5\+\m\ \inv\+, \\2\H/\S=5\S4\+\H <\inv/\inv} \\ \hline
+& 1\M &5& 10--15 & 2\N=11--12/17\+, 3\+\M\\ \hline
+& 1\N && \footnotesize \makecell[l]{ 14--16 \bal\ 1:a, 2:a, 3:e \nv\\ 15--17 \bal\ 3:e \vul, 4:e} & Stayman, överföringar \\ \hline
+& 2\C &6&10--15& \footnotesize \makecell[l]{2\D=frågor \inv\+,\\ 2\M=\nat\ \nf, 2\N=\pup,\\ 3\C\D\H=\trf,3\S=6\S4\H\ \gf} \\ \hline
+$\bullet$ & 2\D &&\makecell[l]{10--15 \\ 4405/4414/3415/4315}& \makecell[l]{2\H\S3\C=\nat\ \nf,\\ 2\N=frågor, 3\D=\D\inv\+,\\ 3\M=\inv} \\ \hline
+& 2\M & 5 & \footnotesize \makecell[l]{3--9 5\+\M~\nv, 6\+\M~\vul\\10--13 6\+\M~4:e}& 2\N=frågor\\ \hline
+& 2\N && \footnotesize \makecell[l]{19--20 \bal\ 1:a, 2:a, 3:e \nv\\ 20--21 \bal\ 3:e \vul, 4:e} & Muppet Stayman, överföringar \\ \hline
+& 3X &6& Spärr, 6\+\nv, 7\+\vul&\\ \hline
+& 3\N && \small Gambling, 7\+\m\ med EKD, inga andra E eller K & \small \P=håll i alla andra färger, 4\C=P/C, 4\D=frågor\\ \hline
+& 4X &7& Spärr, 7\+\nv, 8\+\vul&\\ \hline
 \end{tabularx}
+}
 
 
 \newpage
@@ -176,7 +186,7 @@ Försvarsbud
 
 \begin{tabularx}{\linewidth}{|l|X|}
 \hline
-1NT & 15-17 (14-18) \\
+1NT & 15--17 (14--18) \\
 \hline
 2NT & \\
 \hline
@@ -196,16 +206,16 @@ Mot 1NT & \X=penalty, 2\C=54\+\MM, 2\D=6\+\M, 2\M=5\M 4\+\m, 2\N=55\+\mm\\
 Mot stark 1\C & \X=\MM, \N=\mm \\
 \hline
 %Against multi 2D
-Mot multi 2\D & \\
+Mot multi 2\D &  \X=UD\\
 \hline
 %Against weak 2DHS
-Mot svaga 2\D\H\S & \\
+Mot svaga 2\D\H\S & \X=UD \\
 \hline
 %Against 3CD
-Mot 3\C\D & \\
+Mot 3\C\D & \X=UD \\
 \hline
 %Against 3HS
-Mot 3\H\S & \\
+Mot 3\H\S & \X=UD \\
 \hline
 \end{tabularx}
 
@@ -226,10 +236,10 @@ Utspel
 \begin{tabularx}{\linewidth}{|l|X|}
 \hline
 % Against suit
-Mot färg & 10-12, MUD\\
+Mot färg & 1-3-5, \mud\ från xxx\\
 \hline
 % Against NT
-Mot sang & 11-regeln, MUD\\
+Mot sang & 11-regeln, x\textbf{\underline{X}}xx (utan H), Hx\textbf{\underline{X}}, \mud\ från xxx, \textbf{\underline{X}}x\\
 \hline
 \end{tabularx}
 
@@ -239,10 +249,10 @@ Vändor
 \begin{tabularx}{\linewidth}{|l|X|}
 \hline
 % Towards declarer
-Genom spelföraren & \\
+Genom spelföraren & 1-3-5 \\
 \hline
 % Towards dummy
-Genom träkarlen & \\
+Genom träkarlen & 1-3-5 \\
 \hline
 % In partner's suit
 I partnerns färg & 1-3-5 \\
@@ -261,7 +271,7 @@ Styrka & Schneider \\
 Längd & Omvänd Malmö \\
 \hline
 % Other
-Övriga & Lavinthal, Italienska\\
+Övriga & Lavinthal (mot sang), Italienska (mot färg)\\
 \hline
 \end{tabularx}
 
