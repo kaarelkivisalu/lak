@@ -64,8 +64,8 @@
 \newcommand{\XX}{XX}
 \newcommand{\m}{lå}
 \newcommand{\M}{hö}
-\newcommand{\mm}{lålå}
-\newcommand{\MM}{höhö}
+\newcommand{\mm}{\C\D}
+\newcommand{\MM}{\H\S}
 % \newcommand{\oM}{oM}
 % \newcommand{\om}{om}
 % \newcommand{\att}{\textsc{att}}
@@ -99,34 +99,45 @@
 \begin{document}
 
 \begin{center}
+\large
 \includegraphics[width=0.8\textwidth]{logo.eps}
-\end{center}
 
+\vspace{3em}
 % System declaration
-SYSTEMDEKLARATION
+{\huge \textbf{SYSTEMDEKLARATION}}
 
+\vspace{1em}
 % For
-för
+\textit{för}
 
-Lee Ann \underline{Madissoon}
-204952
-
-Kaarel \underline{Kivisalu}
-206481
+\vspace{1em}
+\begin{tabular}{r l}
+Spelare N/Ö: & Lee Ann \underline{Madissoon} \\
+Mid: & 204952 \\[1em]
+Spelare S/V: & Kaarel \underline{Kivisalu}\\
+Mid: & 206481 \\[2em]
 
 % Basic system
-Grundsystem: Precisionsklöver
+Grundsystem: & Precisionsklöver \\
 
 % Number of dots
-Antal prickar: 4 \textbullet\,\textbullet\,\textbullet\,\textbullet
+Antal prickar: & 4 \textbullet\,\textbullet\,\textbullet\,\textbullet \\
+\end{tabular}
 
+\vfill
+
+\normalsize
 % Opening bids that may require special defensive methods
-Öppningsbud som kan kräva speciella försvarsmetoder:\\
+Öppningsbud som kan kräva speciella försvarsmetoder:
+
+\begin{tabular}{@{}l@{}}
 1\C=16\+\\
 1\D=10-15, 2\+\D\\
 2\C=10-15, 6\+\C\\
-2\D=10-15, short \D
+2\D=10-15, kort \D\\
+\end{tabular}
 
+\end{center}
 
 \newpage
 
@@ -138,20 +149,20 @@ Antal prickar: 4 \textbullet\,\textbullet\,\textbullet\,\textbullet
   |@{\hspace{2pt}}c@{\hspace{2pt}}|
   l|
   @{\hspace{2pt}}c@{\hspace{2pt}}|
-  p{105.64pt}|
-  X|
+  p{105.64pt}@{\hspace{1pt}}|
+  X@{}|
 }
 \hline
 % Dots & Bid & No of cards & Description & Response \\
 \rotatebox{90}{\footnotesize Prickar} & Bud & \rotatebox{90}{\footnotesize Ant kort\,} & Beskrivning & Svar\\ \hline
-& 1\C & 0 &16\+ & \footnotesize \makecell[l]{1\D=0--7, 1\H=<5\S\ 8--11,\\ 1\S=5\+\S\ 8\+, 1\N=5\+\H\ 12\+,\\ 2\H=14\+ \bal, 2\S=(4441) 12\+} \\ \hline
-\rotatebox[origin=c]{90}{\textbullet\textbullet\textbullet}& 1\D &2& 10--15 & \footnotesize \makecell[l]{1\M=4\+\M\ 6\+, 1\N=7--11,\\ 2\m=5\+\m\ \inv\+, \\2\H/\S=5\S4\+\H <\inv/\inv} \\ \hline
-& 1\M &5& 10--15 & 2\N=11--12/17\+, 3\+\M\\ \hline
+& 1\C & 0 &16\+ & \makecell[l]{1\D=0--7, 1\H=<5\S\ 8--11,\\ 1\S=5\+\S\ 8\+,\\ 1\N=5\+\H\ 12\+,\\ 2\m=5\+\m\ 12\+,\\ 2\H=14\+ \bal,\\ 2\S=(4441) 12\+,\\ 2\N=12--13 \bal} \\ \hline
+\rotatebox[origin=c]{90}{\textbullet\textbullet\textbullet}& 1\D &2& 10--15, 2\+\D & \small \makecell[l]{1\M=4\+\M\ 6\+, 1\N=7--11,\\ 2\m=5\+\m\ \inv\+, \\2\H/\S=5\S4\+\H <\inv/\inv\+} \\ \hline
+& 1\M &5& 10--15, 5\+\M & \makecell[l]{2/1=\inv\+,\\ 2\N=11--12/17\+, 3\+\M}\\ \hline
 & 1\N && \footnotesize \makecell[l]{ 14--16 \bal\ 1:a, 2:a, 3:e \nv\\ 15--17 \bal\ 3:e \vul, 4:e} & Stayman, överföringar \\ \hline
-& 2\C &6&10--15& \footnotesize \makecell[l]{2\D=frågor \inv\+,\\ 2\M=\nat\ \nf, 2\N=\pup,\\ 3\C\D\H=\trf,3\S=6\S4\H\ \gf} \\ \hline
+& 2\C &6&10--15, 6\+\C& \makecell[l]{2\D=frågor \inv\+,\\ 2\M=\nat\ \nf, 2\N=\pup,\\ 3\C\D\H=\trf,\\ 3\S=6\S4\H\ \gf} \\ \hline
 $\bullet$ & 2\D &&\makecell[l]{10--15 \\ 4405/4414/3415/4315}& \makecell[l]{2\H\S3\C=\nat\ \nf,\\ 2\N=frågor, 3\D=\D\inv\+,\\ 3\M=\inv} \\ \hline
 & 2\M & 5 & \footnotesize \makecell[l]{3--9 5\+\M~\nv, 6\+\M~\vul\\10--13 6\+\M~4:e}& 2\N=frågor\\ \hline
-& 2\N && \footnotesize \makecell[l]{19--20 \bal\ 1:a, 2:a, 3:e \nv\\ 20--21 \bal\ 3:e \vul, 4:e} & Muppet Stayman, överföringar \\ \hline
+& 2\N && \footnotesize \makecell[l]{19--20 \bal\ 1:a, 2:a, 3:e \nv\\ 20--21 \bal\ 3:e \vul, 4:e} & \makecell[l]{Muppet Stayman,\\ överföringar} \\ \hline
 & 3X &6& Spärr, 6\+\nv, 7\+\vul&\\ \hline
 & 3\N && \small Gambling, 7\+\m\ med EKD, inga andra E eller K & \small \P=håll i alla andra färger, 4\C=P/C, 4\D=frågor\\ \hline
 & 4X &7& Spärr, 7\+\nv, 8\+\vul&\\ \hline
@@ -162,7 +173,7 @@ $\bullet$ & 2\D &&\makecell[l]{10--15 \\ 4405/4414/3415/4315}& \makecell[l]{2\H\
 \newpage
 
 % Slam conventions
-Slamkonventioner
+\textbf{Slamkonventioner}
 
 \begin{tabularx}{\linewidth}{|X|}
 \hline
@@ -172,35 +183,37 @@ DOPI, ROPI\\
 \hline
 \end{tabularx}
 
+\vspace{1em}
 % Other conventions
-Övriga konventioner
+\textbf{Övriga konventioner}
 
 \begin{tabularx}{\linewidth}{|X|}
 \hline
-Lebensohl, XYZ\\
+XYZ\\
 \hline
 \end{tabularx}
 
+\vspace{1em}
 % Defensive bids
-Försvarsbud
+\textbf{Försvarsbud}
 
 \begin{tabularx}{\linewidth}{|l|X|}
 \hline
 1NT & 15--17 (14--18) \\
 \hline
-2NT & \\
+2NT & 55\+ två lägsta \\
 \hline
 % Simple cue
-Enkelt överbud & \\
+Enkelt överbud & \makecell[l]{2\m=55\+\MM\\2\M=55\+ \M+\m} \\
 \hline
 % Jump cue
-Dubbelt överbud & \\
+Dubbelt överbud & Hållfråga \\
 \hline
 % Jump overcall
-Hoppinkliv & 2\N= \\
+Hoppinkliv & Spärr, likt öppningsbud \\
 \hline
 %Against 1NT
-Mot 1NT & \X=penalty, 2\C=54\+\MM, 2\D=6\+\M, 2\M=5\M 4\+\m, 2\N=55\+\mm\\
+Mot 1NT & \X=SD, 2\C=54\+\MM, 2\D=6\+\M, 2\M=5\M+4\+\m, 2\N=55\+\mm\\
 \hline
 %Against strong 1C
 Mot stark 1\C & \X=\MM, \N=\mm \\
@@ -209,7 +222,7 @@ Mot stark 1\C & \X=\MM, \N=\mm \\
 Mot multi 2\D &  \X=UD\\
 \hline
 %Against weak 2DHS
-Mot svaga 2\D\H\S & \X=UD \\
+Mot svaga 2X & \X=UD (Lebensohl), 2\N=16--19 \\
 \hline
 %Against 3CD
 Mot 3\C\D & \X=UD \\
@@ -219,19 +232,21 @@ Mot 3\H\S & \X=UD \\
 \hline
 \end{tabularx}
 
+\vspace{1em}
 % Other defensive conventions
-Övriga försvarskonventioner
+\textbf{Övriga försvarskonventioner}
 
 \begin{tabularx}{\linewidth}{|X|}
 \hline
-\\
+Lebensohl\\
 \hline
 \end{tabularx}
 
 \newpage
 
+\vspace{1em}
 % Opening leads
-Utspel
+\textbf{Utspel}
 
 \begin{tabularx}{\linewidth}{|l|X|}
 \hline
@@ -243,8 +258,9 @@ Mot sang & 11-regeln, x\textbf{\underline{X}}xx (utan H), Hx\textbf{\underline{X
 \hline
 \end{tabularx}
 
+\vspace{1em}
 % Leads (after the opening lead)
-Vändor
+\textbf{Vändor}
 
 \begin{tabularx}{\linewidth}{|l|X|}
 \hline
@@ -259,8 +275,9 @@ I partnerns färg & 1-3-5 \\
 \hline
 \end{tabularx}
 
+\vspace{1em}
 % Signals
-Markeringar
+\textbf{Markeringar}
 
 \begin{tabularx}{\linewidth}{|l|X|}
 \hline
@@ -275,12 +292,13 @@ Längd & Omvänd Malmö \\
 \hline
 \end{tabularx}
 
+\vspace{1em}
 % Doubles
-Dubblingar
+\textbf{Dubblingar}
 
 \begin{tabularx}{\linewidth}{|X|}
 \hline
-Support doubles\\
+Stöddubbling\\
 \hline
 \end{tabularx}
 
