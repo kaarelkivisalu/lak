@@ -21,6 +21,7 @@ jobs:
           root_file: |
             lak/lak.tex
             cc/cc.tex
+            cc-swe/cc-swe-mini.tex
 
       - name: Release
         uses: softprops/action-gh-release@v2
@@ -29,17 +30,19 @@ jobs:
           files: |
             lak/lak.pdf
             cc/cc.pdf
-            
+            cc-swe/cc-swe-mini.pdf
+
       - name: Prepare GitHub Pages content
         run: |
           mkdir -p output
           cp lak/lak.pdf output/
           cp cc/cc.pdf output/
+          cp cc-swe/cc-swe-mini.pdf output/
 
-      - name: Deploy 
+      - name: Deploy
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./output
           publish_branch: gh-pages
-          force_orphan: true   
+          force_orphan: true
