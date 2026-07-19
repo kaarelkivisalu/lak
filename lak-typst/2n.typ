@@ -2,60 +2,42 @@
 
 == 2#N— <sec:2N>
 
-#bidtable(
-  ([3#C], [#emph[Muppet Stayman] #dcases([3#plus#M], [5#(S)3-5#H], [not 5#(H)4#S])]),
-  followups(
-    ([3#D], [4#M, no 5#M]),
-    followups(
-      ([3#H], [4-5#S, asks #S length]),
-      followups(
-        ([3#S], [3#(S)4#H]),
-        ([3#N], [2#(S)4#H]),
-        ([4#C], [4#S, MAX]),
-        ([4#S], [4#S, MIN]),
-      ),
-      ([3#S], [4#H]),
-      ([3#N], [to play (no 4#M)]),
-      ([4#C], [44#plus#MM, SI]),
-      followups(
-        ([4#D], [RKC in #H]),
-        ([4#H#S], [to play]),
-        ([4#N], [RKC in #S]),
-      ),
-      ([4#D], [44#plus#MM, no SI]),
-    ),
-    ([3#H], [no 4#plus#M]),
-    followups(
-      ([3#S], [transfer to 3#N (to play)]),
-      ([3#N], [5#S]),
-      ([4#C], [55 #MM, SI]),
-      followups(
-        ([4#D], [RKC in #H]),
-        ([4#H#S], [to play]),
-        ([4#N], [RKC in #S]),
-      ),
-      ([4#D], [55 #MM, no SI]),
-    ),
-    ([3#S], [5#S]),
-    ([3#N], [5#H]),
-    followups(
-      ([4#D], [transfer to 4#H]),
-    ),
-  ),
-  ([3#D], [transfer to #H #dcases([5#plus#H], [5#(H)4#S])]),
-  followups(
-    hdr([3#H]),
-    followups(
-      ([3#S], [choose a game (indicating exactly 5#H)]),
-      ([3#N], [5#(H)4#S, no SI if no fit, NF]),
-    ),
-  ),
-  ([3#H], [transfer to #S, not 5#(S)3-5#H]),
-  hl([3#S], [54#plus#mm or 6#plus #m, at least mild ST]),
-  ([3#N], [to play]),
-  ([4#C], [#emph[Gerber] 1430]),
-  ([4#D], [6#plus#H, ST]),
-  ([4#H], [6#plus#S, ST]),
-  ([4#S], [bad quant]),
-  ([4#N], [good quant]),
-)
+#bt(```
+  3C   _Muppet Stayman_ { 3+M / 5S3-5H / not 5H4S }
+    3D   4M, no 5M
+      3H   4-5S, asks S length
+        3S   3S4H
+        3N   2S4H
+        4C   4S, MAX
+        4S   4S, MIN
+      3S   4H
+      3N   to play (no 4M)
+      4C   44+MM, SI
+        4D    RKC in H
+        4HS   to play
+        4N    RKC in S
+      4D   44+MM, no SI
+    3H   no 4+M
+      3S   transfer to 3N (to play)
+      3N   5S
+      4C   55 MM, SI
+        4D    RKC in H
+        4HS   to play
+        4N    RKC in S
+      4D   55 MM, no SI
+    3S   5S
+    3N   5H
+      4D   transfer to 4H
+  3D   transfer to H { 5+H / 5H4S }
+    = 3H
+      3S   choose a game (indicating exactly 5H)
+      3N   5H4S, no SI if no fit, NF
+  3H   transfer to S, not 5S3-5H
+* 3S   54+mm or 6+ m, at least mild ST
+  3N   to play
+  4C   _Gerber_ 1430
+  4D   6+H, ST
+  4H   6+S, ST
+  4S   bad quant
+  4N   good quant
+```)

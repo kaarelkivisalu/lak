@@ -2,34 +2,34 @@
 
 == 1#D— <sec:1D>
 
-#bidtable(
-  ([#link(<1D1H>)[1#H]], [6#plus, 4#plus#H, F1]),
-  ([#link(<1D1S>)[1#S]], [6#plus, 4#plus#S, F1]),
-  ([1#N], [7--bad 11, BAL, no 4#M, NF]),
-  ([2#C], [11#plus, (4)5#plus#C, no 4#M unless GF and 6#plus#C, F1]),
-  ([2#D], [11#plus, (4)5#plus#D, no 4#M unless GF and 6#plus#D, F1]),
-  ([2#H], [0--10, 5#S 4--5#H]),
-  ([2#S], [11#plus, 5#S 4--5#H, INV opposite 10--13 BAL, F1]),
-  ([2#N], [good 11--13, BAL, no 4M, INV]),
-  hl([3#C], [6--10, 54 mm, P/C]),
-  ([3#D], [5--10, 6#plus#D]),
-  ([3#H], [6--9, 7#plus#H]),
-  ([3#S], [6--9, 7#plus#S]),
-  ([3#N], [13--16, BAL, no 4M]),
-  hl([4#C], [6--10, 55#plus mm, P/C]),
-  ([4#D], [6--9, 7#plus#D]),
-  ([4#H], [good 7 or 8#plus#H, preemptive]),
-  ([4#S], [good 7 or 8#plus#S, preemptive]),
-)
+#bt(```
+  1H>1D1H   6+, 4+H, F1
+  1S>1D1S   6+, 4+S, F1
+  1N        7--bad 11, BAL, no 4M, NF
+  2C        11+, (4)5+C, no 4M unless GF and 6+C, F1
+  2D        11+, (4)5+D, no 4M unless GF and 6+D, F1
+  2H        0-10, 5S 4-5H
+  2S        11+, 5S 4-5H, INV opposite 10-13 BAL, F1
+  2N        good 11-13, BAL, no 4M, INV
+* 3C        6-10, 54 mm, `P/C`
+  3D        5-10, 6+D
+  3H        6-9, 7+H
+  3S        6-9, 7+S
+  3N        13-16, BAL, no 4M
+* 4C        6-10, 55+ mm, `P/C`
+  4D        6-9, 7+D
+  4H        good 7 or 8+H, preemptive
+  4S        good 7 or 8+S, preemptive
+```)
 
 Passed hand adjustments:
 
-#bidtable(
-  ([2#C], [6--9, 5#plus#C]),
-  ([2#D], [6--9, 5#plus#D]),
-  hl([2#H], [6--9, 5#S 4#plus#H]),
-  hl([2#S], [6--9, 6#S 4#plus#H]),
-)
+#bt(```
+  2C   6-9, 5+C
+  2D   6-9, 5+D
+* 2H   6-9, 5S 4+H
+* 2S   6-9, 6S 4+H
+```)
 
 === Interference over 1#D
 
@@ -39,154 +39,122 @@ As a responder assume that opener has 10--13(14) BAL until told otherwise.
 
 === 1#D—1#H— <1D1H>
 
-#bidtable(
-  hdr([(#dbl)]),
-  followups(
-    ([#pass], [denies 3#plus#H, may have 4#S if BAL/3-suiter]),
-    ([#rdbl], [3#H]),
-    hl([1#S], [4#S]),
-    ([1#N], [1--2 #H]),
-    hl([2#C], [54#plus#mm]),
-  ),
-  hdr([(1#S)]),
-  followups(
-    ([#pass], [denies 3#H]),
-    ([#dbl], [3#H]),
-    ([1#N], [1--2#H, good stops]),
-    hl([2#C], [54#plus#mm]),
-  ),
-  hdr([(1#N nat)]),
-  followups(
-    ([#dbl], [12--15, 3#H]),
-    hl([2#C], [54#plus#mm]),
-  ),
-  hdr([(2#C)]),
-  followups(
-    ([#dbl], [3#H]),
-  ),
-  hdr([(2#D)]),
-  followups(
-    ([#dbl], [3#H]),
-  ),
-  hdr([(2#S)]),
-  followups(
-    ([#dbl], [12--15, 3#H]),
-    hl([2#N], [good hand with 6#D and stopper, NF]),
-    hl([3#C], [55#plus#mm]),
-  ),
-  ([1#S], [4#S, other bids deny 4#S]),
-  followups(
-    ([\*], [#link(<XYZ>)[XYZ]]),
-  ),
-  ([1#N], [10--13(14), no singleton, BAL]),
-  followups(
-    ([\*], [#link(<XYZ>)[XYZ]]),
-  ),
-  ([2#C], [8#plus cards in the minors, not 6#D 4#C]),
-  ([2#D], [10--12, 6#plus#D]),
-  followups(
-    hl([2#S], [artificial GF]),
-  ),
-  ([2#H], dcases([10--13(14), 4#H, BAL], [10--12, 4#H, unBAL])),
-  hl([2#S], [5#S 6#plus#D]),
-  hl([2#N], [13--15, 3#H 6#plus#D]),
-  hl([3#C], [13--15, 55#plus mm]),
-  ([3#D], [13--15, 6#plus#D]),
-  ([3#H], [13--15, 4#H, unBAL]),
-)
+#bt(```
+  = (DBL)
+    PASS   denies 3+H, may have 4S if BAL/3-suiter
+    RDBL   3H
+    * 1S   4S
+    1N     1--2 H
+    * 2C   54+mm
+  = (1S)
+    PASS   denies 3H
+    DBL    3H
+    1N     1--2H, good stops
+    * 2C   54+mm
+  = (1N nat)
+    DBL   12-15, 3H
+    * 2C   54+mm
+  = (2C)
+    DBL   3H
+  = (2D)
+    DBL   3H
+  = (2S)
+    DBL   12-15, 3H
+    * 2N   good hand with 6D and stopper, NF
+    * 3C   55+mm
+  1S   4S, other bids deny 4S
+    `*`   [XYZ](XYZ)
+  1N   10-13(14), no singleton, BAL
+    `*`   [XYZ](XYZ)
+  2C   8+ cards in the minors, not 6D 4C
+  2D   10-12, 6+D
+    * 2S   artificial GF
+  2H   { 10-13(14), 4H, BAL / 10-12, 4H, unBAL }
+* 2S   5S 6+D
+* 2N   13-15, 3H 6+D
+* 3C   13-15, 55+ mm
+  3D   13-15, 6+D
+  3H   13-15, 4H, unBAL
+```)
 
 === 1#D—1#S— <1D1S>
 
-#bidtable(
-  hdr([(#dbl)]),
-  followups(
-    ([#pass], [denies 3#plus#S]),
-    ([#rdbl], [3#S]),
-    ([1#N], [1--2 #S]),
-    hl([2#C], [54#plus#mm]),
-  ),
-  hdr([(1#N nat)]),
-  followups(
-    ([#dbl], [12--15, 3#S]),
-    hl([2#C], [54#plus#mm]),
-  ),
-  hdr([(2#C)]),
-  followups(
-    ([#dbl], [3#S]),
-  ),
-  hdr([(2#D)]),
-  followups(
-    ([#dbl], [3#S]),
-  ),
-  hdr([(2#H)]),
-  followups(
-    ([#dbl], [12--15, 3#S]),
-    hl([2#N], [good hand with 6#D and stopper, NF]),
-    hl([3#C], [55#plus#mm]),
-  ),
-  ([1#N], [10--13(14), no singleton, BAL]),
-  followups(
-    ([\*], [#link(<XYZ>)[XYZ]]),
-  ),
-  ([2#C], [8#plus cards in the minors, not 6#D 4#C]),
-  ([2#D], [6#plus#D]),
-  followups(
-    hl([2#H], [artificial GF]),
-  ),
-  hl([2#H], [5#H 6#plus#D]),
-  ([2#S], dcases([10--13(14), 4#S, BAL], [10--12, 4#S, unBAL], [#hlt[3451]])),
-  hl([2#N], [13--15, 3#S 6#plus#D, BAL]),
-  hl([3#C], [13--15, 55#plus mm]),
-  ([3#D], [13--15, 6#plus#D]),
-  ([3#S], [13--15, 4#S, unBAL]),
-)
+#bt(```
+  = (DBL)
+    PASS   denies 3+S
+    RDBL   3S
+    1N     1--2 S
+    * 2C   54+mm
+  = (1N nat)
+    DBL   12-15, 3S
+    * 2C   54+mm
+  = (2C)
+    DBL   3S
+  = (2D)
+    DBL   3S
+  = (2H)
+    DBL   12-15, 3S
+    * 2N   good hand with 6D and stopper, NF
+    * 3C   55+mm
+  1N   10-13(14), no singleton, BAL
+    `*`   [XYZ](XYZ)
+  2C   8+ cards in the minors, not 6D 4C
+  2D   6+D
+    * 2H   artificial GF
+* 2H   5H 6+D
+  2S   { 10-13(14), 4S, BAL / 10-12, 4S, unBAL / *3451 }
+* 2N   13-15, 3S 6+D, BAL
+* 3C   13-15, 55+ mm
+  3D   13-15, 6+D
+  3S   13-15, 4S, unBAL
+```)
 
 === 1#D—(#dbl)—
 
-#bidtable(
-  ([#rdbl], [INV#plus]),
-  ([1#H], [4#plus#H]),
-  ([1#S], [4#plus#S]),
-  ([1#N], [7-11, BAL]),
-)
+#bt(```
+  RDBL   INV+
+  1H     4+H
+  1S     4+S
+  1N     7-11, BAL
+```)
 
 === 1#D—(1#H)—
 
-#bidtable(
-  ([#dbl], [4#S]),
-  hl([1#S], [5#S]),
-  ([1#N], [nat, does not promise stopper]),
-  ([2#C], [5#plus#C, F1]),
-  ([2#D], [5#plus#D, F1]),
-  hl([2#H], [6#plus#S]),
-  hl([2#S], [INV#plus, 54#plus#mm]),
-  ([2#N], [nat INV, promises stopper]),
-  hl([3#C], [#mm, no game, worse than 2#S]),
-  ([3#D], [6#plus#D, to play]),
-  hl([3#H], [transfer to 3#N, stopper that prefer partner declare]),
-  ([3#N], [to play]),
-  ([3#m], [preempt]),
-  ([4#S], [to play]),
-)
+#bt(```
+  DBL   4S
+* 1S    5S
+  1N    nat, does not promise stopper
+  2C    5+C, F1
+  2D    5+D, F1
+* 2H    6+S
+* 2S    INV+, 54+mm
+  2N    nat INV, promises stopper
+* 3C    mm, no game, worse than 2S
+  3D    6+D, to play
+* 3H    transfer to 3N, stopper that prefer partner declare
+  3N    to play
+  3m    preempt
+  4S    to play
+```)
 
 === 1#D—(1#S)—
 
-#bidtable(
-  ([#dbl], [negative]),
-  ([1#N], [nat, does not promise stopper]),
-  ([2#C], [5#plus#C, F1]),
-  ([2#D], [5#plus#D, F1]),
-  ([2#H], [5#plus#H, NF]),
-  hl([2#S], [INV#plus, 54#plus#mm]),
-  ([2#N], [nat INV, promises stopper]),
-  hl([3#C], [#mm, no game, worse than 2#S]),
-  ([3#D], [6#plus#D, to play]),
-  ([3#H], [6#plus#H, GF]),
-  hl([3#S], [transfer to 3#N, stopper that prefer partner declare]),
-  ([3#N], [to play]),
-  ([3#m], [preempt]),
-  ([4#H], [to play]),
-)
+#bt(```
+  DBL   negative
+  1N    nat, does not promise stopper
+  2C    5+C, F1
+  2D    5+D, F1
+  2H    5+H, NF
+* 2S    INV+, 54+mm
+  2N    nat INV, promises stopper
+* 3C    mm, no game, worse than 2S
+  3D    6+D, to play
+  3H    6+H, GF
+* 3S    transfer to 3N, stopper that prefer partner declare
+  3N    to play
+  3m    preempt
+  4H    to play
+```)
 
 === 1#D—(1#N)—
 

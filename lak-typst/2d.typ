@@ -2,27 +2,21 @@
 
 == 2#D— <sec:2D>
 
-#bidtable(
-  ([2#H], [to play]),
-  followups(
-    hl([2#S], [4315]),
-  ),
-  ([2#S], [to play]),
-  ([#link(<2D2N>)[2#N]], [asks]),
-  ([3#C], [to play]),
-  ([3#D], [11#plus, good 6#plus#D]),
-  ([3#H], [7--9, 5#H]),
-  followups(
-    ([4#H], [4#H, MAX]),
-  ),
-  ([3#S], [7--9, 5#S]),
-  followups(
-    ([4#S], [4#S, MAX]),
-  ),
-  ([3#N], [to play]),
-  ([4#H], [to play]),
-  ([4#S], [to play]),
-)
+#bt(```
+  2H        to play
+    * 2S   4315
+  2S        to play
+  2N>2D2N   asks
+  3C        to play
+  3D        11+, good 6+D
+  3H        7-9, 5H
+    4H   4H, MAX
+  3S        7-9, 5S
+    4S   4S, MAX
+  3N        to play
+  4H        to play
+  4S        to play
+```)
 
 /* Commented-out alternative from the original LaTeX source (2d.tex):
 % \subsection{Interference over 2\D}
@@ -34,24 +28,18 @@
 
 3-card majors are shown to make responder declarer.
 
-#bidtable(
-  hl([3#C], [MIN]),
-  followups(
-    hdr([3#D asks for a 3-card major], hl: true),
-    followups(
-      ([3#H], [4315]),
-      ([3#S], [3415]),
-      ([3#N], [44 majors]),
-    ),
-  ),
-  hl([3#D], [MAX, 44 majors, GF]),
-  followups(
-    hl([3#H], [sets #H for cues]),
-    hl([3#S], [sets #S for cues]),
-  ),
-  hl([3#H], [MAX, 4315]),
-  hl([3#S], [MAX, 3415]),
-)
+#bt(```
+* 3C   MIN
+    * = 3D asks for a 3-card major
+        3H   4315
+        3S   3415
+        3N   44 majors
+* 3D   MAX, 44 majors, GF
+    * 3H   sets H for cues
+    * 3S   sets S for cues
+* 3H   MAX, 4315
+* 3S   MAX, 3415
+```)
 
 /* Commented-out alternative (Mulberry) from the original LaTeX source (2d.tex): 
 % \subsection{Mulberry} \label{MB}

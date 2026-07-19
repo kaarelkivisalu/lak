@@ -2,33 +2,31 @@
 
 == 1#H— <sec:1H>
 
-#bidtable(
-  ([1#S], [7#plus, 4#plus#S, F1]),
-  ([1#N], [7--11, no #H fit]),
-  ([2#m], [11#plus, 5#plus#m, no #H fit]),
-  ([2#H], [5--9, 3#plus#H]),
-  hl([2#N], [11--12 or 17#plus, 3#plus#H, F3#H]),
-  followups(
-    hl([3#m], [4#plus#m, F1]),
-    ([3#H], [MIN, no side suit]),
-    ([3#S/4#m], [MAX, splinter]),
-    ([3#N], [MAX, 5#H\(332)]),
-    ([4#H], [MAX, 6#H\(322) or 7#H\(222)]),
-  ),
-  ([3#H], [0--5, 4#plus#H]),
-  ([3#N], [13--16, no #H fit, BAL]),
-  ([4#H], [13--16, 3#plus#H]),
-)
+#bt(```
+  1S   7+, 4+S, F1
+  1N   7-11, no H fit
+  2m   11+, 5+m, no H fit
+  2H   5-9, 3+H
+* 2N   11-12 or 17+, 3+H, F3H
+    * 3m      4+m, F1
+      3H      MIN, no side suit
+      3S/4m   MAX, splinter
+      3N      MAX, 5H(332)
+      4H      MAX, 6H(322) or 7H(222)
+  3H   0-5, 4+H
+  3N   13-16, no H fit, BAL
+  4H   13-16, 3+H
+```)
 
 === 1#H—(2#N minors)— <sec:1M-2N>
 
-#bidtable(
-  ([#dbl], [penalty interest against at least one suit]),
-  hl([3#C], [5#plus #S, GF]),
-  hl([3#D], [11#plus, 3#plus#H, INV#plus]),
-  hl([3#H], [7-10, 3#plus#H]),
-  ([3#S], [nat, NF]),
-)
+#bt(```
+  DBL   penalty interest against at least one suit
+* 3C    5+ S, GF
+* 3D    11+, 3+H, INV+
+* 3H    7-10, 3+H
+  3S    nat, NF
+```)
 
 /* Commented-out alternatives from the original LaTeX source (1h.tex): 
 % Alternative structure idea that we currently do not use:

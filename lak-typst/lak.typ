@@ -25,6 +25,7 @@
 
 // ---- Constructive and competitive bidding ----
 = Constructive and competitive bidding
+
 #include "openings.typ"
 #include "1c.typ"
 #include "1d.typ"

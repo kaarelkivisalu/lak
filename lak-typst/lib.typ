@@ -80,13 +80,18 @@
 }
 
 // ---- Bid tables (bidtable / \followups / \hl / \hlf) ----
+#let linkcol = black            // cross-reference underline colour
+#let fuindent = 4mm             // left indent of a followups sub-table
 #let hl(bid, desc) = (kind: "row", bid: bid, desc: desc, hl: true)
 #let hdr(body, hl: false) = (kind: "hdr", body: body, hl: hl)
 #let followups(..rows) = (kind: "fu", rows: rows.pos())
 
-#let bidtable(..rows) = {
+// Inner recursive renderer: builds the (possibly nested) table. Followups
+// recurse through here so the top-level wrapper's page-break and link styling
+// apply to the whole tree exactly once.
+#let _render(rows) = {
   let cells = ()
-  for r in rows.pos() {
+  for r in rows {
     if type(r) == array {
       // plain (bid, desc) row
       cells.push(table.cell(r.at(0)))
@@ -101,7 +106,7 @@
     } else if type(r) == dictionary and r.kind == "fu" {
       cells.push(table.cell(
         colspan: 2, inset: (x: 0pt, y: 2.5pt),
-        pad(left: 2mm, bidtable(..r.rows)),
+        pad(left: fuindent, _render(r.rows)),
       ))
     }
   }
@@ -115,6 +120,14 @@
     ..cells,
   )
 }
+
+// A bid table is kept on a single page (`breakable: false`) and any bid that is
+// a cross-reference gets a coloured underline so it reads as "there is more
+// system here". Both apply once, to the whole nested tree.
+#let bidtable(..rows) = block(breakable: false, {
+  show link: it => underline(stroke: 0.6pt + linkcol, offset: 1.5pt, it)
+  _render(rows.pos())
+})
 
 // ---- String-parsed bid tables (`bt`) ----------------------------------------
 // A BML-style alternative front-end for `bidtable`. Takes a raw block and
@@ -152,21 +165,27 @@
   } else { [#w] }
 }
 
-// Render a run of non-word characters, turning `+` into a superscript.
+// Sentinel marking a `+` that should render as a superscript (one attached to a
+// preceding token, as in 5+ / INV+), as opposed to a standalone "+" meaning
+// "and" (as in "5H + 4m"), which stays on the baseline.
+#let _plus = "\u{0001}"
+
+// Render a run of non-word characters, turning superscript sentinels into `+`.
 #let _plain(t) = {
   let acc = []
-  for (i, p) in t.split("+").enumerate() {
+  for (i, p) in t.split(_plus).enumerate() {
     if i > 0 { acc += super[+] }
     acc += [#p]
   }
   acc
 }
 
-// Render a text fragment (bid label or meaning) with bridge notation.
-#let _notation(s) = {
+// Render a text fragment with bridge notation (suits, +, en-dashes, variables).
+#let _notation-core(s) = {
   if s == "" { return [] }
   s = s.replace("--", "–")
   s = s.replace(regex("([0-9)])-([0-9(])"), m => m.captures.at(0) + "–" + m.captures.at(1))
+  s = s.replace(regex("([0-9A-Za-z)])\\+"), m => m.captures.at(0) + _plus)
   let out = ()
   let idx = 0
   for m in s.matches(regex("[A-Za-z]+")) {
@@ -176,6 +195,30 @@
   }
   if idx < s.len() { out.push(_plain(s.slice(idx))) }
   out.join()
+}
+
+// Render a bid label or meaning, with three span escapes:
+//   `verbatim`       — emitted literally; the escape hatch when the suit-word
+//                      rule would misfire, e.g. `P/C` ("pass or correct").
+//   _emphasis_       — italic, for convention names (_Stayman_, _Lebensohl_, …).
+//   [text](label)    — a cross-reference link to <label> inside a cell.
+#let _notation(s) = {
+  if s == "" { return [] }
+  if not (s.contains("`") or s.contains("_") or s.contains("](")) {
+    return _notation-core(s)
+  }
+  let out = []
+  let idx = 0
+  for m in s.matches(regex("`([^`]*)`|_([^_]*)_|\\[([^\\]]*)\\]\\(([^)]*)\\)")) {
+    if m.start > idx { out += _notation-core(s.slice(idx, m.start)) }
+    let c = m.captures
+    if c.at(0) != none { out += [#(c.at(0))] }
+    else if c.at(1) != none { out += emph(_notation-core(c.at(1))) }
+    else { out += link(label(c.at(3)), _notation-core(c.at(2))) }
+    idx = m.end
+  }
+  if idx < s.len() { out += _notation-core(s.slice(idx)) }
+  out
 }
 
 // Parse a `{ a = c / b = c }` (dcasesr) or `{ a / b }` (dcases) cell. A leading
@@ -218,8 +261,11 @@
   if bid.contains(">") { let bp = bid.split(">"); bid = bp.at(0).trim(); lbl = bp.at(1).trim() }
   let bidc = _notation(bid)
   if lbl != none { bidc = link(label(lbl), bidc) }
-  let descc = if desc.starts-with("{") and desc.ends-with("}") {
-    _braces(desc.slice(1, desc.len() - 1))
+  // A `{ … }` at the end of the meaning is a dcases/dcasesr brace; any text
+  // before it (e.g. "transfer to H") is rendered inline in front of the brace.
+  let descc = if desc.contains("{") and desc.ends-with("}") {
+    let o = desc.match(regex("\{")).start
+    _notation(desc.slice(0, o)) + _braces(desc.slice(o + 1, desc.len() - 1))
   } else { _notation(desc) }
   (kind: "row", bid: bidc, desc: descc, hl: hl)
 }
@@ -274,6 +320,22 @@
 // ---- Plain two-column reference table (glossary etc.) ----
 #let deftable(..rows) = bidtable(..rows)
 
+// Drop a trailing sequence dash (em/en) from a heading body — used for table-of
+// -contents entries only, so "1♣—1♦—" reads as "1♣—1♦" in the contents while the
+// heading itself keeps its trailing dash on the page.
+#let _strip-tail-dash(body) = {
+  if body.has("children") {
+    let ch = body.children
+    if ch.len() > 0 and ch.at(-1).func() == text and ch.at(-1).has("text") {
+      let t = ch.at(-1).text.trim(regex("[\u{2014}\u{2013} ]+"), at: end)
+      ch = ch.slice(0, -1)
+      if t != "" { ch.push(text(t)) }
+      return ch.join()
+    }
+  }
+  body
+}
+
 // ---- Document template ----
 #let conf(body) = {
   set page(
@@ -284,6 +346,12 @@
   set text(font: "New Computer Modern", size: 11pt)
   set par(justify: false, leading: 0.6em, spacing: 0.85em)
   set heading(numbering: "1.1.1.1")
+  show outline.entry: it => it.indented(it.prefix(), {
+    _strip-tail-dash(it.body())
+    box(width: 1fr, it.fill)
+    h(0.4em)
+    it.page()
+  })
   show heading.where(level: 1): it => {
     pagebreak(weak: true)
     block(above: 0.4em, below: 0.9em, text(size: 1.5em, it))

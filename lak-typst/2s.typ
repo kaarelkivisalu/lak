@@ -6,26 +6,22 @@
 
 Assume 6#plus#S unless NV vs. VUL.
 
-#bidtable(
-  ([2#N], [14#plus, asks]),
-  followups(
-    hdr([(bid)]),
-    followups(
-      hl([step 1], [#pass]),
-      ([step 2], [#dbl/#rdbl]),
-      ([step \*], [next bids]),
-    ),
-    ([3#C], [MIN, bad suit]),
-    ([3#D], [MIN, good suit]),
-    ([3#H], [MAX, bad suit]),
-    ([3#S], [MAX, good suit]),
-  ),
-  ([3#C], [14#plus, 5#plus#C, F1]),
-  ([3#D], [14#plus, 5#plus#D, F1]),
-  ([3#H], [14#plus, 5#plus#H, F1]),
-  ([3#S], [0--13, 3#plus#S, preempt]),
-  ([4#S], [to play]),
-)
+#bt(```
+  2N   14+, asks
+    = (bid)
+      * step 1   PASS
+        step 2   DBL/RDBL
+        step *   next bids
+    3C   MIN, bad suit
+    3D   MIN, good suit
+    3H   MAX, bad suit
+    3S   MAX, good suit
+  3C   14+, 5+C, F1
+  3D   14+, 5+D, F1
+  3H   14+, 5+H, F1
+  3S   0-13, 3+S, preempt
+  4S   to play
+```)
 
 /* Commented-out alternative from the original LaTeX source (2s.tex): 
 % \begin{bidtable}

@@ -6,15 +6,13 @@
 
 Without Kickback (keycards are Aces and trump K):
 
-#bidtable(
-  ([4#N], [RKC]),
-  followups(
-    ([5#C], [1/4 keycards]),
-    ([5#D], [0/3 keycards]),
-    ([5#H], [2 keycard, no trump Q]),
-    ([5#S], [2 keycard, trump Q]),
-  ),
-)
+#bt(```
+  4N   RKC
+    5C   1/4 keycards
+    5D   0/3 keycards
+    5H   2 keycard, no trump Q
+    5S   2 keycard, trump Q
+```)
 
 With Kickback ($X$ is trump):
 
@@ -81,10 +79,10 @@ Example:
 
 1#H—2#C—2#H—3#H—
 
-#bidtable(
-  ([3#S], [cue-bid, does not say whether serious or not]),
-  ([3#N], [Serious 3NT (13--15 as 1#H was 10--15), denies a spade cue]),
-  ([4#C], [cue-bid, non-serious hand (10--12), denies a space cue, min but not the pits]),
-  ([4#D], [Last Train, non-serious hand (10--12), no spade or club cue]),
-  ([4#H], [the worst hand (10-11), bad distribution, honour location and slam cards]),
-)
+#bt(```
+  3S   cue-bid, does not say whether serious or not
+  3N   Serious 3NT (13-15 as 1H was 10-15), denies a spade cue
+  4C   cue-bid, non-serious hand (10-12), denies a space cue, min but not the pits
+  4D   Last Train, non-serious hand (10-12), no spade or club cue
+  4H   the worst hand (10-11), bad distribution, honour location and slam cards
+```)

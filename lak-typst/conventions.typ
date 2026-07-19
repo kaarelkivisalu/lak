@@ -16,19 +16,17 @@ Not used after 1#C opening. It is on in some competitive situations (not if oppo
 1#D—(1#S)—#dbl—1#N—
 ]
 
-#bidtable(
-  ([1#N], [to play]),
-  ([2#C], [puppet to 2#D #dcases([artificial invite], [long #D])]),
-  ([2#D], [artificial GF]),
-  ([2#H], [to play]),
-  ([2#S], [natural]),
-  hl([2#N], [natural, denies a 5 card $Y$, INV]),
-  ([3#C], [to play]),
-  hl([3#D], [5$Y$5#D, slam interest]),
-  hl([3$Y$], [6#plus suit, slam interest]),
-  followups(
-    hl([3#N], [to play]),
-    ([\*], [control for $Y$]),
-  ),
-  hl([double jump shift], [splinter for the last natural suit]),
-)
+#bt(```
+  1N                  to play
+  2C                  puppet to 2D { artificial invite / long D }
+  2D                  artificial GF
+  2H                  to play
+  2S                  natural
+* 2N                  natural, denies a 5 card Y, INV
+  3C                  to play
+* 3D                  5Y5D, slam interest
+* 3Y                  6+ suit, slam interest
+    * 3N    to play
+      `*`   control for Y
+* double jump shift   splinter for the last natural suit
+```)
