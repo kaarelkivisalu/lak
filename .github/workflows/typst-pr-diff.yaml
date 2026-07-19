@@ -102,6 +102,11 @@ jobs:
             if [ "${{ steps.diff.outputs.changed }}" = "false" ]; then
               echo "No visual differences detected."
             else
+              # $GITHUB_STEP_SUMMARY has a hard 1024KB limit and silently
+              # drops the *entire* summary if exceeded — budget against the
+              # base64-encoded size actually written (~1.33x the raw PNG
+              # bytes), not the raw size, with headroom for the markdown/text
+              # around each image.
               total_size=0
               if [ -s /tmp/changed-files.txt ]; then
                 while read -r base; do
@@ -109,13 +114,12 @@ jobs:
                   echo "#### $base"
                   echo
                   for f in /tmp/diffpages/"$stem"/page-*.png; do
-                    size=$(stat -c%s "$f")
-                    total_size=$((total_size + size))
-                    if [ "$total_size" -gt 900000 ]; then
+                    b64=$(base64 -w0 "$f")
+                    total_size=$((total_size + ${#b64}))
+                    if [ "$total_size" -gt 800000 ]; then
                       echo "_Remaining pages omitted (summary size limit) — see workflow artifacts._"
                       break 2
                     fi
-                    b64=$(base64 -w0 "$f")
                     echo "![${f}](data:image/png;base64,${b64})"
                     echo
                   done
@@ -146,7 +150,7 @@ jobs:
         run: |
           branch="typst-pr-diff-images/${{ github.event.pull_request.number }}"
           dir="$(mktemp -d)"
-          git worktree add --orphan "$dir" "$branch"
+          git worktree add --orphan -b "$branch" "$dir"
           cp -r /tmp/diffpages/* "$dir"/
           git -C "$dir" add .
           git -C "$dir" -c user.name="github-actions[bot]" -c user.email="github-actions[bot]@users.noreply.github.com" \
