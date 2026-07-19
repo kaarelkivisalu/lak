@@ -1,0 +1,9 @@
+[project]
+name = "lak-typst-tools"
+version = "0.1.0"
+description = "Python helpers for the LAK Precision Typst edition: bid-table formatting (btfmt) and the PR visual-diff pipeline (btdiff, typst_pr_diff)."
+requires-python = ">=3.9"
+dependencies = []
+
+[tool.uv]
+package = false

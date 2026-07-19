@@ -11,11 +11,11 @@ It only ever touches the run of spaces between a bid and its description; bid
 text, `>label` links, `* ` highlight markers, `= header` rows, indentation and
 `{ … }` cells are preserved exactly.
 
-Usage:
-    python btfmt.py FILE.typ [FILE.typ …]   # rewrite in place
-    python btfmt.py --check FILE.typ …       # exit 1 if any file would change
-    python btfmt.py --stdout FILE.typ        # print result, don't write
-    python btfmt.py --gutter N FILE.typ …    # spaces before description (default 3)
+Usage (run from lak-typst/, or point paths at it from elsewhere):
+    uv run --project tools tools/btfmt.py FILE.typ [FILE.typ …]  # rewrite in place
+    uv run --project tools tools/btfmt.py --check FILE.typ …     # exit 1 if any file would change
+    uv run --project tools tools/btfmt.py --stdout FILE.typ      # print result, don't write
+    uv run --project tools tools/btfmt.py --gutter N FILE.typ …  # spaces before description (default 3)
 """
 
 import re

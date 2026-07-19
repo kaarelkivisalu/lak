@@ -86,6 +86,18 @@
 #let hdr(body, hl: false) = (kind: "hdr", body: body, hl: hl)
 #let followups(..rows) = (kind: "fu", rows: rows.pos())
 
+// ---- Row-level diff styling, used only by the PR visual-diff pipeline ----
+// Mirrors the `#diff-added`/`#diff-deleted` convention the typdiff-based prose
+// diff already uses (blue underline / red strikethrough), so a table row and a
+// changed sentence read as the same kind of change. Applied automatically by
+// `bt` to rows whose source line starts with a `+ `/`- ` sentinel — see `_lines`.
+#let diffaddcol = rgb("#0000ff")
+#let diffdelcol = rgb("#cc0000")
+#let diffaddbg  = rgb("#eaf2ff")
+#let diffdelbg  = rgb("#fdeaea")
+#let diff-added(body) = underline(text(fill: diffaddcol, body))
+#let diff-deleted(body) = strike(text(fill: diffdelcol, body))
+
 // Inner recursive renderer: builds the (possibly nested) table. Followups
 // recurse through here so the top-level wrapper's page-break and link styling
 // apply to the whole tree exactly once.
@@ -97,11 +109,19 @@
       cells.push(table.cell(r.at(0)))
       cells.push(table.cell(r.at(1)))
     } else if type(r) == dictionary and r.kind == "row" {
-      let f = if r.hl { hlcol } else { none }
+      let status = r.at("status", default: none)
+      let f = if r.at("hl", default: false) { hlcol }
+        else if status == "added" { diffaddbg }
+        else if status == "deleted" { diffdelbg }
+        else { none }
       cells.push(table.cell(fill: f, r.bid))
       cells.push(table.cell(fill: f, r.desc))
     } else if type(r) == dictionary and r.kind == "hdr" {
-      let f = if r.hl { hlcol } else { none }
+      let status = r.at("status", default: none)
+      let f = if r.at("hl", default: false) { hlcol }
+        else if status == "added" { diffaddbg }
+        else if status == "deleted" { diffdelbg }
+        else { none }
       cells.push(table.cell(colspan: 2, fill: f, r.body))
     } else if type(r) == dictionary and r.kind == "fu" {
       cells.push(table.cell(
@@ -239,13 +259,22 @@
   }
 }
 
-// Parse a single (already dedented) line into a bidtable row dict.
+// Parse a single (already dedented) line into a bidtable row dict. A leading
+// `+ ` / `- ` sentinel (before any `* ` highlight marker) marks the row as
+// added/deleted for the PR visual-diff pipeline — see `btdiff.py`, which is
+// the only producer of these sentinels; hand-authored tables never use them.
 #let _parse-row(txt) = {
-  let hl = false
+  let status = none
   let t = txt
+  if t.starts-with("+ ") { status = "added"; t = t.slice(2).trim(at: start) }
+  else if t.starts-with("- ") { status = "deleted"; t = t.slice(2).trim(at: start) }
+  let hl = false
   if t.starts-with("* ") { hl = true; t = t.slice(2).trim() }
+  let diffwrap = if status == "added" { diff-added }
+    else if status == "deleted" { diff-deleted }
+    else { body => body }
   if t.starts-with("= ") {
-    return (kind: "hdr", body: _notation(t.slice(2).trim()), hl: hl)
+    return (kind: "hdr", body: diffwrap(_notation(t.slice(2).trim())), hl: hl, status: status)
   }
   let bid = t
   let desc = ""
@@ -267,21 +296,30 @@
     let o = desc.match(regex("\{")).start
     _notation(desc.slice(0, o)) + _braces(desc.slice(o + 1, desc.len() - 1))
   } else { _notation(desc) }
-  (kind: "row", bid: bidc, desc: descc, hl: hl)
+  (kind: "row", bid: diffwrap(bidc), desc: diffwrap(descc), hl: hl, status: status)
 }
 
 // Split source into (indent, text) pairs, dropping blank lines. Indentation is
 // measured at the column where the *bid* begins, so a left-margin `* ` highlight
-// marker does not shift a row's nesting level relative to unmarked siblings.
+// marker does not shift a row's nesting level relative to unmarked siblings. A
+// `+ `/`- ` diff sentinel (see `_parse-row`) is stripped first and contributes
+// nothing to indent at all — it is a zero-width flag, not part of the layout —
+// so a changed row nests exactly like its unchanged siblings regardless of
+// whether it (or they) carry a sentinel.
 #let _lines(src) = {
   let out = ()
   for line in src.split("\n") {
     let s = line.trim(at: start)
     if s.trim() == "" { continue }
     let indent = line.len() - s.len()
-    if s.starts-with("* ") {
-      let rest = s.slice(2).trim(at: start)
-      indent += s.len() - rest.len()
+    let rest = s
+    if rest.starts-with("+ ") or rest.starts-with("- ") {
+      rest = rest.slice(2).trim(at: start)
+    }
+    if rest.starts-with("* ") {
+      let hlrest = rest.slice(2).trim(at: start)
+      indent += rest.len() - hlrest.len()
+      rest = hlrest
     }
     out.push((indent, s.trim(at: end)))
   }

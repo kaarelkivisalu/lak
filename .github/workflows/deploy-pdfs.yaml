@@ -24,6 +24,12 @@ jobs:
             cc-swe/cc-swe-mini.tex
             cc-swe/cc-swe-mini-print.tex
 
+      - name: Setup Typst
+        uses: typst-community/setup-typst@v4
+
+      - name: Compile Typst
+        run: typst compile lak-typst/lak.typ lak-typst/lak.pdf
+
       - name: Release
         uses: softprops/action-gh-release@v2
         with:
@@ -33,6 +39,7 @@ jobs:
             cc/cc.pdf
             cc-swe/cc-swe-mini.pdf
             cc-swe/cc-swe-mini-print.pdf
+            lak-typst/lak.pdf
 
       - name: Prepare GitHub Pages content
         run: |
@@ -41,6 +48,7 @@ jobs:
           cp cc/cc.pdf output/
           cp cc-swe/cc-swe-mini.pdf output/
           cp cc-swe/cc-swe-mini-print.pdf output/
+          cp lak-typst/lak.pdf output/
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v4

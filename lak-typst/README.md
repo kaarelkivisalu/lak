@@ -19,7 +19,10 @@ ships with a full TeX distribution otherwise).
 - `lib.typ` — shared definitions (the equivalent of the old `preamble.tex`):
   coloured suit symbols, abbreviations, the `bt` / `bidtable` / `followups` / `hl`
   constructs, the `dcases` / `dcasesr` braces and the page/heading template.
-- `btfmt.py` — aligns the description column inside `#bt(…)` blocks (see below).
+- `tools/` — Python helpers, kept separate from the document content (see below
+  and [`tools/README.md`](tools/README.md)): `btfmt.py` aligns bid-table
+  description columns; `btdiff.py` / `typst_pr_diff.py` back the PR visual-diff
+  CI workflow.
 - One content file per source `.tex` (`glossary.typ`, `openings.typ`, `1c.typ`, …).
 
 ## Writing bid tables — `#bt`
@@ -73,10 +76,10 @@ Getting the description column to line up by hand is tedious. Write the rows
 with any ragged (≥ 2-space) spacing and run:
 
 ```sh
-python3 btfmt.py 1c.typ            # rewrite in place, aligning every #bt block
-python3 btfmt.py --stdout 1c.typ   # preview without writing
-python3 btfmt.py --check *.typ     # exit 1 if anything is misaligned (CI/pre-commit)
-python3 btfmt.py --gutter 2 1c.typ # narrower gap before the description (default 3)
+uv run --project tools tools/btfmt.py 1c.typ            # rewrite in place, aligning every #bt block
+uv run --project tools tools/btfmt.py --stdout 1c.typ   # preview without writing
+uv run --project tools tools/btfmt.py --check *.typ     # exit 1 if anything is misaligned (CI/pre-commit)
+uv run --project tools tools/btfmt.py --gutter 2 1c.typ # narrower gap before the description (default 3)
 ```
 
 Descriptions are aligned independently within each group of sibling rows (the

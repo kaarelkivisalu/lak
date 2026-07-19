@@ -14,3 +14,10 @@
 
 # All .pdf files
 *.pdf
+
+# Python bytecode cache (lak-typst/tools/)
+__pycache__/
+*.pyc
+
+# uv-managed virtual environment (lak-typst/tools/)
+.venv/
