@@ -44,22 +44,33 @@
 ```)
 
 /* Commented-out alternative followups / annotations from the LaTeX source (1n.tex):
-% 2\S--- \followups{
-%   \P & declines \\
-%   2\N & accepts, 2\S \\
-%   \followups{
-%     \P & BAL, mild invite \\
-%     3\m & 5\S 4\+\m, mild invite, NF\\
-%     3\N & to play \\
-%   }\\
-%   3\S & 3\S, MIN \\
-%   4\S & 3\S, MAX \\
-% }
-% 2\N--- \followups{ 3\m & 6 cards, to play }
-% 3\C: 3\D = R for LMH short, 3\M = noise with \C interest, 3\N = no interest
-% 3\D: 3\M = noise with \D interest, 3\N = no interest
-% 3\H: 3\S = 2\S 3\H, 3\N = to play, 4\C = good \S raise, 4\S = bad \S raise
-% 3\S: 4\C = good \H raise, 4\H = bad \H raise
+#bt(```
+  = followups for 2S (5S, INV)
+    PASS   declines
+    2N     accepts, 2S
+      PASS   BAL, mild invite
+      3m     5S 4+m, mild invite, NF
+      3N     to play
+    3S     3S, MIN
+    4S     3S, MAX
+  = followups for 2N (INV, may have 5H)
+    3m   6 cards, to play
+  = followups for 3C (5+C 4M, GF)
+    3D   R for LMH short
+    3M   noise with C interest
+    3N   no interest
+  = followups for 3D (5+D 4M, GF)
+    3M   noise with D interest
+    3N   no interest
+  = followups for 3H (5S 4H, GF)
+    3S   2S 3H
+    3N   to play
+    4C   good S raise
+    4S   bad S raise
+  = followups for 3S (5H 4S, GF)
+    4C   good H raise
+    4H   bad H raise
+```)
 */
 
 === 1#N—2#C—2#H— <1N2C2H>
@@ -81,19 +92,19 @@
 ```)
 
 /* Commented followups from the LaTeX source (1n.tex):
-% 3\C--- \followups{
-%   3\D & \C interest, asks LH short\\
-%   3\H & 5\H\\
-%   \followups{ 3\S & waiting, no fit or no \D stop }
-%   3\S & \S flag, asks LH short\\
-%   4\C & great hand for \C
-% }
-% 3\D--- \followups{
-%   3\H & 5\H\\
-%   \followups{ 3\S & waiting, no fit or no \C stop }
-%   3\S & \S flag, asks LH short\\
-%   4\m & great hand for \D
-% }
+#bt(```
+  = followups for 3C (4S 5+C, GF)
+    3D   C interest, asks LH short
+    3H   5H
+      3S   waiting, no fit or no D stop
+    3S   S flag, asks LH short
+    4C   great hand for C
+  = followups for 3D (4S 5+D, GF)
+    3H   5H
+      3S   waiting, no fit or no C stop
+    3S   S flag, asks LH short
+    4m   great hand for D
+```)
 */
 
 === 1#N—2#C—2#S— <1N2C2S>
@@ -113,17 +124,17 @@
 ```)
 
 /* Commented followups from the LaTeX source (1n.tex):
-% 3\C--- \followups{
-%   3\D & \C interest, asks LH short\\
-%   3\H & 4\H, asks LH short\\
-%   3\S & 5\S\\
-%   4\C & great hand for \C
-% }
-% 3\D--- \followups{
-%   3\H & relay with some \D interest, asks LH short\\
-%   3\S & 5\S\\
-%   4\m & great hand for \D
-% }
+#bt(```
+  = followups for 3C (4H 5+C, GF)
+    3D   C interest, asks LH short
+    3H   4H, asks LH short
+    3S   5S
+    4C   great hand for C
+  = followups for 3D (4H 5+D, GF)
+    3H   relay with some D interest, asks LH short
+    3S   5S
+    4m   great hand for D
+```)
 */
 
 === 1#N—2#C—(#dbl)— <1N2CX>
@@ -161,18 +172,34 @@
   4N      5H(332), good quant
 ```)
 
-/* Commented followups from the LaTeX source (1n.tex); these were for 3\C (as 2\N)
-   and 3\D (as 3\C):
-% 3\C--- \followups{
-%   3\C & no \H fit \followups{ 3\D short \D / 3\H short \S / 3\S 2524, ST / 3\N 4\C LH void, 55 }
-%   3\D & \H fit \followups{ 3\H BAL, ST / 3\S some void, ST (R asks LH) / 3\N 4\C LH singleton, ST / 4\H to play }
-%   3\N & values in other suits, usually 2\H 3\C
-% }
-% 3\D--- \followups{
-%   3\D & no \H fit \followups{ 3\H short \C / 3\S short \S / 3\N 2542, ST / 3\C 4\D LH void, 55 }
-%   3\H & \H fit \followups{ 3\S BAL, ST / 3\N some void, ST (R asks LH) / 4\C\D LH singleton, ST / 4\H to play }
-%   3\N & values in other suits, usually 2\H 3\C
-% }
+/* Commented followups from the LaTeX source (1n.tex); these were for 3C (as 2N)
+   and 3D (as 3C):
+#bt(```
+  = followups for 3C (4+C, GF; written when this bid was 2N)
+    3C   no H fit
+      3D      short D
+      3H      short S
+      3S      2524, ST
+      3N 4C   LH void, 55
+    3D   H fit
+      3H      BAL, ST
+      3S      some void, ST (R asks LH)
+      3N 4C   LH singleton, ST
+      4H      to play
+    3N   values in other suits, usually 2H 3C
+  = followups for 3D (4+D, GF; written when this bid was 3C)
+    3D   no H fit
+      3H      short C
+      3S      short S
+      3N      2542, ST
+      3C 4D   LH void, 55
+    3H   H fit
+      3S    BAL, ST
+      3N    some void, ST (R asks LH)
+      4CD   LH singleton, ST
+      4H    to play
+    3N   values in other suits, usually 2H 3C
+```)
 */
 
 === 1#N—2#H—2#S— <1N2H2S>
@@ -195,17 +222,33 @@
   4N     5S(332), quant
 ```)
 
-/* Commented followups from the LaTeX source (1n.tex), for 2\C (as 3\C) and 3\D (as 3\D):
-% 2\C--- \followups{
-%   3\C & no \S fit \followups{ 3\D short \D / 3\H short \H / 3\S 5224, ST / 3\N 4\C LH void, 55 }
-%   3\D & \S fit \followups{ 3\H BAL, ST / 3\S some void, ST (R asks LH) / 3\N 4\C LH singleton, ST / 4\S to play }
-%   3\N & values in other suits, usually 2\S 3\C
-% }
-% 3\D--- \followups{
-%   3\D & no \H fit \followups{ 3\H short \C / 3\S short \H / 3\N 5242, ST / 4\C\D LH void, 55 }
-%   3\H & \H fit \followups{ 3\S BAL, ST / 3\N some void, ST (R asks LH) / 4\C\D LH singleton, ST / 4\S to play }
-%   3\N & values in other suits, usually 2\S 3\C
-% }
+/* Commented followups from the LaTeX source (1n.tex), for 2C (as 3C) and 3D (as 3D):
+#bt(```
+  = followups for 2C (4+C, GF; written when this bid was 3C)
+    3C   no S fit
+      3D      short D
+      3H      short H
+      3S      5224, ST
+      3N 4C   LH void, 55
+    3D   S fit
+      3H      BAL, ST
+      3S      some void, ST (R asks LH)
+      3N 4C   LH singleton, ST
+      4S      to play
+    3N   values in other suits, usually 2S 3C
+  = followups for 3D (4+D, GF)
+    3D   no H fit
+      3H    short C
+      3S    short H
+      3N    5242, ST
+      4CD   LH void, 55
+    3H   H fit
+      3S    BAL, ST
+      3N    some void, ST (R asks LH)
+      4CD   LH singleton, ST
+      4S    to play
+    3N   values in other suits, usually 2S 3C
+```)
 */
 
 === 1#N—2#S— <1N2S>

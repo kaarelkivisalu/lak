@@ -49,149 +49,154 @@ Passed hand responses:
 ```)
 
 /* Commented-out alternative from the original LaTeX source (1c.tex):
-% \begin{bidtable}
-%     \P & (5)6\+\D, MIN, 1\N/2\D\ dangerous \\
-%     \hyperref[1C1D1H]{1\H} & 4\+\H\ (if 4, (4441) or 5\+\m), F1 \\
-%     \hyperref[1C1D1S]{1\S} & 4\+\S\ (if 4, (4441) or 5\+\m), F1 \\
-%     1\N & 17--18 (18--19), BAL [5\M(332) can choose 1\M\ or 1\N] \\
-%     \followups{
-%         system on &  \\
-%     }\\
-%     2\C & 16--21, 6\+\C\ or 5\C 4\D, no 4\M, NF\\
-%     2\D & 16--21, 6\+\D\ or 5\D 4\C, no 4\M, NF\\
-%     2\H & 22\+, 5\+\H, GF\\
-%     2\S & 22\+, 5\+\S, GF\\
-%     2\N & 21(22)--23, BAL\\
-%     \followups{
-%         system on &  \\
-%     }\\
-%     3\C & 22\+, 6\+\C\ or 5\C 4\D, GF\\
-%     3\D & 22\+, 6\+\D\ or 5\D 4\C, GF\\
-%     3\H & \H\ flag, GF\\
-%     3\S & \S\ flag, GF\\
-%     3\N & 24--27, BAL\\
-%     4\H & to play (good long suit, weak)\\
-%     4\S & to play (good long suit, weak)\\
-% \end{bidtable}
+#bt(```
+  PASS        (5)6+D, MIN, 1N/2D dangerous
+  1H>1C1D1H   4+H (if 4, (4441) or 5+m), F1
+  1S>1C1D1S   4+S (if 4, (4441) or 5+m), F1
+  1N          17-18 (18-19), BAL [5M(332) can choose 1M or 1N]
+    system on
+  2C          16-21, 6+C or 5C 4D, no 4M, NF
+  2D          16-21, 6+D or 5D 4C, no 4M, NF
+  2H          22+, 5+H, GF
+  2S          22+, 5+S, GF
+  2N          21(22)-23, BAL
+    system on
+  3C          22+, 6+C or 5C 4D, GF
+  3D          22+, 6+D or 5D 4C, GF
+  3H          H flag, GF
+  3S          S flag, GF
+  3N          24-27, BAL
+  4H          to play (good long suit, weak)
+  4S          to play (good long suit, weak)
+```)
 
-% \subsubsection[1\C--1\D--1\H]{1\C---1\D---1\H} \label{1C1D1H}
-% \begin{bidtable}
-%     \hyperref[1C1D1H1S]{1\S}  & 0--7, 4\+\S, denies 4\+\H, F1 \\
-%     \hyperref[1C1D1H1N]{1\N}  & 0--5, denies 4\+\H\ and 4\+\S \\
-%     \hyperref[1C1D1H2C]{2\C}  & 6--7, denies 3\+\H\ and 4\+\S \\
-%     \hyperref[1C1D1H2D]{2\D}  & 5--7, 3\H \\
-%     2\H & 0--4, 4--5\H \\
-%     2\S & 4--6, great 6\+\S\\
-%     2\N & 5--7, 4\H, splinter (R asks LMH)\\
-%     3\C & 4--6, great 6\+\C\\
-%     3\D & 4--6, great 6\+\D\\
-%     3\H & 5--7, 4\H\+, BAL, INV \\
-%     3\S & 6--7, 5\+\H, 0--1\S \\
-%     4\C & 6--7, 5\+\H, 0--1\C \\
-%     4\D & 6--7, 5\+\H, 0--1\D \\
-% \end{bidtable}
+=== 1#C—1#D—1#H <1C1D1H>
 
-% \paragraph{1\C---1\D---1\H---1\S---} \label{1C1D1H1S}
-% \begin{bidtable}
-%     1\N & 1444 likely, NF \\
-%     2\C\D & 4\+ cards, could be 54\+, NF \\
-%     2\H & 6\+\H \\
-%     2\S & 16--19, 3\S / 16--17, 4\S \\
-%     2\N & 21--22, likely 0--1 \S \\
-%     3\C & 4\H, 5\+\C, GF \\
-%     3\D & 4\H, 5\+\D, GF \\
-%     3\H & long good suit, INV \\
-%     3\S & 20--21, 3\S / 18--19, 4\S \\
-%     3\N/4\H & to play \\
-%     4\C\D & 20\+, 4\+\S, splinter \\
-% \end{bidtable}
+#bt(```
+  1S>1C1D1H1S   0-7, 4+S, denies 4+H, F1
+  1N>1C1D1H1N   0-5, denies 4+H and 4+S
+  2C>1C1D1H2C   6-7, denies 3+H and 4+S
+  2D>1C1D1H2D   5-7, 3H
+  2H            0-4, 4-5H
+  2S            4-6, great 6+S
+  2N            5-7, 4H, splinter (R asks LMH)
+  3C            4-6, great 6+C
+  3D            4-6, great 6+D
+  3H            5-7, 4H+, BAL, INV
+  3S            6-7, 5+H, 0-1S
+  4C            6-7, 5+H, 0-1C
+  4D            6-7, 5+H, 0-1D
+```)
 
-% \paragraph{1\C---1\D---1\H---1\protect\N---} \label{1C1D1H1N}
-% \begin{bidtable}
-%     \P & typically 44(14) \\
-%     2\C\D & 4\+ cards, could be 54\+, NF \\
-%     2\H & 6\+\H \\
-%     2\S & 21\+, 5\H 4\S, GF \\
-%     2\N & 22--23, INV, NF \\
-%     3\C & 4\H, 5\+\C, GF \\
-%     3\D & 4\H, 5\+\D, GF \\
-%     3\H & long good suit, INV \\
-%     3\N/4\H & to play \\
-% \end{bidtable}
+=== 1#C—1#D—1#H—1#S— <1C1D1H1S>
 
-% \paragraph{1\C---1\D---1\H---2\C---} \label{1C1D1H2C}
-% \begin{bidtable}
-%     2\D & MIN, asks responder to show doubleton support or other major\\
-%     2\H & 6\+\H, NF \\
-%     2\S & 21\+, 5\H 4\S, F1 \\
-%     2\N & waiting, GF \\
-%     3\C & 4\H, 5\+\C, GF \\
-%     3\D & 4\H, 5\+\D, GF \\
-%     3\H & \H\ flag, GF \\
-% \end{bidtable}
+#bt(```
+  1N      1444 likely, NF
+  2CD     4+ cards, could be 54+, NF
+  2H      6+H
+  2S      16-19, 3S / 16-17, 4S
+  2N      21-22, likely 0-1 S
+  3C      4H, 5+C, GF
+  3D      4H, 5+D, GF
+  3H      long good suit, INV
+  3S      20-21, 3S / 18-19, 4S
+  3N/4H   to play
+  4CD     20+, 4+S, splinter
+```)
 
-% \paragraph{1\C---1\D---1\H---2\D---} \label{1C1D1H2D}
-% \begin{bidtable}
-%     2\H & to play, usually 4\H \\
-%     2\S & 4\+\S \\
-%     2\N & artificial GF \\
-%     3\C & 4\H, 5\+\C, GF \\
-%     3\D & 4\H, 5\+\D, GF \\
-%     3\H & 5\+\H, INV \\
-%     3\N & to play \\
-% \end{bidtable}
+=== 1#C—1#D—1#H—1#N— <1C1D1H1N>
 
-% \subsubsection[1\C--1\D--1\S]{1\C---1\D---1\S} \label{1C1D1S}
-% \begin{bidtable}
-%     \hyperref[1C1D1S1N]{1\N}  & 0--5, denies 4\+\S \\
-%     \hyperref[1C1D1S2C]{2\C}  & 6--7, denies 4\+\S\ and 5\+\H \\
-%     \hyperref[1C1D1S2D]{2\D}  & 5--7, 3\S \\
-%     2\H & 6--7, 5\+\H, denies 3\+\S \\
-%     2\S & 0--4, 4--5\S \\
-%     2\N & 5--7, 4\S, splinter (R asks LMH)\\
-%     3\C & 4--6, great 6\+\C\\
-%     3\D & 4--6, great 6\+\D\\
-%     3\H & 4--6, great 6\+\H\\
-%     3\S & 5--7, 4\S\+, BAL, INV \\
-%     4\C & 6--7, 5\+\S, 0--1\C \\
-%     4\D & 6--7, 5\+\S, 0--1\D \\
-%     4\H & 6--7, 5\+\S, 0--1\H \\
-% \end{bidtable}
+#bt(```
+  PASS    typically 44(14)
+  2CD     4+ cards, could be 54+, NF
+  2H      6+H
+  2S      21+, 5H 4S, GF
+  2N      22-23, INV, NF
+  3C      4H, 5+C, GF
+  3D      4H, 5+D, GF
+  3H      long good suit, INV
+  3N/4H   to play
+```)
 
-% \paragraph{1\C---1\D---1\S---1\protect\N---} \label{1C1D1H1N}
-% \begin{bidtable}
-%     \P & typically 44(14) \\
-%     2\C\D & 4\+ cards, could be 54\+, NF \\
-%     2\H & 21\+, 5\S 4\H, GF \\
-%     2\S & 6\+\S \\
-%     2\N & 22--23, INV, NF \\
-%     3\C & 4\S, 5\+\C, GF \\
-%     3\D & 4\S, 5\+\D, GF \\
-%     3\S & long good suit, INV \\
-%     3\N/4\S & to play \\
-% \end{bidtable}
+=== 1#C—1#D—1#H—2#C— <1C1D1H2C>
 
-% \paragraph{1\C---1\D---1\S---2\C---} \label{1C1D1S2C}
-% \begin{bidtable}
-%     2\D & MIN, asks responder to show doubleton support or other major\\
-%     2\H & 5\+\S 4\+\H, MIN \\
-%     2\S & 6\+\S \\
-%     2\N & waiting, GF \\
-%     3\C & 4\S, 5\+\C, GF \\
-%     3\D & 4\S, 5\+\D, GF \\
-%     3\S & \S\ flag, GF \\
-% \end{bidtable}
+#bt(```
+  2D   MIN, asks responder to show doubleton support or other major
+  2H   6+H, NF
+  2S   21+, 5H 4S, F1
+  2N   waiting, GF
+  3C   4H, 5+C, GF
+  3D   4H, 5+D, GF
+  3H   H flag, GF
+```)
 
-% \paragraph{1\C---1\D---1\S---2\D---} \label{1C1D1S2D}
-% \begin{bidtable}
-%     2\H & 4\+\H \\
-%     2\S & to play, usually 4\S \\
-%     2\N & artificial GF \\
-%     3\C & 4\S, 5\+\C, GF \\
-%     3\D & 4\S, 5\+\D, GF \\
-%     3\S & 5\+\S, INV \\
-%     3\N & to play \\
-% \end{bidtable}
+=== 1#C—1#D—1#H—2#D— <1C1D1H2D>
+
+#bt(```
+  2H   to play, usually 4H
+  2S   4+S
+  2N   artificial GF
+  3C   4H, 5+C, GF
+  3D   4H, 5+D, GF
+  3H   5+H, INV
+  3N   to play
+```)
+
+=== 1#C—1#D—1#S <1C1D1S>
+
+#bt(```
+  1N>1C1D1S1N   0-5, denies 4+S
+  2C>1C1D1S2C   6-7, denies 4+S and 5+H
+  2D>1C1D1S2D   5-7, 3S
+  2H            6-7, 5+H, denies 3+S
+  2S            0-4, 4-5S
+  2N            5-7, 4S, splinter (R asks LMH)
+  3C            4-6, great 6+C
+  3D            4-6, great 6+D
+  3H            4-6, great 6+H
+  3S            5-7, 4S+, BAL, INV
+  4C            6-7, 5+S, 0-1C
+  4D            6-7, 5+S, 0-1D
+  4H            6-7, 5+S, 0-1H
+```)
+
+=== 1#C—1#D—1#S—1#N— <1C1D1S1N>
+
+#bt(```
+  PASS    typically 44(14)
+  2CD     4+ cards, could be 54+, NF
+  2H      21+, 5S 4H, GF
+  2S      6+S
+  2N      22-23, INV, NF
+  3C      4S, 5+C, GF
+  3D      4S, 5+D, GF
+  3S      long good suit, INV
+  3N/4S   to play
+```)
+
+=== 1#C—1#D—1#S—2#C— <1C1D1S2C>
+
+#bt(```
+  2D   MIN, asks responder to show doubleton support or other major
+  2H   5+S 4+H, MIN
+  2S   6+S
+  2N   waiting, GF
+  3C   4S, 5+C, GF
+  3D   4S, 5+D, GF
+  3S   S flag, GF
+```)
+
+=== 1#C—1#D—1#S—2#D— <1C1D1S2D>
+
+#bt(```
+  2H   4+H
+  2S   to play, usually 4S
+  2N   artificial GF
+  3C   4S, 5+C, GF
+  3D   4S, 5+D, GF
+  3S   5+S, INV
+  3N   to play
+```)
 */
 
 === 1#C—1#H— <1C1H>

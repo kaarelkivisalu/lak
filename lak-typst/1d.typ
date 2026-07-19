@@ -160,170 +160,130 @@ As a responder assume that opener has 10--13(14) BAL until told otherwise.
 
 Same as #link(<sec:v1N>)[against 1#N].
 
-/* Commented-out alternatives from the original LaTeX source (1d.tex): 
-% \subsection[1\D--1\protect\N]{1\D---1\protect\N---} \label{1D1N}
+/* Commented-out alternatives from the original LaTeX source (1d.tex):
+=== 1#D—1#N— <1D1N>
 
-% \begin{bidtable}
-%   (\X) & \\
-%   \followups{
-%     2\C & 44\+ \mm, unBAL \\
-%     2\D & 5\+\D \\
-%   }\\
-%   (2\M) \\
-%   \followups{
-%     \X & takeout \\
-%     2\N & good 3\D rebid \\
-%     3\C & 4/5\D 5\C \\
-%     3\D & to play \\
-%   }\\
-%   2\D & 6+\D or 5\D unBAL \\
-%   2\M & 14--15, short \M \\
-%   2\N & 14--15, 4441 \\
-%   3\M & 6\D 5\M, FG or F4\D \\
-%   3\N & to play, based on long running \D \\
-% \end{bidtable}
+#bt(```
+  = (DBL)
+    2C   44+ mm, unBAL
+    2D   5+D
+  = (2M)
+    DBL   takeout
+    2N    good 3D rebid
+    3C    4/5D 5C
+    3D    to play
+  2D   6+D or 5D unBAL
+  2M   14-15, short M
+  2N   14-15, 4441
+  3M   6D 5M, FG or F4D
+  3N   to play, based on long running D
+```)
 
-% \subsection[1\D--2\C]{1\D---2\C---} \label{1D2C}
+=== 1#D—2#C— <1D2C>
 
-% \begin{bidtable}
-%   (2\M)\\
-%   \followups{
-%     \P & waiting\\
-%     \X & penalty\\
-%     2\N & good stops \\
-%   }\\
-%   2\D & 5\+\D, 0--3\C, unBAL \\
-%   \followups{
-%     3\C & 11--12, 5\+\C, INV \\
-%     3\D & NF \\
-%     other & GF \\
-%   }\\
-%   2\H & 11-13(14), BAL \\
-%   \followups{
-%     2\S & puppet to 2\N \\
-%     \followups{
-%       2\N & forced \\
-%       \followups{
-%         3\C & 5\+\C, GF \\
-%         3\D & 5\C 4\D, GF \\
-%         3\H & 4\H 6\C, GF \\
-%         3\S & 4\S 6\C, GF \\
-%         3\N & S/O \\
-%       }\\
-%     }\\
-%     2\N & asks 4\+ card minor, ST, BAL, GF \\
-%     3\C & 11--12, 5\+\C, INV \\
-%     3\H & 5\H 6\C, GF \\
-%     3\S & 5\S 6\C, GF \\
-%     3\N & prefers to declare, S/O \\
-%   }\\
-%   2\S & 4\+\C, some splinter, GF \\
-%   \followups{
-%     2\N & asks \S\H\C \\
-%     \followups{
-%       3\C & \S\ splinter \\
-%       3\D & \H\ splinter \\
-%       3\H & \C\ splinter \\
-%     }\\
-%   }\\
-%   2\N & 10--12, 4441 \\
-%   3\C & (41)53, GF \\
-%   \followups{
-%     3\D & asks \\
-%     \followups{
-%       3\H & 4\H \\
-%       3\S & 4\S \\
-%     }\\
-%   }\\
-%   3\D & very good 6\+\D, GF \\
-%   3\H & 5\H 6\D, GF \\
-%   3\S & 5\S 6\D, GF \\
-%   3\N & 13--15, 4441 \\
-% \end{bidtable}
+#bt(```
+  = (2M)
+    PASS   waiting
+    DBL    penalty
+    2N     good stops
+  2D   5+D, 0--3C, unBAL
+    3C      11-12, 5+C, INV
+    3D      NF
+    other   GF
+  2H   11-13(14), BAL
+    2S   puppet to 2N
+      2N   forced
+        3C   5+C, GF
+        3D   5C 4D, GF
+        3H   4H 6C, GF
+        3S   4S 6C, GF
+        3N   S/O
+    2N   asks 4+ card minor, ST, BAL, GF
+    3C   11-12, 5+C, INV
+    3H   5H 6C, GF
+    3S   5S 6C, GF
+    3N   prefers to declare, S/O
+  2S   4+C, some splinter, GF
+    2N   asks SHC
+      3C   S splinter
+      3D   H splinter
+      3H   C splinter
+  2N   10-12, 4441
+  3C   (41)53, GF
+    3D   asks
+      3H   4H
+      3S   4S
+  3D   very good 6+D, GF
+  3H   5H 6D, GF
+  3S   5S 6D, GF
+  3N   13-15, 4441
+```)
 
-% \subsection[1\D--2\D]{1\D---2\D---} \label{1D2D}
+=== 1#D—2#D— <1D2D>
 
-% \begin{bidtable}
-%   (2\M)\\
-%   \followups{
-%     3\D & \D fit, BAL, MIN \\
-%     3\M & 4\+\D, short \M \\
-%   }\\
-%   2\H & 10-13(14), BAL \\
-%   \followups{
-%     2\S & puppet to 2\N \\
-%     \followups{
-%       2\N & forced \\
-%       \followups{
-%         3\C & 54\+ mm (could be 4\D 5\C), GF \\
-%         3\D & 5\+\D, GF \\
-%         3\H & 4\H 6\D, GF \\
-%         3\S & 4\S 6\D, GF \\
-%         3\N & S/O \\
-%       }\\
-%     }\\
-%     2\N & asks 4\+ card minor, ST, BAL, GF \\
-%     3\C & 11--12, 54\+ mm (could be 4\D 5\C), INV \\
-%     3\D & 11--12, 5\+\D, INV \\
-%     3\H & 5\S 6\D, GF \\
-%     3\S & 5\S 6\D, GF \\
-%     3\N & Prefers to declare, S/O \\
-%   }\\
-%   2\S & 4\+\D, some splinter, GF \\
-%   \followups{
-%     2\N & asks \S\H\C \\
-%     \followups{
-%       3\C & \S\ splinter \\
-%       3\D & \H\ splinter \\
-%       3\H & \C\ splinter \\
-%     }\\
-%   }\\
-%   2\N & 10--12, 6\D, BAL\\
-%   3\C & (41)35, GF \\
-%   \followups{
-%     3\D & asks \\
-%     \followups{
-%       3\H & 4\H \\
-%       3\S & 4\S \\
-%     }\\
-%   }\\
-%   3\D & very good 6\+\D, GF \\
-%   3\H & 5\H 6\D, GF \\
-%   3\S & 5\S 6\D, GF \\
-%   3\N & 13--15, 6\D, BAL\\
-% \end{bidtable}
+#bt(```
+  = (2M)
+    3D   D fit, BAL, MIN
+    3M   4+D, short M
+  2H   10-13(14), BAL
+    2S   puppet to 2N
+      2N   forced
+        3C   54+ mm (could be 4D 5C), GF
+        3D   5+D, GF
+        3H   4H 6D, GF
+        3S   4S 6D, GF
+        3N   S/O
+    2N   asks 4+ card minor, ST, BAL, GF
+    3C   11-12, 54+ mm (could be 4D 5C), INV
+    3D   11-12, 5+D, INV
+    3H   5S 6D, GF
+    3S   5S 6D, GF
+    3N   Prefers to declare, S/O
+  2S   4+D, some splinter, GF
+    2N   asks SHC
+      3C   S splinter
+      3D   H splinter
+      3H   C splinter
+  2N   10-12, 6D, BAL
+  3C   (41)35, GF
+    3D   asks
+      3H   4H
+      3S   4S
+  3D   very good 6+D, GF
+  3H   5H 6D, GF
+  3S   5S 6D, GF
+  3N   13-15, 6D, BAL
+```)
 
-% \subsection[1\D--2\S]{1\D---2\S---} \label{1D2S}
+=== 1#D—2#S— <1D2S>
 
-% 1\D---2\H--- is similar but the responder is limited.
+1#D—2#H— is similar but the responder is limited.
 
-% \begin{bidtable}
-%   \P & preference for \S, MIN \\
-%   2\N & asks \\
-%   \followups{
-%     3\C & 5\S 4\H, MIN \\
-%     3\D & 5\S 4\H, MAX \\
-%     3\H & 5\S 5\H, MIN \\
-%     3\S & 5\S 5\H, MAX \\
-%   }\\
-%   3\C & 55\+ mm \\
-%   3\D & 6\+\D \\
-%   3\H & preference for \H, MIN \\
-%   3\N & to play \\
-%   4\H & to play \\
-%   4\S & to play \\
-% \end{bidtable}
+#bt(```
+  PASS   preference for S, MIN
+  2N     asks
+    3C   5S 4H, MIN
+    3D   5S 4H, MAX
+    3H   5S 5H, MIN
+    3S   5S 5H, MAX
+  3C     55+ mm
+  3D     6+D
+  3H     preference for H, MIN
+  3N     to play
+  4H     to play
+  4S     to play
+```)
 
-% \subsection[1\D--2\protect\N]{1\D---2\protect\N---} \label{1D2N}
+=== 1#D—2#N— <1D2N>
 
-% \begin{bidtable}
-%   \P & 10--12 \\
-%   3\C & mm, \C better, 10--12, S/O \\
-%   3\D & mm, \D better, 10--12, S/O \\
-%   3\H & good 4\H, 0-1\S \\
-%   3\H & good 4\S, 0-1\H \\
-%   3\N & 13--15 \\
-%   4\H & 5\H 6\D \\
-%   4\S & 5\H 6\D \\
-% \end{bidtable}
+#bt(```
+  PASS   10-12
+  3C     mm, C better, 10-12, S/O
+  3D     mm, D better, 10-12, S/O
+  3H     good 4H, 0-1S
+  3S     good 4S, 0-1H
+  3N     13-15
+  4H     5H 6D
+  4S     5H 6D
+```)
 */

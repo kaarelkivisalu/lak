@@ -16,36 +16,30 @@ Without Kickback (keycards are Aces and trump K):
 
 With Kickback ($X$ is trump):
 
-#bidtable(
-  ([4$X+1$], [KRKC]),
-  followups(
-    ([4$X+2$], [1/4 keycards]),
-    ([4$X+3$], [0/3 keycards]),
-    ([4$X+4$], [2 keycard, no trump Q]),
-    ([4$X+5$], [2 keycard, trump Q]),
-  ),
-)
+#bt(```
+  4X+1   KRKC
+    4X+2   1/4 keycards
+    4X+3   0/3 keycards
+    4X+4   2 keycard, no trump Q
+    4X+5   2 keycard, trump Q
+```)
 
 Next step queries trump queen (if not known):
 
-#bidtable(
-  ([$Y$], [trump Q ask]),
-  followups(
-    ([$Y+1$], [no trump Q]),
-    ([$Y+2$], [trump Q]),
-  ),
-)
+#bt(```
+  Y   trump Q ask
+    Y+1   no trump Q
+    Y+2   trump Q
+```)
 
 Next step queries \#kings (then \#queens, ...):
 
-#bidtable(
-  ([$Z$], [\#kings ask]),
-  followups(
-    ([$Z+1$], [0/3 kings]),
-    ([$Z+2$], [1/4 kings]),
-    ([$Z+3$], [2 kings]),
-  ),
-)
+#bt(```
+  Z   #kings ask
+    Z+1   0/3 kings
+    Z+2   1/4 kings
+    Z+3   2 kings
+```)
 
 === Is it Kickback?
 
@@ -56,17 +50,19 @@ Kickback.
 If there are two suits, then the cheapest "impossible" bid is Kickback for the
 lower suit and the next "impossible" bid is Kickback for the higher suit.
 
-/* Commented out in the original LaTeX source (preamble macro \label{PRKC}):
-% \subsection{Preemptive Roman Keycard Blackwood} \label{PRKC}
-% % https://bridge-tips.co.il/wp-content/uploads/2020/06/aa_poor_man.pdf
-% Over our preempts (2\H\S, 3\D\H\S) 4\C\ asks (over 3\C, 4\D asks), then
-% \begin{bidtable}
-% $S_1$ & 0 keycards \\
-% $S_2$ & 1 keycard, no trump queen \\
-% $S_3$ & 1 keycard, with trump queen \\
-% $S_4$ & 2 keycards, no trump queen \\
-% $S_5$ & 2 keycards, with trump queen \\
-% \end{bidtable}
+/* Commented out in the original LaTeX source:
+=== Preemptive Roman Keycard Blackwood <PRKC>
+
+// https://bridge-tips.co.il/wp-content/uploads/2020/06/aa_poor_man.pdf
+Over our preempts (2#H#S, 3#D#H#S) 4#C asks (over 3#C, 4#D asks), then
+
+#bt(```
+  S1   0 keycards
+  S2   1 keycard, no trump queen
+  S3   1 keycard, with trump queen
+  S4   2 keycards, no trump queen
+  S5   2 keycards, with trump queen
+```)
 */
 
 === Serious 3NT and Last Train

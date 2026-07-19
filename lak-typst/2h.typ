@@ -21,47 +21,34 @@ Assume 6#plus#H unless NV vs. VUL.
   4H   to play
 ```)
 
-/* Commented-out alternative from the original LaTeX source (2h.tex): 
-% \begin{bidtable}
-%   2\S & F1 \\
-%   2\N & strong ask, F3\H \\
-%   \followups{
-%     (bid) \\
-%     \followups{
-%       \P & good \\
-%       \X & medium \\
-%       3\S & bad \\
-%     }\\
-%     3\C & 6\H, no 4\S, MAX\\
-%     \followups{
-%       3\D & asks NLMH short\\
-%       4\C & \hyperref[PRKC]{PRKC} \\
-%     }\\
-%     3\D & no 4\S, medium\\
-%     \followups{
-%       3\S & asks NLMH short\\
-%       4\C & \hyperref[PRKC]{PRKC} \\
-%     }\\
-%     3\H & MIN\\
-%     \followups{
-%       3\S & asks NLMH short\\
-%       4\C & \hyperref[PRKC]{PRKC} \\
-%     }\\
-%     3\S & good but not MAX\\
-%     \followups{
-%       4\C & asks NLMH short\\
-%     }\\
-%     3\N & 6\H 4\S, not MIN\\
-%     \followups{
-%       4\C & asks NLMH short\\
-%     }\\
-%   }\\
-%   3\C & F1 \\
-%   3\D & F1 \\
-%   3\H & preempt \\
-%   3\N & to play \\
-%   3\S & 6\+\S, GF \\
-%   4\C & \hyperref[PRKC]{PRKC} \\
-%   4\H & to play \\
-%   4\S & to play \\
-% \end{bidtable}*/
+/* Commented-out alternative from the original LaTeX source (2h.tex):
+#bt(```
+  2S   F1
+  2N   strong ask, F3H
+    = (bid)
+      PASS   good
+      DBL    medium
+      3S     bad
+    3C   6H, no 4S, MAX
+      3D   asks NLMH short
+      4C   [PRKC](PRKC)
+    3D   no 4S, medium
+      3S   asks NLMH short
+      4C   [PRKC](PRKC)
+    3H   MIN
+      3S   asks NLMH short
+      4C   [PRKC](PRKC)
+    3S   good but not MAX
+      4C   asks NLMH short
+    3N   6H 4S, not MIN
+      4C   asks NLMH short
+  3C   F1
+  3D   F1
+  3H   preempt
+  3N   to play
+  3S   6+S, GF
+  4C   [PRKC](PRKC)
+  4H   to play
+  4S   to play
+```)
+*/

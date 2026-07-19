@@ -29,175 +29,138 @@
 ```)
 
 /* Commented-out alternatives from the original LaTeX source (1h.tex): 
-% Alternative structure idea that we currently do not use:
-% \section[1\H]{1\H---} \label{sec:1H}
+Alternative structure idea that we currently do not use:
 
-% \begin{bidtable}
-%     1\S & 4\+\S, F1 (GF with 4\S\ is 2\C) \\
-%     1\N & 7--12, semiforcing, no fit \\
-%     2\C & $\begin{dcases}
-%         \text{2\+\C, BAL, GF} & \\
-%         \text{5\+\C, GF} & \\
-%     \end{dcases}$\\
-%     2\D & 5\+\D, GF \\
-%     2\H & 7--bad 11, 3\H\ usually \\
-%     2\S & 6\+\S, less than INV \\
-%     2\N & 4\+\H, (BAL or 14\+ splinter), GF \\
-%     3\C & $\begin{dcases}
-%         \text{good 11--12, 3\+\H, INV} & \\
-%         \text{weak splinter} & \\
-%     \end{dcases}$\\
-%     3\D & 7--10, 4\H \\
-%     3\H & 0--6, 4\H \\
-%     3\S & 12--13, any splinter \\
-%     \followups{
-%       3\N & asks LMH \\
-%       4\H & does not care \\
-%     }\\
-%     3\N & 10--12, 0\S \\
-%     4\C & 10--12, 0\C \\
-%     4\D & 10--12, 0\D \\
-%     4\H & to play \\
-%     4\S & to play \\
-% \end{bidtable}
+=== 1#H— <sec:1H-alt>
 
-% \subsection[1\H--1\S]{1\H---1\S---} \label{1H1S}
+#bt(```
+  1S   4+S, F1 (GF with 4S is 2C)
+  1N   7-12, semiforcing, no fit
+  2C   { 2+C, BAL, GF / 5+C, GF }
+  2D   5+D, GF
+  2H   7-bad 11, 3H usually
+  2S   6+S, less than INV
+  2N   4+H, (BAL or 14+ splinter), GF
+  3C   { good 11-12, 3+H, INV / weak splinter }
+  3D   7-10, 4H
+  3H   0-6, 4H
+  3S   12-13, any splinter
+    3N   asks LMH
+    4H   does not care
+  3N   10-12, 0S
+  4C   10-12, 0C
+  4D   10-12, 0D
+  4H   to play
+  4S   to play
+```)
 
-% \begin{bidtable}
-%     1\N & 10--13, BAL \\
-%     \followups{
-%       * & \hyperref[XYZ]{XYZ}
-%     }\\
-%     2\C & 4\+\C, may have 3\S \\
-%     2\D & 4\+\D, may have 3\S \\
-%     2\H & 6\+\H, may have 4\m \\
-%     2\S & 10--13, 4\S or 3\S unBAL \\
-%     2\N & 6\+\H, 3\S \\
-%     3\C & 14--15, 5\C \\
-%     3\D & 14--15, 5\D \\
-%     3\H & long \H\ suit, INV, NF \\
-%     3\S & 14--15, 4\S \\
-%     4\m & void splinter \\
-%     4\H & 12--14, 8.5 tricks, 7--8 \H\ missing one of the top 5 honours \\
-%     4\S & 11 cards in \S and \H, MIN \\
-% \end{bidtable}
+=== 1#H—1#S— <1H1S>
 
-% \subsection[1\H--1\protect\N]{1\H---1\protect\N---} \label{1H1N}
+#bt(```
+  1N   10-13, BAL
+    `*`   [XYZ](XYZ)
+  2C   4+C, may have 3S
+  2D   4+D, may have 3S
+  2H   6+H, may have 4m
+  2S   10-13, 4S or 3S unBAL
+  2N   6+H, 3S
+  3C   14-15, 5C
+  3D   14-15, 5D
+  3H   long H suit, INV, NF
+  3S   14-15, 4S
+  4m   void splinter
+  4H   12-14, 8.5 tricks, 7-8 H missing one of the top 5 honours
+  4S   11 cards in S and H, MIN
+```)
 
-% \begin{bidtable}
-%     (bid) \\
-%     \followups{
-%       \X & takeout \\
-%     }\\
-%     \P & 10--13, $\begin{dcases}
-%         \text{BAL} & \\
-%         \text{4\S 5\H, no 4\m} & \\
-%     \end{dcases}$\\
-%     2\C & 4\+\C \\
-%     2\D & 4\+\D \\
-%     2\H & 6\+\H \\
-%     2\S & 14--15, 4\S 5\H \\
-%     2\N & $\begin{dcases}
-%         \text{6\H 4\m} & \\
-%         \text{6\H 5\S, superMAX} & \\
-%     \end{dcases}$\\
-%     3\C & 14--15, 5\C, good suits, NF \\
-%     3\D & 14--15, 5\D, good suits, NF \\
-%     3\H & trick-based INV \\
-% \end{bidtable}
+=== 1#H—1#N— <1H1N>
 
-% \subsection[1\H--2\C]{1\H---2\C---} \label{1H2C}
+#bt(```
+  = (bid)
+    X   takeout
+  PASS   10-13, { BAL / 4S 5H, no 4m }
+  2C     4+C
+  2D     4+D
+  2H     6+H
+  2S     14-15, 4S 5H
+  2N     { 6H 4m / 6H 5S, superMAX }
+  3C     14-15, 5C, good suits, NF
+  3D     14-15, 5D, good suits, NF
+  3H     trick-based INV
+```)
 
-% \begin{bidtable}
-%     (bid) \\
-%     \followups{
-%       \X & penalty \\
-%       3\C & 3\C, unBAL \\
-%       3 cue & 4\+\C, shortness in opp's suit
-%     }\\
-%     2\D & 4\+\D, denies 4\S \\
-%     2\H & 6\+\H, 1-suiter or with 4 weak \D \\
-%     2\S & 4\+\S, may have 6\S or 45(04) \\
-%     2\N & 10--13, 5\H(332) \\
-%     3\C & 5\H 4/5\C, unBAL \\
-%     3\D & 6\+\H 4\+\C \\
-%     3\H & 2524 \\
-%     3\S & great long \H \\
-% \end{bidtable}
+=== 1#H—2#C— <1H2C>
 
-% \subsection[1\H--2\D]{1\H---2\D---} \label{1H2D}
+#bt(```
+  = (bid)
+    X       penalty
+    3C      3C, unBAL
+    3 cue   4+C, shortness in opp's suit
+  2D   4+D, denies 4S
+  2H   6+H, 1-suiter or with 4 weak D
+  2S   4+S, may have 6S or 45(04)
+  2N   10-13, 5H(332)
+  3C   5H 4/5C, unBAL
+  3D   6+H 4+C
+  3H   2524
+  3S   great long H
+```)
 
-% \begin{bidtable}
-%     2\H & 6\+\H, denies 4\+\S \\
-%     2\S & 4\+\S, denies 6\+\H unless 6\+\H 5\+\S \\
-%     2\N & $\begin{dcases}
-%         \text{11-33, 5\H(332) } & \\
-%         \text{5\H 4\C without 3\D} & \\
-%     \end{dcases}$\\
-%     3\C & 5\+\H 5\C \\
-%     3\D & $\begin{dcases}
-%         \text{3\D} & \\
-%         \text{2542} & \\
-%     \end{dcases}$\\
-%     3\H & great long \H \\
-%     3\S & 4\+\D, 0-1\S \\
-%     3\N & 4504 \\
-%     4\C & 4\+\D, 0-1\C \\
-% \end{bidtable}
+=== 1#H—2#D— <1H2D>
 
-% \subsection[1\H--2\protect\N]{1\H---2\protect\N} \label{1H2N}
+#bt(```
+  2H   6+H, denies 4+S
+  2S   4+S, denies 6+H unless 6+H 5+S
+  2N   { 11-33, 5H(332) / 5H 4C without 3D }
+  3C   5+H 5C
+  3D   { 3D / 2542 }
+  3H   great long H
+  3S   4+D, 0-1S
+  3N   4504
+  4C   4+D, 0-1C
+```)
 
-% \begin{bidtable}
-%     (bid) \\
-%     \followups{
-%       \X & shortness in their suit \\
-%       \P & waiting \\
-%     }\\
-%     3\C & 10--13 \\
-%     \followups{
-%       3\D & asks shortness, chooses not to show shortness \\
-%       \followups{
-%         3\H & BAL \\
-%         3\S & some void (R asks LMH) \\
-%         3\N 4\C\D & singleton LMH \\
-%       }\\
-%       3\H & some void (R asks LMH) \\
-%       3\S\N 4\C & singleton \C\D\S \\
-%     }\\
-%     3\D & 14--15, asks shortness, chooses not to show shortness \\
-%     \followups{
-%       3\H & BAL \\
-%       3\S & some void (R asks LMH) \\
-%       3\N 4\C\D & singleton LMH \\
-%     }\\
-%     3\H & 14--15, some void (R asks LMH) \\
-%     3\S\N 4\C & 14--15, singleton LMH \\
-% \end{bidtable}
+=== 1#H—2#N— <1H2N>
 
-% \subsection[1\H--3\C]{1\H---3\C---} \label{1H3C}
+#bt(```
+  = (bid)
+    X      shortness in their suit
+    PASS   waiting
+  3C       10-13
+    3D       asks shortness, chooses not to show shortness
+      3H       BAL
+      3S       some void (R asks LMH)
+      3N 4CD   singleton LMH
+    3H       some void (R asks LMH)
+    3SN 4C   singleton CDS
+  3D       14-15, asks shortness, chooses not to show shortness
+    3H       BAL
+    3S       some void (R asks LMH)
+    3N 4CD   singleton LMH
+  3H       14-15, some void (R asks LMH)
+  3SN 4C   14-15, singleton LMH
+```)
 
-% \begin{bidtable}
-%     3\D & interest in game or slam \\
-%     \followups{
-%       3\H & bad INV \\
-%       3\S 4\C\D & LMH splinter \\
-%       3\N & 3\H(433) good INV, NF \\
-%       4\H & good INV \\
-%     }\\
-%     3\H & double-negative \\
-%     4\H & accepts INV but no splinter \\
-% \end{bidtable}
+=== 1#H—3#C— <1H3C>
 
-% \subsection{Reverse Drury}
+#bt(```
+  3D   interest in game or slam
+    3H       bad INV
+    3S 4CD   LMH splinter
+    3N       3H(433) good INV, NF
+    4H       good INV
+  3H   double-negative
+  4H   accepts INV but no splinter
+```)
 
-% After \nth{3} hand opening.
+=== Reverse Drury
 
-% \begin{bidtable}
-%     2\C & Drury response \\
-%     \followups{
-%       2\D & 11\+ \\
-%       2\H & 8--10 \\
-%       other & 11\+, natural \\
-%     }\\
-% \end{bidtable}
+After #nth(3) hand opening.
+
+#bt(```
+  2C   Drury response
+    2D      11+
+    2H      8-10
+    other   11+, natural
+```)
 */

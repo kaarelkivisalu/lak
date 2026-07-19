@@ -95,12 +95,32 @@
 #let diffdelcol = rgb("#cc0000")
 #let diffaddbg  = rgb("#eaf2ff")
 #let diffdelbg  = rgb("#fdeaea")
-#let diff-added(body) = underline(text(fill: diffaddcol, body))
-#let diff-deleted(body) = strike(text(fill: diffdelcol, body))
+// `stroke:` is set explicitly rather than left `auto`: with `auto`, the line
+// picks up the *local* fill of whatever it crosses (e.g. a coloured suit
+// symbol), so a diff-added suit inside a diffed sentence got a green/red/blue
+// underline instead of a uniform diff-added one. `evade: false` keeps the
+// line flat instead of hugging each glyph's ink — the default `evade: true`
+// otherwise pushes the line up around a raised element like a superscript
+// `+`, making it look shifted relative to its neighbours.
+#let diff-added(body) = underline(stroke: diffaddcol, evade: false, text(fill: diffaddcol, body))
+#let diff-deleted(body) = strike(stroke: diffdelcol, text(fill: diffdelcol, body))
 
 // Inner recursive renderer: builds the (possibly nested) table. Followups
 // recurse through here so the top-level wrapper's page-break and link styling
 // apply to the whole tree exactly once.
+// A row's background only ever comes from an explicit `hl` (the `* ` marker):
+// an added/deleted row is otherwise left unfilled, styled the same as diffed
+// prose (blue/red underline/strike via `diff-added`/`diff-deleted` — see
+// `_parse-row`). `hl` on an added/deleted row swaps the usual yellow for the
+// matching diff colour, so a highlighted row that changed still reads as
+// "highlighted", not as an unrelated addition/deletion.
+#let _row-fill(hl, status) = {
+  if not hl { none }
+  else if status == "added" { diffaddbg }
+  else if status == "deleted" { diffdelbg }
+  else { hlcol }
+}
+
 #let _render(rows) = {
   let cells = ()
   for r in rows {
@@ -109,19 +129,11 @@
       cells.push(table.cell(r.at(0)))
       cells.push(table.cell(r.at(1)))
     } else if type(r) == dictionary and r.kind == "row" {
-      let status = r.at("status", default: none)
-      let f = if r.at("hl", default: false) { hlcol }
-        else if status == "added" { diffaddbg }
-        else if status == "deleted" { diffdelbg }
-        else { none }
+      let f = _row-fill(r.at("hl", default: false), r.at("status", default: none))
       cells.push(table.cell(fill: f, r.bid))
       cells.push(table.cell(fill: f, r.desc))
     } else if type(r) == dictionary and r.kind == "hdr" {
-      let status = r.at("status", default: none)
-      let f = if r.at("hl", default: false) { hlcol }
-        else if status == "added" { diffaddbg }
-        else if status == "deleted" { diffdelbg }
-        else { none }
+      let f = _row-fill(r.at("hl", default: false), r.at("status", default: none))
       cells.push(table.cell(colspan: 2, fill: f, r.body))
     } else if type(r) == dictionary and r.kind == "fu" {
       cells.push(table.cell(
@@ -185,6 +197,11 @@
   } else { [#w] }
 }
 
+// Render `X+1` / `Y+2` / `Z+3` (a Kickback-style "n steps above the variable
+// suit" bid) as inline math, matching how a lone `X`/`Y`/`Z` becomes `$X$` —
+// see the `([XYZ])\+([0-9]+)` case in `_notation`, the only caller.
+#let _step(v, n) = if v == "X" { $X+#n$ } else if v == "Y" { $Y+#n$ } else { $Z+#n$ }
+
 // Sentinel marking a `+` that should render as a superscript (one attached to a
 // preceding token, as in 5+ / INV+), as opposed to a standalone "+" meaning
 // "and" (as in "5H + 4m"), which stays on the baseline.
@@ -210,53 +227,107 @@
   let idx = 0
   for m in s.matches(regex("[A-Za-z]+")) {
     if m.start > idx { out.push(_plain(s.slice(idx, m.start))) }
-    out.push(_word(m.text))
+    let w = m.text
+    // An ordinal suffix directly after a digit (as in `#nth`'s "1st", "2nd", …)
+    // is superscripted; the same word standing alone is left as plain text.
+    let is-ordinal-suffix = w == "st" or w == "nd" or w == "rd" or w == "th"
+    if is-ordinal-suffix and m.start > 0 and s.at(m.start - 1).match(regex("[0-9]")) != none {
+      out.push(super[#w])
+    } else {
+      out.push(_word(w))
+    }
     idx = m.end
   }
   if idx < s.len() { out.push(_plain(s.slice(idx))) }
   out.join()
 }
 
-// Render a bid label or meaning, with three span escapes:
+// Render a bid label or meaning, with four span escapes:
 //   `verbatim`       — emitted literally; the escape hatch when the suit-word
 //                      rule would misfire, e.g. `P/C` ("pass or correct").
 //   _emphasis_       — italic, for convention names (_Stayman_, _Lebensohl_, …).
 //   [text](label)    — a cross-reference link to <label> inside a cell.
+//   X+1 / Y+2 / Z+3  — a Kickback-style step above a variable suit, as math.
 #let _notation(s) = {
   if s == "" { return [] }
-  if not (s.contains("`") or s.contains("_") or s.contains("](")) {
+  if not (s.contains("`") or s.contains("_") or s.contains("](")
+      or s.contains("X+") or s.contains("Y+") or s.contains("Z+")) {
     return _notation-core(s)
   }
   let out = []
   let idx = 0
-  for m in s.matches(regex("`([^`]*)`|_([^_]*)_|\\[([^\\]]*)\\]\\(([^)]*)\\)")) {
+  for m in s.matches(regex("`([^`]*)`|_([^_]*)_|\\[([^\\]]*)\\]\\(([^)]*)\\)|([XYZ])\\+([0-9]+)")) {
     if m.start > idx { out += _notation-core(s.slice(idx, m.start)) }
     let c = m.captures
     if c.at(0) != none { out += [#(c.at(0))] }
     else if c.at(1) != none { out += emph(_notation-core(c.at(1))) }
-    else { out += link(label(c.at(3)), _notation-core(c.at(2))) }
+    else if c.at(2) != none { out += link(label(c.at(3)), _notation-core(c.at(2))) }
+    else { out += _step(c.at(4), c.at(5)) }
     idx = m.end
   }
   if idx < s.len() { out += _notation-core(s.slice(idx)) }
   out
 }
 
-// Parse a `{ a = c / b = c }` (dcasesr) or `{ a / b }` (dcases) cell. A leading
-// `*` on an alternative highlights it inline.
-#let _alt(a) = {
-  a = a.trim()
-  if a.starts-with("*") { hlt(_notation(a.slice(1).trim())) } else { _notation(a) }
+// Split `s` on `sep`, ignoring any `sep` nested inside `{ … }` — so a brace
+// cell's alternative can itself contain a nested `{ … }` (its own `/`- and
+// `=`-separated sub-alternatives) without being torn apart by the outer split.
+#let _split-toplevel(s, sep) = {
+  let parts = ()
+  let depth = 0
+  let cur = ""
+  let i = 0
+  let n = s.len()
+  let sl = sep.len()
+  while i < n {
+    let c = s.at(i)
+    if c == "{" { depth += 1; cur += c; i += 1 }
+    else if c == "}" { depth -= 1; cur += c; i += 1 }
+    else if depth == 0 and s.slice(i, calc.min(i + sl, n)) == sep {
+      parts.push(cur); cur = ""; i += sl
+    } else { cur += c; i += 1 }
+  }
+  parts.push(cur)
+  parts
 }
+
+// Parse a `{ a = c / b = c }` (dcasesr) or `{ a / b }` (dcases) cell. A leading
+// `*` on an alternative highlights it inline; an alternative may itself end in
+// a nested `{ … }` (its own dcases/dcasesr), recursing through `_braces`.
+// `parse-alt` is nested (rather than a top-level `_alt`) purely so it can
+// call `_braces` back — Typst resolves names at definition time, so a
+// top-level function cannot forward-reference a sibling defined later in the
+// file, but a closure created *inside* `_braces`'s own body (i.e. every time
+// `_braces` runs) can refer to `_braces` itself once it's already bound.
 #let _braces(inner) = {
-  let rows = inner.split("/")
-  if rows.any(r => r.contains(" = ")) {
+  let parse-alt(a) = {
+    a = a.trim()
+    let hl = a.starts-with("*")
+    if hl { a = a.slice(1).trim() }
+    let body = if a.contains("{") and a.ends-with("}") {
+      let o = a.match(regex("\{")).start
+      _notation(a.slice(0, o)) + _braces(a.slice(o + 1, a.len() - 1))
+    } else { _notation(a) }
+    if hl { hlt(body) } else { body }
+  }
+  let rows = _split-toplevel(inner, "/")
+  if rows.any(r => _split-toplevel(r, " = ").len() > 1) {
     dcasesr(..rows.map(r => {
-      let p = r.split(" = ")
-      (_alt(p.at(0)), _notation(if p.len() > 1 { p.slice(1).join(" = ").trim() } else { "" }))
+      let p = _split-toplevel(r, " = ")
+      (parse-alt(p.at(0)), _notation(if p.len() > 1 { p.slice(1).join(" = ").trim() } else { "" }))
     }))
   } else {
-    dcases(..rows.map(_alt))
+    dcases(..rows.map(parse-alt))
   }
+}
+
+// A meaning cell that ends in `{ … }` is a dcases/dcasesr brace; any text
+// before it (e.g. "transfer to H") is rendered inline in front of the brace.
+#let _maybe-braces(s) = {
+  if s.contains("{") and s.ends-with("}") {
+    let o = s.match(regex("\{")).start
+    _notation(s.slice(0, o)) + _braces(s.slice(o + 1, s.len() - 1))
+  } else { _notation(s) }
 }
 
 // Parse a single (already dedented) line into a bidtable row dict. A leading
@@ -290,12 +361,7 @@
   if bid.contains(">") { let bp = bid.split(">"); bid = bp.at(0).trim(); lbl = bp.at(1).trim() }
   let bidc = _notation(bid)
   if lbl != none { bidc = link(label(lbl), bidc) }
-  // A `{ … }` at the end of the meaning is a dcases/dcasesr brace; any text
-  // before it (e.g. "transfer to H") is rendered inline in front of the brace.
-  let descc = if desc.contains("{") and desc.ends-with("}") {
-    let o = desc.match(regex("\{")).start
-    _notation(desc.slice(0, o)) + _braces(desc.slice(o + 1, desc.len() - 1))
-  } else { _notation(desc) }
+  let descc = _maybe-braces(desc)
   (kind: "row", bid: diffwrap(bidc), desc: diffwrap(descc), hl: hl, status: status)
 }
 

@@ -23,40 +23,25 @@ Assume 6#plus#S unless NV vs. VUL.
   4S   to play
 ```)
 
-/* Commented-out alternative from the original LaTeX source (2s.tex): 
-% \begin{bidtable}
-%   2\N & strong ask, F3\S \\
-%   \followups{
-%     3\C & 6\S, no 4\H, MAX \\
-%     \followups{
-%       3\D & asks NLMH shorness \\
-%       4\C & \hyperref[PRKC]{PRKC} \\
-%     }\\
-%     3\D & no 4\H, medium \\
-%     \followups{
-%       3\H & asks NLMH shorness \\
-%       4\C & \hyperref[PRKC]{PRKC} \\
-%     }\\
-%     3\H & good but not MAX, no 4\H\\
-%     \followups{
-%       4\C & asks NLMH shorness \\
-%     }\\
-%     3\S & MIN \\
-%     \followups{
-%       4\C & asks NLMH shorness \\
-%     }\\
-%     3\N & 6\S 4\H, not MIN\\
-%     \followups{
-%       4\C & asks NLMH shorness \\
-%     }\\
-%     \followups{
-%       3\D & asks NLMH shorness \\
-%       4\C & \hyperref[PRKC]{PRKC} \\
-%     }\\
-%   }\\
-%   3\C & \H, F1 \\
-%   3\D & nat, NF \\
-%   3\H & \C, GF \\
-%   3\S & preempt \\
-%   4\C & \hyperref[PRKC]{PRKC} \\
-% \end{bidtable}*/
+/* Commented-out alternative from the original LaTeX source (2s.tex):
+#bt(```
+  2N   strong ask, F3S
+    3C   6S, no 4H, MAX
+        3D   asks NLMH shorness
+        4C   [PRKC](PRKC)
+    3D   no 4H, medium
+        3H   asks NLMH shorness
+        4C   [PRKC](PRKC)
+    3H   good but not MAX, no 4H
+        4C   asks NLMH shorness
+    3S   MIN
+        4C   asks NLMH shorness
+    3N   6S 4H, not MIN
+        4C   asks NLMH shorness
+  3C   H, F1
+  3D   nat, NF
+  3H   C, GF
+  3S   preempt
+  4C   [PRKC](PRKC)
+```)
+*/

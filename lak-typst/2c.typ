@@ -39,73 +39,58 @@
   3DHS   5-card suit, GF
 ```)
 
-/* Commented-out alternatives from the original LaTeX source (2c.tex): 
-% \subsubsection[2\C--2\D--2\H]{2\C---2\D---2\H---} \label{2C2D2H}
+/* Commented-out alternatives from the original LaTeX source (2c.tex):
+=== 2#C—2#D—2#H— <2C2D2H>
 
-% \begin{bidtable}
-%     2\S & asks \\
-%     \followups{
-%       2\N/3\C & 4\H/4\S, 10--13 \\
-%       \followups{
-%         \P/3\C & S/O, wrong major \\
-%         3\D & ST in \C \\
-%         3\M & INV \\
-%         3o\M & ST in M \\
-%         games & to play \\
-%       }\\
-%       3\D/3\H & 4\H/4\S, 14--15 \\
-%       \followups{
-%         3\M & ST in M \\
-%         games & to play \\
-%       }\\
-%     }\\
-%     2\N & INV, no interest in the major \\
-%     3\C & INV, no interest in the major \\
-%     3\D & ST in \C \\
-% \end{bidtable}
+#bt(```
+  2S   asks
+    2N/3C   4H/4S, 10-13
+        PASS/3C   S/O, wrong major
+        3D        ST in C
+        3M        INV
+        3oM       ST in M
+        games     to play
+    3D/3H   4H/4S, 14-15
+        3M      ST in M
+        games   to play
+  2N   INV, no interest in the major
+  3C   INV, no interest in the major
+  3D   ST in C
+```)
 
-% \subsubsection[2\C--2\D--2\S]{2\C---2\D---2\S---} \label{2C2D2S}
+=== 2#C—2#D—2#S— <2C2D2S>
 
-% \begin{bidtable}
-%     2\N & asks strength \\
-%     \followups{
-%       3\C & 12--13 \\
-%       3\D & 14--15, 0-1\D \\
-%       3\H & 14--15, 0-1\H \\
-%       3\S & 14--15, 0-1\S \\
-%       3\N & 14--15, no shortness \\
-%     }\\
-%     3\C & ``the breakes'', to play \\
-%     3\D & ST in \C \\
-%     3\H & 5\H, GF \\
-%     3\S & 5\S, GF \\
-% \end{bidtable}
+#bt(```
+  2N   asks strength
+    3C   12-13
+    3D   14-15, 0-1D
+    3H   14-15, 0-1H
+    3S   14-15, 0-1S
+    3N   14-15, no shortness
+  3C   "the breakes", to play
+  3D   ST in C
+  3H   5H, GF
+  3S   5S, GF
+```)
 
+=== 2#C—2#N—3#C— <2C2N3C>
 
-% \subsection[2\C--2\protect\N--3\C]{2\C---2\protect\N---3\C---} \label{2C2N3C}
+#bt(```
+  PASS   preemptive raise in C
+  3D     5S 5H, GF
+    3H      H flag
+    3S      S flag
+    3N/4C   no fit
+  3H     5H 5D, GF
+    3S      H flag
+    3N/4C   no fit
+    4D      D fit
+  3S     5S 5D, GF
+    4H      S flag
+    3N/4C   no fit
+    4D      D fit
+```)
 
-% \begin{bidtable}
-%     \P & preemptive raise in \C \\
-%     3\D & 5\S 5\H, GF \\
-%     \followups{
-%         3\H & \H\ flag \\
-%         3\S & \S\ flag \\
-%         3\N/4\C & no fit \\
-%     }\\
-%     3\H & 5\H 5\D, GF \\
-%     \followups{
-%         3\S & \H\ flag \\
-%         3\N/4\C & no fit \\
-%         4\D & \D\ fit \\
-%     }\\
-%     3\S & 5\S 5\D, GF \\
-%     \followups{
-%         4\H & \S\ flag \\
-%         3\N/4\C & no fit \\
-%         4\D & \D\ fit \\
-%     }\\
-% \end{bidtable}
+=== Interference over 2#C
 
-% \subsection{Interference over 2\C}
-
-% Over opponent's double, system on, \XX\ indicates 10\+ HCP with a defensive hand, and activates penalty double. After overcall, negative double, new suit at 2-level (F1), compete in \C\, new suit at 3-level (GF), cue-bid a good club raise, or sign off in game.*/
+Over opponent's double, system on, #rdbl indicates 10#plus HCP with a defensive hand, and activates penalty double. After overcall, negative double, new suit at 2-level (F1), compete in #C, new suit at 3-level (GF), cue-bid a good club raise, or sign off in game.*/

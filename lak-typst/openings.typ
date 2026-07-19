@@ -2,36 +2,21 @@
 
 == List of Openings
 
-#bidtable(
-  ([#link(<sec:1C>)[1#C]], [16#plus unBAL or 17+ BAL]),
-  ([#link(<sec:1D>)[1#D]], [10--15, 2#plus#D, denies a 5-card major unless has 6 diamonds]),
-  ([#link(<sec:1H>)[1#H]], dcasesr(
-    ([10--15, 5#plus#H], [#nth(1), #nth(2), #nth(4)]),
-    (dcases([8--9, 5#plus#H], [10--15, good 4#plus#H]), [#nth(3)]),
-  )),
-  ([#link(<sec:1S>)[1#S]], dcasesr(
-    ([10--15, 5#plus#S], [#nth(1), #nth(2), #nth(4)]),
-    (dcases([8--9, 5#plus#S], [10--15, good 4#plus#S]), [#nth(3)]),
-  )),
-  ([#link(<sec:1N>)[1#N]], dcasesr(
-    ([14--16, BAL], [#nth(1), #nth(2) and #nth(3) NV]),
-    ([15--17, BAL], [#nth(3) VUL and #nth(4)]),
-  )),
-  ([#link(<sec:2C>)[2#C]], [10--15, 6#plus#C]),
-  ([#link(<sec:2D>)[2#D]], [10--15, 4414/4405/4315/3415]),
-  ([#link(<sec:2H>)[2#M]], dcasesr(
-    ([3--10 #dcasesr(([5#plus#M], [NV]), ([6#plus#M], [VUL]))], [#nth(1), #nth(2), #nth(3)]),
-    ([10-13, 6#plus#M], [#nth(4)]),
-  )),
-  ([#link(<sec:2N>)[2#N]], dcasesr(
-    ([19-20, BAL], [#nth(1), #nth(2) and #nth(3) NV]),
-    ([20-21, BAL], [#nth(3) VUL and #nth(4)]),
-  )),
-  ([3$X$], [(0)3--9, (6)7#plus$X$, PRE]),
-  ([#link(<sec:3N>)[3#N]], [Gambling, 7#plus#m with AKQ, no other A or K]),
-  ([4#m], [(0)3--9, (7)8#plus#m, PRE]),
-  ([4#M], [7#plus#M, to play]),
-  ([4#N], [vanilla Blackwood]),
-  ([5#m], [8#plus#m, to play]),
-  ([5#M], [11 tricks, missing AK trumps]),
-)
+#bt(```
+  1C>sec:1C   16+ unBAL or 17+ BAL
+  1D>sec:1D   10--15, 2+D, denies a 5-card major unless has 6 diamonds
+  1H>sec:1H   { 10--15, 5+H = 1st, 2nd, 4th / {8--9, 5+H/10--15, good 4+H} = 3rd }
+  1S>sec:1S   { 10--15, 5+S = 1st, 2nd, 4th / {8--9, 5+S/10--15, good 4+S} = 3rd }
+  1N>sec:1N   { 14--16, BAL = 1st, 2nd and 3rd NV / 15--17, BAL = 3rd VUL and 4th }
+  2C>sec:2C   10--15, 6+C
+  2D>sec:2D   10--15, 4414/4405/4315/3415
+  2M>sec:2H   { 3--10 {5+M = NV/6+M = VUL} = 1st, 2nd, 3rd / 10-13, 6+M = 4th }
+  2N>sec:2N   { 19-20, BAL = 1st, 2nd and 3rd NV / 20-21, BAL = 3rd VUL and 4th }
+  3X          (0)3--9, (6)7+X, PRE
+  3N>sec:3N   Gambling, 7+m with AKQ, no other A or K
+  4m          (0)3--9, (7)8+m, PRE
+  4M          7+M, to play
+  4N          vanilla Blackwood
+  5m          8+m, to play
+  5M          11 tricks, missing AK trumps
+```)

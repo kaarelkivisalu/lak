@@ -56,11 +56,14 @@ Rules:
   underline in the PDF so they read as "there is more system here".
 - **Notation** inside any cell: `C D H S N` (as whole all-suit words) become
   coloured suit symbols; a `+` attached to a token becomes a superscript (a
-  standalone `+`, as in `5H + 4m`, stays on the baseline); `--` and digit-`-`-digit
-  become en-dashes; a lone `X`/`Y`/`Z` becomes an italic variable suit;
-  `PASS`/`DBL`/`RDBL` are styled. Anything else stays literal, so `BAL`, `GF`,
-  `NT`, `AK`, `3NT`, `MIN`, `(4441)`, `5S(332)`, `2D-based` all render as written
-  — there is **no** `#`-adjacency escaping to worry about.
+  standalone `+`, as in `5H + 4m`, stays on the baseline); an ordinal suffix
+  right after a digit (`1st`, `2nd`, `3rd`, `4th`) is superscripted the same
+  way; `--` and digit-`-`-digit become en-dashes; a lone `X`/`Y`/`Z` becomes an
+  italic variable suit, and `X+1`/`Y+2`/`Z+3` (a Kickback-style "n steps above
+  the variable suit") renders as that whole expression in math; `PASS`/`DBL`/
+  `RDBL` are styled. Anything else stays literal, so `BAL`, `GF`, `NT`, `AK`,
+  `3NT`, `MIN`, `(4441)`, `5S(332)`, `2D-based` all render as written — there
+  is **no** `#`-adjacency escaping to worry about.
 - **Span escapes** inside a cell:
   - `` `verbatim` `` — emitted literally; use it when the suit-word rule would
     misfire, e.g. the idiom `` `P/C` `` ("pass or correct", where `C` must not
@@ -68,6 +71,10 @@ Rules:
     marker; `` `n`N `` likewise keeps the `n` while `N` stays the NT symbol).
   - `_emphasis_` — italic, for convention names (`_Stayman_`, `_Lebensohl_`).
   - `[text](label)` — a cross-reference link inside a cell (e.g. `[XYZ](XYZ)`).
+- A `{ a = c / b = c }` (dcasesr) or `{ a / b }` (dcases) cell may itself
+  contain a further nested `{ … }` inside one of its alternatives — the `/`
+  and `=` separators are brace-aware, so they only split at the outermost
+  level. See `openings.typ`'s opening-summary table for a real 3-level example.
 - Bid tables are kept on a single page (they never split across a page break).
 
 ### Auto-formatting
@@ -104,11 +111,16 @@ cells that need arbitrary Typst. A row is:
   `#(D)-based`. (`#bt` cells have no such trap.)
 - Alternatives inside a cell use `dcases([a], [b], …)` (single column) or
   `dcasesr(([a], [cond]), …)` (with a right-hand annotation); they nest.
-- Commented-out alternatives from the original LaTeX are preserved verbatim in
-  `/* … */` blocks so nothing was lost in the port; they are not yet translated.
-- A few tables that need arbitrary Typst per cell stay in `#bidtable` form on
-  purpose: the opening-summary table in `openings.typ` (nested `dcasesr` with
-  `#nth` ordinals) and the Kickback step tables in `slam.typ` (`$X+1$` math).
+- Commented-out alternatives from the original LaTeX are preserved in `/* … */`
+  blocks, translated to the same `#bt`/`#bidtable` notation as the live content
+  (so they compile as-is if the `/* … */` wrapper is ever removed) but left
+  commented out since they are not part of the current system.
+- Every table in the document is written with `#bt`, including ones with nested
+  alternatives — `{ a = c / b = c }` cells can themselves contain a further
+  nested `{ … }` (see `openings.typ`'s opening-summary table, or the Kickback
+  step tables in `slam.typ`, which also show the `X+1`/`Y+2`/`Z+3` "step above a
+  variable suit" notation). Reach for raw `#bidtable` only if a cell genuinely
+  needs Typst that `#bt`'s notation has no escape hatch for.
 
 ## Headings, contents and dashes
 
