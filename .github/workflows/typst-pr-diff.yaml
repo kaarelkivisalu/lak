@@ -82,8 +82,11 @@ jobs:
 
           if [ -s /tmp/changed-files.txt ] || [ -s /tmp/deleted-files.txt ]; then
             echo "changed=true" >> "$GITHUB_OUTPUT"
+            run_url="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+            echo "summary_message=Visual differences detected — see the [job summary](${run_url}) or download the \`typst-pr-diff-${{ github.event.pull_request.number }}\` artifact for full-resolution pages." >> "$GITHUB_OUTPUT"
           else
             echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "summary_message=No visual differences detected." >> "$GITHUB_OUTPUT"
           fi
 
       - name: Upload artifacts
@@ -141,7 +144,7 @@ jobs:
           message: |
             ### Typst visual diff
 
-            ${{ steps.diff.outputs.changed == 'false' && 'No visual differences detected.' || 'Visual differences detected — see the [job summary](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) or download the `typst-pr-diff-${{ github.event.pull_request.number }}` artifact for full-resolution pages.' }}
+            ${{ steps.diff.outputs.summary_message }}
 
       # --- Method 3: inline images via a scratch branch ---
       - name: Push diff images to scratch branch
