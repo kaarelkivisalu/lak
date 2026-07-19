@@ -13,11 +13,23 @@ row-level diff for changed ones.
 Usage (run from lak-typst/, or point paths at it from elsewhere):
     uv run --project tools tools/typst_pr_diff.py OLD.typ NEW.typ -o OUT.typ
     uv run --project tools tools/typst_pr_diff.py --neutralize-only NEW.typ -o OUT.typ
+    uv run --project tools tools/typst_pr_diff.py --book OLD_DIR NEW_DIR -o OUT.typ
+
+--book mode flattens lak.typ's own structure (its `= Part` headings and
+`#include`s, using NEW's lak.typ as the skeleton) into one document — every
+chapter file's content inlined in place of its `#include` line — and diffs
+that as a single whole-book document instead of chapter-by-chapter. This
+means real cross-chapter references resolve (no neutralization needed for
+in-book links) and it applies the real `conf` template (heading numbering,
+page setup) instead of approximating it, matching what the actual book
+looks like. Pruning then drops any Part/chapter/subsection with no changes
+anywhere in it — an unrelated, untouched chapter doesn't appear at all.
 """
 
 import argparse
 import difflib
 import hashlib
+import os
 import re
 import subprocess
 import sys
@@ -124,7 +136,15 @@ class _Section:
 
 def _has_change(lines):
     """Fence-aware: a `+ `/`- ` prefix only counts inside a `#bt(...)` block
-    (Typst's own list-item syntax is also `- text`/`+ text` outside of one)."""
+    (Typst's own list-item syntax is also `- text`/`+ text` outside of one).
+
+    Deliberately does NOT treat a `//`-prefixed line as a change signal: a
+    whole heading/paragraph typdiff deletes gets wrapped in `#diff-deleted[...]`
+    (already covered below), not commented out, so that signal isn't needed —
+    and treating any `//` as one is a false-positive magnet, since ordinary
+    Typst source comments (e.g. carding.typ's table-styling notes) use the
+    same prefix and would otherwise mark an untouched section as changed.
+    """
     in_bt = False
     for line in lines:
         if OPEN_RE.match(line):
@@ -136,11 +156,8 @@ def _has_change(lines):
         if in_bt:
             if re.match(r"^\s*[+-] ", line):
                 return True
-        else:
-            if "#diff-added[" in line or "#diff-deleted[" in line:
-                return True
-            if line.strip().startswith("//"):
-                return True
+        elif "#diff-added[" in line or "#diff-deleted[" in line:
+            return True
     return False
 
 
@@ -275,6 +292,38 @@ def neutralize_dangling_links(text):
     return "\n".join(out)
 
 
+# ---- Whole-book flattening (--book mode) ----
+INCLUDE_RE = re.compile(r'^\s*#include\s+"([^"]+)"\s*$')
+IMPORT_RE = re.compile(r'^\s*#import\s+"lib\.typ"\s*:')
+# lak.typ's one heading that isn't plain `= ` markup (an unnumbered chapter).
+FUNC_HEADING_RE = re.compile(r"^\s*#heading\(level:\s*(\d+)\s*,\s*numbering:\s*none\)\[([^\]]*)\]\s*$")
+
+
+def flatten_book(lak_text, resolve):
+    """Inline every `#include` in lak.typ's body in place, using NEW's lak.typ
+    as the structural skeleton (Part headings + include order) for both old
+    and new — so a chapter added/removed/reordered between refs is treated as
+    its whole content appearing/disappearing at that position, same as any
+    other insertion/deletion. `resolve(filename)` returns that file's content
+    for the ref in question (old or new), or "" if it doesn't exist there.
+    Drops everything else from lak.typ (title page, outline, comments) — only
+    `#import`/`#show: conf` (kept verbatim, identical both sides so pruning's
+    root handling keeps them) plus headings and chapter content carry over.
+    """
+    out = []
+    for line in lak_text.split("\n"):
+        m_inc = INCLUDE_RE.match(line)
+        m_func = FUNC_HEADING_RE.match(line)
+        if m_inc:
+            content = resolve(m_inc.group(1))
+            out.extend(l for l in content.split("\n") if not IMPORT_RE.match(l))
+        elif m_func:
+            out.append("=" * int(m_func.group(1)) + " " + m_func.group(2))
+        elif line.startswith("#import") or line.strip() == "#show: conf" or re.match(r"^=+\s", line):
+            out.append(line)
+    return "\n".join(out)
+
+
 def run_typdiff(old_path, new_path):
     r = subprocess.run(["typdiff", old_path, new_path], capture_output=True, text=True)
     if r.returncode != 0:
@@ -361,9 +410,20 @@ def process(old_text, new_text, work_old_path, work_new_path):
     return neutralize_dangling_links(pruned)
 
 
+def _reader(dirpath):
+    def resolve(fname):
+        path = os.path.join(dirpath, fname)
+        if not os.path.exists(path):
+            return ""
+        with open(path, encoding="utf-8") as f:
+            return f.read()
+
+    return resolve
+
+
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("files", nargs="+", help="OLD NEW, or just NEW with --neutralize-only")
+    ap.add_argument("files", nargs="+", help="OLD NEW, just NEW with --neutralize-only, or OLD_DIR NEW_DIR with --book")
     ap.add_argument("-o", "--output")
     ap.add_argument(
         "--neutralize-only",
@@ -371,13 +431,35 @@ def main():
         help="No OLD to diff against (e.g. a brand-new file) — just neutralize dangling "
         "cross-file references in FILES[0] so it compiles standalone, with no diff markup.",
     )
+    ap.add_argument(
+        "--book",
+        action="store_true",
+        help="FILES are OLD_DIR NEW_DIR, each a lak-typst/ checkout — flatten and diff the "
+        "whole book (see module docstring) instead of a single file.",
+    )
     args = ap.parse_args()
 
-    if args.neutralize_only:
+    apply_numbering = False
+
+    if args.book:
+        if len(args.files) != 2:
+            ap.error("--book takes OLD_DIR NEW_DIR")
+        old_dir, new_dir = args.files
+        with open(os.path.join(new_dir, "lak.typ"), encoding="utf-8") as f:
+            lak_text = f.read()
+        flat_old = flatten_book(lak_text, _reader(old_dir))
+        flat_new = flatten_book(lak_text, _reader(new_dir))
+        result = process(
+            flat_old, flat_new,
+            os.path.join(old_dir, ".book-old.ph.typ"),
+            os.path.join(new_dir, ".book-new.ph.typ"),
+        )
+    elif args.neutralize_only:
         if len(args.files) != 1:
             ap.error("--neutralize-only takes exactly one file")
         with open(args.files[0], encoding="utf-8") as f:
             result = neutralize_dangling_links(f.read())
+        apply_numbering = True
     else:
         if len(args.files) != 2:
             ap.error("expected OLD NEW")
@@ -387,15 +469,19 @@ def main():
         with open(new_path, encoding="utf-8") as f:
             new_text = f.read()
         result = process(old_text, new_text, old_path + ".ph.typ", new_path + ".ph.typ")
+        apply_numbering = True
 
-    # Chapter files are normally only ever compiled as part of the whole book,
-    # where `lak.typ` applies `conf` (heading numbering, page setup, …) once.
-    # Compiled standalone here, headings are unnumbered by default, which
-    # breaks any `#ref(<label>)` to a heading (it needs a number to show) —
-    # so replicate just the numbering scheme. The resulting numbers won't
-    # match the real book (only this one file's headings are present), but
-    # that's a cosmetic gap in an isolated diff preview, not a compile error.
-    result = '#set heading(numbering: "1.1.1.1")\n' + result
+    if apply_numbering:
+        # Chapter files are normally only ever compiled as part of the whole
+        # book, where `lak.typ` applies `conf` (heading numbering, page
+        # setup, …) once. Compiled standalone here, headings are unnumbered
+        # by default, which breaks any `#ref(<label>)` to a heading (it needs
+        # a number to show) — so replicate just the numbering scheme. (Not
+        # needed in --book mode: the flattened book already applies the real
+        # `conf` template.) The resulting numbers won't match the real book
+        # (only this one file's headings are present), but that's a cosmetic
+        # gap in an isolated diff preview, not a compile error.
+        result = '#set heading(numbering: "1.1.1.1")\n' + result
 
     if args.output:
         with open(args.output, "w", encoding="utf-8") as f:
