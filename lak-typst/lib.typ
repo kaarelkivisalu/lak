@@ -95,30 +95,46 @@
 #let diffdelcol = rgb("#cc0000")
 #let diffaddbg  = rgb("#eaf2ff")
 #let diffdelbg  = rgb("#fdeaea")
-// `stroke:` is set explicitly rather than left `auto`: with `auto`, the line
-// picks up the *local* fill of whatever it crosses (e.g. a coloured suit
-// symbol), so a diff-added suit inside a diffed sentence got a green/red/blue
-// underline instead of a uniform diff-added one. `evade: false` keeps the
-// line flat instead of hugging each glyph's ink — the default `evade: true`
-// otherwise pushes the line up around a raised element like a superscript
-// `+`, making it look shifted relative to its neighbours.
-#let diff-added(body) = underline(stroke: diffaddcol, evade: false, text(fill: diffaddcol, body))
-#let diff-deleted(body) = strike(stroke: diffdelcol, text(fill: diffdelcol, body))
+// Native `underline`/`strike` decorate per *text run*, not per line: a
+// superscript (e.g. the `+` in `5+H`) is its own run at a shifted baseline
+// and smaller size, so — even with an explicit `stroke:` and `evade: false`
+// — the line still jumped up around it and picked up the local run's colour.
+// Measuring the content and drawing a single flat line under/through the
+// whole thing sidesteps run-level decoration entirely. This assumes `body`
+// renders on one line, which holds everywhere these are used (bid/meaning
+// cell text, one alternative of a `dcases`/`dcasesr` brace at a time — see
+// `_braces`/`_maybe-braces`, which apply this per-piece rather than to an
+// entire multi-line brace at once).
+#let _diffline(body, col, at: bottom) = context {
+  let sz = measure(body)
+  box(width: sz.width, height: sz.height, {
+    body
+    place(at, line(length: sz.width, stroke: col + 0.5pt))
+  })
+}
+#let diff-added(body) = _diffline(text(fill: diffaddcol, body), diffaddcol, at: bottom)
+#let diff-deleted(body) = _diffline(text(fill: diffdelcol, body), diffdelcol, at: horizon)
 
 // Inner recursive renderer: builds the (possibly nested) table. Followups
 // recurse through here so the top-level wrapper's page-break and link styling
 // apply to the whole tree exactly once.
-// A row's background only ever comes from an explicit `hl` (the `* ` marker):
-// an added/deleted row is otherwise left unfilled, styled the same as diffed
-// prose (blue/red underline/strike via `diff-added`/`diff-deleted` — see
-// `_parse-row`). `hl` on an added/deleted row swaps the usual yellow for the
-// matching diff colour, so a highlighted row that changed still reads as
-// "highlighted", not as an unrelated addition/deletion.
-#let _row-fill(hl, status) = {
-  if not hl { none }
-  else if status == "added" { diffaddbg }
+// A row's (or a `dcases`/`dcasesr` alternative's) background only ever comes
+// from an explicit `hl` (the `* ` marker): an added/deleted row is otherwise
+// left unfilled, styled the same as diffed prose (blue/red underline/strike
+// via `diff-added`/`diff-deleted` — see `_parse-row`/`_braces`). `hl` on an
+// added/deleted row swaps the usual yellow for the matching diff colour, so
+// a highlighted row that changed still reads as "highlighted", not as an
+// unrelated addition/deletion.
+#let _hl-fill(status) = {
+  if status == "added" { diffaddbg }
   else if status == "deleted" { diffdelbg }
   else { hlcol }
+}
+#let _row-fill(hl, status) = if hl { _hl-fill(status) } else { none }
+#let _diffwrap-for(status) = {
+  if status == "added" { diff-added }
+  else if status == "deleted" { diff-deleted }
+  else { body => body }
 }
 
 #let _render(rows) = {
@@ -299,22 +315,30 @@
 // top-level function cannot forward-reference a sibling defined later in the
 // file, but a closure created *inside* `_braces`'s own body (i.e. every time
 // `_braces` runs) can refer to `_braces` itself once it's already bound.
-#let _braces(inner) = {
+//
+// `status` (the enclosing row's added/deleted/none) is threaded all the way
+// down so each alternative gets its *own* diff-added/diff-deleted wrapping —
+// applying it once to the whole (possibly multi-line, multi-alternative)
+// brace from the outside would hand `_diffline` a tall multi-line box and
+// draw one flat line under the bottom of it, not one line per alternative.
+#let _braces(inner, status: none) = {
+  let diffwrap = _diffwrap-for(status)
   let parse-alt(a) = {
     a = a.trim()
     let hl = a.starts-with("*")
     if hl { a = a.slice(1).trim() }
     let body = if a.contains("{") and a.ends-with("}") {
       let o = a.match(regex("\{")).start
-      _notation(a.slice(0, o)) + _braces(a.slice(o + 1, a.len() - 1))
-    } else { _notation(a) }
-    if hl { hlt(body) } else { body }
+      diffwrap(_notation(a.slice(0, o))) + _braces(a.slice(o + 1, a.len() - 1), status: status)
+    } else { diffwrap(_notation(a)) }
+    if hl { highlight(fill: _hl-fill(status), extent: 1pt, body) } else { body }
   }
   let rows = _split-toplevel(inner, "/")
   if rows.any(r => _split-toplevel(r, " = ").len() > 1) {
     dcasesr(..rows.map(r => {
       let p = _split-toplevel(r, " = ")
-      (parse-alt(p.at(0)), _notation(if p.len() > 1 { p.slice(1).join(" = ").trim() } else { "" }))
+      let cond = diffwrap(_notation(if p.len() > 1 { p.slice(1).join(" = ").trim() } else { "" }))
+      (parse-alt(p.at(0)), cond)
     }))
   } else {
     dcases(..rows.map(parse-alt))
@@ -323,11 +347,13 @@
 
 // A meaning cell that ends in `{ … }` is a dcases/dcasesr brace; any text
 // before it (e.g. "transfer to H") is rendered inline in front of the brace.
-#let _maybe-braces(s) = {
+// Diff wrapping happens per-piece inside here (and inside `_braces`), not
+// once around the return value — same reasoning as `_braces` above.
+#let _maybe-braces(s, status: none) = {
   if s.contains("{") and s.ends-with("}") {
     let o = s.match(regex("\{")).start
-    _notation(s.slice(0, o)) + _braces(s.slice(o + 1, s.len() - 1))
-  } else { _notation(s) }
+    _diffwrap-for(status)(_notation(s.slice(0, o))) + _braces(s.slice(o + 1, s.len() - 1), status: status)
+  } else { _diffwrap-for(status)(_notation(s)) }
 }
 
 // Parse a single (already dedented) line into a bidtable row dict. A leading
@@ -341,9 +367,7 @@
   else if t.starts-with("- ") { status = "deleted"; t = t.slice(2).trim(at: start) }
   let hl = false
   if t.starts-with("* ") { hl = true; t = t.slice(2).trim() }
-  let diffwrap = if status == "added" { diff-added }
-    else if status == "deleted" { diff-deleted }
-    else { body => body }
+  let diffwrap = _diffwrap-for(status)
   if t.starts-with("= ") {
     return (kind: "hdr", body: diffwrap(_notation(t.slice(2).trim())), hl: hl, status: status)
   }
@@ -361,8 +385,8 @@
   if bid.contains(">") { let bp = bid.split(">"); bid = bp.at(0).trim(); lbl = bp.at(1).trim() }
   let bidc = _notation(bid)
   if lbl != none { bidc = link(label(lbl), bidc) }
-  let descc = _maybe-braces(desc)
-  (kind: "row", bid: diffwrap(bidc), desc: diffwrap(descc), hl: hl, status: status)
+  let descc = _maybe-braces(desc, status: status)
+  (kind: "row", bid: diffwrap(bidc), desc: descc, hl: hl, status: status)
 }
 
 // Split source into (indent, text) pairs, dropping blank lines. Indentation is
