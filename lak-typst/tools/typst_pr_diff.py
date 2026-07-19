@@ -39,6 +39,7 @@ import btfmt
 
 OPEN_RE = btfmt.OPEN_RE
 CLOSE_RE = btfmt.CLOSE_RE
+BARE_LABEL_RE = re.compile(r"^\s*<[\w:.\-]+>\s*$")
 
 
 def extract_bt_blocks(text):
@@ -126,6 +127,34 @@ def pair_changed_blocks(old_blocks, new_blocks, old_hash, new_hash, common_hashe
 HEADING_RE = re.compile(r"^(=+)\s")
 
 
+def _rejoin_heading_labels(text):
+    """typdiff reserializes a heading with a trailing `<label>` onto two
+    lines even when nothing about it changed (`=== 1#C—1#H— <1C1H>` becomes
+    the heading text, a blank line, then `<1C1H>` alone) — cosmetically
+    harmless in the compiled PDF (labels are invisible and stay attached to
+    the same preceding element regardless of line position), but it means
+    the heading line's text no longer matches anything in the old document
+    byte-for-byte, which would spuriously trip the `old_lines` fallback in
+    `_has_change` for every labeled heading. Undo the split before any of
+    that runs, rather than special-casing it in the comparison logic."""
+    lines = text.split("\n")
+    out = []
+    i = 0
+    while i < len(lines):
+        line = lines[i]
+        if HEADING_RE.match(line):
+            j = i + 1
+            while j < len(lines) and lines[j].strip() == "":
+                j += 1
+            if j < len(lines) and BARE_LABEL_RE.match(lines[j]):
+                out.append(line.rstrip() + " " + lines[j].strip())
+                i = j + 1
+                continue
+        out.append(line)
+        i += 1
+    return "\n".join(out)
+
+
 class _Section:
     def __init__(self, heading_line=None, level=0):
         self.heading_line = heading_line
@@ -134,7 +163,7 @@ class _Section:
         self.children = []
 
 
-def _has_change(lines):
+def _has_change(lines, old_lines):
     """Fence-aware: a `+ `/`- ` prefix only counts inside a `#bt(...)` block
     (Typst's own list-item syntax is also `- text`/`+ text` outside of one).
 
@@ -144,6 +173,22 @@ def _has_change(lines):
     and treating any `//` as one is a false-positive magnet, since ordinary
     Typst source comments (e.g. carding.typ's table-styling notes) use the
     same prefix and would otherwise mark an untouched section as changed.
+
+    Falls back to `old_lines` (every line present anywhere in the original
+    old document, byte-for-byte) for non-prose content typdiff leaves bare
+    even when genuinely new — same "atomic" treatment it gives `#bt(...)`,
+    it also gives e.g. a multi-line `#let helper(...) = table(...)` — so a
+    line found nowhere in the old text is treated as changed even without an
+    explicit marker. Only applied outside bt-fences; bt-block sentinels are
+    already an exact, reliable signal on their own.
+
+    Skips that fallback for a bare `<label>` line: typdiff cosmetically
+    splits a heading's trailing label onto its own line even when nothing
+    about the heading changed (`=== 1#C—1#H— <1C1H>` becomes the heading
+    text, a blank line, then `<1C1H>` alone) — harmless since labels are
+    invisible and stay attached to the same preceding element regardless of
+    line position, but that combined form never existed as its own old_lines
+    entry, so without this the fallback would flag every labeled heading.
     """
     in_bt = False
     for line in lines:
@@ -157,6 +202,8 @@ def _has_change(lines):
             if re.match(r"^\s*[+-] ", line):
                 return True
         elif "#diff-added[" in line or "#diff-deleted[" in line:
+            return True
+        elif line.strip() and not BARE_LABEL_RE.match(line) and line not in old_lines:
             return True
     return False
 
@@ -187,27 +234,27 @@ def _parse_sections(text):
     return root
 
 
-def _section_changed(sec):
-    if _has_change(sec.body):
+def _section_changed(sec, old_lines):
+    if _has_change(sec.body, old_lines):
         return True
-    if sec.heading_line is not None and _has_change([sec.heading_line]):
+    if sec.heading_line is not None and _has_change([sec.heading_line], old_lines):
         return True
-    return any(_section_changed(c) for c in sec.children)
+    return any(_section_changed(c, old_lines) for c in sec.children)
 
 
-def _render_section(sec, keep_body):
+def _render_section(sec, keep_body, old_lines):
     out = []
     if sec.heading_line is not None:
         out.append(sec.heading_line)
-    if keep_body or _has_change(sec.body):
+    if keep_body or _has_change(sec.body, old_lines):
         out.extend(sec.body)
     for c in sec.children:
-        if _section_changed(c):
-            out.extend(_render_section(c, keep_body=False))
+        if _section_changed(c, old_lines):
+            out.extend(_render_section(c, keep_body=False, old_lines=old_lines))
     return out
 
 
-def prune_unchanged_sections(text):
+def prune_unchanged_sections(text, old_text):
     """Drop `==`/`===`/... heading sections (and everything in them) that have
     no changes anywhere in their subtree, so the compiled diff only contains
     pages for the parts of a document that actually changed. A dropped
@@ -215,8 +262,9 @@ def prune_unchanged_sections(text):
     a descendant section survives, so the reader still has context; the
     document preamble (before the first heading, e.g. `#import` and the
     `diff-added`/`diff-deleted` definitions) is always kept in full."""
+    old_lines = set(old_text.split("\n"))
     root = _parse_sections(text)
-    return "\n".join(_render_section(root, keep_body=True))
+    return "\n".join(_render_section(root, keep_body=True, old_lines=old_lines))
 
 
 # ---- Dangling cross-reference neutralization ----
@@ -406,7 +454,8 @@ def process(old_text, new_text, work_old_path, work_new_path):
         if repl is None:
             continue  # discarded old-side of a modified pair
         out_lines.append(repl)
-    pruned = prune_unchanged_sections("\n".join(out_lines))
+    merged_text = _rejoin_heading_labels("\n".join(out_lines))
+    pruned = prune_unchanged_sections(merged_text, old_text)
     return neutralize_dangling_links(pruned)
 
 
