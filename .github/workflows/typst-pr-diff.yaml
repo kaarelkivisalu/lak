@@ -31,13 +31,17 @@ jobs:
           sudo apt-get install -y poppler-utils
           cargo install typdiff
 
-      # Diffs each changed *.typ file (except lib.typ, which is code, not a
-      # document — its diff is better read as plain source in the PR's
-      # "Files changed" tab) at document granularity: prose via `typdiff`,
-      # `#bt(...)` bid tables via lak-typst/tools/btdiff.py (typdiff treats a
-      # whole table as one opaque block, so on its own it shows no row-level
-      # differences — see tools/btdiff.py's module docstring), and drops any
-      # section/subsection that has no changes in it — see tools/typst_pr_diff.py.
+      # Diffs each changed *.typ file (except lib.typ and lak.typ, which are
+      # code/wiring rather than document content — their diffs are better read
+      # as plain source in the PR's "Files changed" tab) at document
+      # granularity: prose via `typdiff`, `#bt(...)` bid tables via
+      # lak-typst/tools/btdiff.py (typdiff treats a whole table as one opaque
+      # block, so on its own it shows no row-level differences — see
+      # tools/btdiff.py's module docstring), and drops any section/subsection
+      # that has no changes in it — see tools/typst_pr_diff.py. A brand-new
+      # file has no OLD to diff against, so it's just neutralized (chapter
+      # files cross-reference labels declared in *other* chapter files, which
+      # don't exist when compiling one file standalone) and shown as-is.
       # Renders each merged diff document to per-page PNGs for the job summary
       # / comments below.
       - name: Build per-file visual diffs
@@ -48,7 +52,7 @@ jobs:
           : > /tmp/changed-files.txt
           : > /tmp/deleted-files.txt
 
-          CHANGED=$(git diff --name-only --diff-filter=ACMRD "origin/${{ github.base_ref }}" HEAD -- 'lak-typst/*.typ' | grep -v '^lak-typst/lib\.typ$' || true)
+          CHANGED=$(git diff --name-only --diff-filter=ACMRD "origin/${{ github.base_ref }}" HEAD -- 'lak-typst/*.typ' | grep -vE '^lak-typst/(lib|lak)\.typ$' || true)
 
           cd lak-typst
           for f in $CHANGED; do
@@ -64,7 +68,7 @@ jobs:
               git show "origin/${{ github.base_ref }}:$f" > "/tmp/old-$base"
               uv run --project tools tools/typst_pr_diff.py "/tmp/old-$base" "$base" -o "/tmp/merged-$base"
             else
-              cp "$base" "/tmp/merged-$base"
+              uv run --project tools tools/typst_pr_diff.py --neutralize-only "$base" -o "/tmp/merged-$base"
             fi
 
             cp "/tmp/merged-$base" "_diff_${base}"

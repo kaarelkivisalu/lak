@@ -12,6 +12,7 @@ row-level diff for changed ones.
 
 Usage (run from lak-typst/, or point paths at it from elsewhere):
     uv run --project tools tools/typst_pr_diff.py OLD.typ NEW.typ -o OUT.typ
+    uv run --project tools tools/typst_pr_diff.py --neutralize-only NEW.typ -o OUT.typ
 """
 
 import argparse
@@ -362,17 +363,39 @@ def process(old_text, new_text, work_old_path, work_new_path):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("old")
-    ap.add_argument("new")
+    ap.add_argument("files", nargs="+", help="OLD NEW, or just NEW with --neutralize-only")
     ap.add_argument("-o", "--output")
+    ap.add_argument(
+        "--neutralize-only",
+        action="store_true",
+        help="No OLD to diff against (e.g. a brand-new file) — just neutralize dangling "
+        "cross-file references in FILES[0] so it compiles standalone, with no diff markup.",
+    )
     args = ap.parse_args()
 
-    with open(args.old, encoding="utf-8") as f:
-        old_text = f.read()
-    with open(args.new, encoding="utf-8") as f:
-        new_text = f.read()
+    if args.neutralize_only:
+        if len(args.files) != 1:
+            ap.error("--neutralize-only takes exactly one file")
+        with open(args.files[0], encoding="utf-8") as f:
+            result = neutralize_dangling_links(f.read())
+    else:
+        if len(args.files) != 2:
+            ap.error("expected OLD NEW")
+        old_path, new_path = args.files
+        with open(old_path, encoding="utf-8") as f:
+            old_text = f.read()
+        with open(new_path, encoding="utf-8") as f:
+            new_text = f.read()
+        result = process(old_text, new_text, old_path + ".ph.typ", new_path + ".ph.typ")
 
-    result = process(old_text, new_text, args.old + ".ph.typ", args.new + ".ph.typ")
+    # Chapter files are normally only ever compiled as part of the whole book,
+    # where `lak.typ` applies `conf` (heading numbering, page setup, …) once.
+    # Compiled standalone here, headings are unnumbered by default, which
+    # breaks any `#ref(<label>)` to a heading (it needs a number to show) —
+    # so replicate just the numbering scheme. The resulting numbers won't
+    # match the real book (only this one file's headings are present), but
+    # that's a cosmetic gap in an isolated diff preview, not a compile error.
+    result = '#set heading(numbering: "1.1.1.1")\n' + result
 
     if args.output:
         with open(args.output, "w", encoding="utf-8") as f:
