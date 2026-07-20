@@ -87,7 +87,6 @@
 #let linkcol = black            // cross-reference underline colour
 #let fuindent = 4mm             // left indent of a followups sub-table
 #let hl(bid, desc) = (kind: "row", bid: bid, desc: desc, hl: true)
-#let hdr(body, hl: false) = (kind: "hdr", body: body, hl: hl)
 #let followups(..rows) = (kind: "fu", rows: rows.pos())
 
 // ---- Row-level diff styling, used only by the PR visual-diff pipeline ----
@@ -185,9 +184,6 @@
       let f = _row-fill(r.at("hl", default: false), r.at("status", default: none))
       cells.push(table.cell(fill: f, r.bid))
       cells.push(table.cell(fill: f, r.desc))
-    } else if type(r) == dictionary and r.kind == "hdr" {
-      let f = _row-fill(r.at("hl", default: false), r.at("status", default: none))
-      cells.push(table.cell(colspan: 2, fill: f, r.body))
     } else if type(r) == dictionary and r.kind == "fu" {
       cells.push(table.cell(
         colspan: 2, inset: (x: 0pt, y: 2.5pt),
@@ -225,7 +221,6 @@
 //     1H        8-11, denies 5+S    // 2+ spaces (or ` | `) split bid / meaning
 //   * 1N        12+, 5+H            // leading `*` highlights the row
 //       2N      asks                // deeper indent = followups (nested table)
-//     = over 1X                     // `= text` is a full-width header row
 //     DBL   { 6-7 = always / *8+, BAL = over 2X }   // `{…}` = dcases/dcasesr
 //   ```)
 //
@@ -406,9 +401,6 @@
   let hl = false
   if t.starts-with("* ") { hl = true; t = t.slice(2).trim() }
   let diffwrap = _diffwrap-for(status)
-  if t.starts-with("= ") {
-    return (kind: "hdr", body: diffwrap(_notation(t.slice(2).trim())), hl: hl, status: status)
-  }
   let bid = t
   let desc = ""
   if t.contains(" | ") {

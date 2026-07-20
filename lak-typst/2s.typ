@@ -8,7 +8,7 @@ Assume 6#plus#S unless NV vs. VUL.
 
 #bt(```
   2N   14+, asks
-    = (bid)
+    (bid)
       * step 1   PASS
         step 2   DBL/RDBL
         step *   next bids

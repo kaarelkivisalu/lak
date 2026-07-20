@@ -45,7 +45,7 @@
 
 /* Commented-out alternative followups / annotations from the LaTeX source (1n.tex):
 #bt(```
-  = followups for 2S (5S, INV)
+  followups for 2S (5S, INV)
     PASS   declines
     2N     accepts, 2S
       PASS   BAL, mild invite
@@ -53,21 +53,21 @@
       3N     to play
     3S     3S, MIN
     4S     3S, MAX
-  = followups for 2N (INV, may have 5H)
+  followups for 2N (INV, may have 5H)
     3m   6 cards, to play
-  = followups for 3C (5+C 4M, GF)
+  followups for 3C (5+C 4M, GF)
     3D   R for LMH short
     3M   noise with C interest
     3N   no interest
-  = followups for 3D (5+D 4M, GF)
+  followups for 3D (5+D 4M, GF)
     3M   noise with D interest
     3N   no interest
-  = followups for 3H (5S 4H, GF)
+  followups for 3H (5S 4H, GF)
     3S   2S 3H
     3N   to play
     4C   good S raise
     4S   bad S raise
-  = followups for 3S (5H 4S, GF)
+  followups for 3S (5H 4S, GF)
     4C   good H raise
     4H   bad H raise
 ```)
@@ -93,13 +93,13 @@
 
 /* Commented followups from the LaTeX source (1n.tex):
 #bt(```
-  = followups for 3C (4S 5+C, GF)
+  followups for 3C (4S 5+C, GF)
     3D   C interest, asks LH short
     3H   5H
       3S   waiting, no fit or no D stop
     3S   S flag, asks LH short
     4C   great hand for C
-  = followups for 3D (4S 5+D, GF)
+  followups for 3D (4S 5+D, GF)
     3H   5H
       3S   waiting, no fit or no C stop
     3S   S flag, asks LH short
@@ -125,12 +125,12 @@
 
 /* Commented followups from the LaTeX source (1n.tex):
 #bt(```
-  = followups for 3C (4H 5+C, GF)
+  followups for 3C (4H 5+C, GF)
     3D   C interest, asks LH short
     3H   4H, asks LH short
     3S   5S
     4C   great hand for C
-  = followups for 3D (4H 5+D, GF)
+  followups for 3D (4H 5+D, GF)
     3H   relay with some D interest, asks LH short
     3S   5S
     4m   great hand for D
@@ -175,7 +175,7 @@
 /* Commented followups from the LaTeX source (1n.tex); these were for 3C (as 2N)
    and 3D (as 3C):
 #bt(```
-  = followups for 3C (4+C, GF; written when this bid was 2N)
+  followups for 3C (4+C, GF; written when this bid was 2N)
     3C   no H fit
       3D      short D
       3H      short S
@@ -187,7 +187,7 @@
       3N 4C   LH singleton, ST
       4H      to play
     3N   values in other suits, usually 2H 3C
-  = followups for 3D (4+D, GF; written when this bid was 3C)
+  followups for 3D (4+D, GF; written when this bid was 3C)
     3D   no H fit
       3H      short C
       3S      short S
@@ -224,7 +224,7 @@
 
 /* Commented followups from the LaTeX source (1n.tex), for 2C (as 3C) and 3D (as 3D):
 #bt(```
-  = followups for 2C (4+C, GF; written when this bid was 3C)
+  followups for 2C (4+C, GF; written when this bid was 3C)
     3C   no S fit
       3D      short D
       3H      short H
@@ -236,7 +236,7 @@
       3N 4C   LH singleton, ST
       4S      to play
     3N   values in other suits, usually 2S 3C
-  = followups for 3D (4+D, GF)
+  followups for 3D (4+D, GF)
     3D   no H fit
       3H    short C
       3S    short H
@@ -310,9 +310,9 @@
 === 1#N—(2#C)—
 
 #bt(```
-  = if MM
+  if MM
     `*`   natural
-  = else
+  else
     DBL   _Stayman_
     `*`   system on
 ```)
@@ -323,8 +323,8 @@
   DBL          penalty-oriented
   2Y           5+Y, below INV
   2N           _Lebensohl_ (puppet to 3C)
-    = (DBL)
-      = system on
+    (DBL)
+      system on
     3C   forced
       PASS         below INV, C suit
       3Y below X   5+Y, below INV

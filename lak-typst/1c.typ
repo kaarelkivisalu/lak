@@ -280,7 +280,7 @@ If GF is established, further doubles are for penalty.
 #bt(```
 * PASS                0-5 or trap
   DBL                 { 6-7 = always / *8+, BAL, without stopper, GF (cue later to reveal) = over 2X }
-    = over 1X
+    over 1X
       PASS        penalty
       1M          4+M, F1
       1N>sec:1N   17-18 (18-19), BAL, with stopper, system on, NF

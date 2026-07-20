@@ -40,35 +40,35 @@ As a responder assume that opener has 10--13(14) BAL until told otherwise.
 === 1#D—1#H— <1D1H>
 
 #bt(```
-  = (DBL)
+  (DBL)
     PASS   denies 3+H, may have 4S if BAL/3-suiter
     RDBL   3H
-    * 1S   4S
+*   1S   4S
     1N     1--2 H
-    * 2C   54+mm
-  = (1S)
+*   2C   54+mm
+  (1S)
     PASS   denies 3H
     DBL    3H
     1N     1--2H, good stops
-    * 2C   54+mm
-  = (1N nat)
+  * 2C   54+mm
+  (1N nat)
     DBL   12-15, 3H
-    * 2C   54+mm
-  = (2C)
+  * 2C   54+mm
+  (2C)
     DBL   3H
-  = (2D)
+  (2D)
     DBL   3H
-  = (2S)
+  (2S)
     DBL   12-15, 3H
-    * 2N   good hand with 6D and stopper, NF
-    * 3C   55+mm
+*   2N   good hand with 6D and stopper, NF
+*   3C   55+mm
   1S   4S, other bids deny 4S
     `*`   [XYZ](XYZ)
   1N   10-13(14), no singleton, BAL
     `*`   [XYZ](XYZ)
   2C   8+ cards in the minors, not 6D 4C
   2D   10-12, 6+D
-    * 2S   artificial GF
+*   2S   artificial GF
   2H   { 10-13(14), 4H, BAL / 10-12, 4H, unBAL }
 * 2S   5S 6+D
 * 2N   13-15, 3H 6+D
@@ -80,19 +80,19 @@ As a responder assume that opener has 10--13(14) BAL until told otherwise.
 === 1#D—1#S— <1D1S>
 
 #bt(```
-  = (DBL)
+  (DBL)
     PASS   denies 3+S
     RDBL   3S
     1N     1--2 S
     * 2C   54+mm
-  = (1N nat)
+  (1N nat)
     DBL   12-15, 3S
     * 2C   54+mm
-  = (2C)
+  (2C)
     DBL   3S
-  = (2D)
+  (2D)
     DBL   3S
-  = (2H)
+  (2H)
     DBL   12-15, 3S
     * 2N   good hand with 6D and stopper, NF
     * 3C   55+mm
@@ -164,10 +164,10 @@ Same as #link(<sec:v1N>)[against 1#N].
 === 1#D—1#N— <1D1N>
 
 #bt(```
-  = (DBL)
+  (DBL)
     2C   44+ mm, unBAL
     2D   5+D
-  = (2M)
+  (2M)
     DBL   takeout
     2N    good 3D rebid
     3C    4/5D 5C
@@ -182,7 +182,7 @@ Same as #link(<sec:v1N>)[against 1#N].
 === 1#D—2#C— <1D2C>
 
 #bt(```
-  = (2M)
+  (2M)
     PASS   waiting
     DBL    penalty
     2N     good stops
@@ -222,7 +222,7 @@ Same as #link(<sec:v1N>)[against 1#N].
 === 1#D—2#D— <1D2D>
 
 #bt(```
-  = (2M)
+  (2M)
     3D   D fit, BAL, MIN
     3M   4+D, short M
   2H   10-13(14), BAL
