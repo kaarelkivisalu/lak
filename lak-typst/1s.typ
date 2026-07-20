@@ -3,19 +3,19 @@
 == 1#S— <sec:1S>
 
 #bt(```
-  1N     7-11, no S fit
-  2m     11+, 5+m, unBAL
-  2H     11+, 5+H
-  2S     5-9, 3+S
-* 2N     11-12 or 17+, 3+S, F3S
+  1N   7-11, no S fit
+  2m   11+, 5+m, unBAL
+  2H   11+, 5+H
+  2S   5-9, 3+S
+* 2N   11-12 or 17+, 3+S, F3S
 *   3CDH   4+m, F1
 *   3S     MIN, no side suit
 *   4CDH   MAX, splinter
 *   3N     MAX, 5S(332)
 *   4S     MAX, 6S(322) or 7S(222)
-  3S     0-5, 4+S
-  3N     13-16, no S fit, BAL
-  4S     13-16, 3+S
+  3S   0-5, 4+S
+  3N   13-16, no S fit, BAL
+  4S   13-16, 3+S
 ```)
 
 === 1#S—(2#N minors)—
@@ -28,7 +28,123 @@
 * 3S    7-10, 3+S
 ```)
 
-/* Commented-out alternatives from the original LaTeX source (1s.tex):
+/* Draft rewrite of interference-over-1S from the LaTeX source (comp.tex): a
+much larger structure (fit-jumps, transfer responses) than the single live
+`(2N minors)` subsection above. `comp.tex` is not currently `\input` by
+lak.tex, and this draft has not been folded back into 1s.tex, so none of it
+is part of the current system yet — kept here only for reference. Translated
+to the same `#bt` notation as live content (so it compiles as-is if the
+wrapper is ever removed). "FNH" (in the `(2X)` subsection) is reproduced
+verbatim from the LaTeX source; it may be a typo for "FNJ" (used everywhere
+else) but is not ours to silently correct in draft content.
+
+=== 1#S—(#dbl)—
+
+#bt(```
+  RDBL   strength
+* 1N     TRF to C, F2C
+* 2C     TRF to D, F2D
+* 2D     TRF to H, F2H
+* 2H     8+, 3+S, F2S
+  2S     0-7, 3+S
+* 2N     4+S, INV+
+* 3CDH   FJ to 3S
+  3S     4+S, PRE
+  3N     to play
+* 4CDH   FJ to 4S
+  4S     to play
+  5m     to play
+```)
+
+=== 1#S—(1#N)—
+
+#bt(```
+  DBL    strength
+* 2C     5+H 3+S
+* 2D     8+, 3+S, F2S
+  2H     nat, NF
+  2S     0-7, 3+S
+* 3CDH   FJ to 3S
+  3S     PRE
+* 4CDH   FJ to 4H
+  4S     to play
+  5m     to play
+```)
+
+=== 1#S—(2$X$)—
+
+#bt(```
+  DBL             takeout
+  2DH             nat, F1
+  2S              3+S
+* 2N              4+S, INV+
+* 3C (over 2DH)   nat, FG (PH: FNJ to 3S)
+* 3D (over 2C)    FJ to 3H
+* 3D (over 2H)    nat, FG (PH: FNH to 3S)
+* 3H              FJ to 3S
+  3X              3S, INV+
+  3S              4+H, PRE
+  3N              to play, with stopper
+  4X              splinter
+  4Y              FJ to 4S
+  4S              to play
+  5m (not X)      to play
+```)
+
+=== 1#S—(2#S Michaels)—
+
+#bt(```
+  DBL    strength
+* 2N     C or D
+* 3CDH   FNJ to 3S
+  3S     MIX
+  3N     to play, with S stopper
+* 4CDH   FJ to 4S
+  4S     PRE
+  5m     to play
+```)
+
+=== 1#S—(2#N minors)—
+
+#bt(```
+  DBL   penalty interest against at least one suit
+* 3C    5+H, GF
+* 3D    11+, 3+S, INV+
+  3H    nat, NF
+  3S    MIX
+  4m    splinter
+  4H    to play
+  4S    to play
+  5m    to play
+```)
+
+=== 1#S—(3$X$)—
+
+#bt(```
+  DBL             takeout
+* 3DH             nat, FG (PH: FNJ to 3S)
+  3S              3+S, NF
+  3N              to play, with stopper
+* 4X              S flag
+* 4Y (not jump)   nat, FG (PH: FNJ to 4S)
+* 4Y (jump)       FJ to 4S
+  4H              to play
+* 4S              MIX
+  5m (not X)      to play
+```)
+
+=== 1#S—(4$X$)—
+
+#bt(```
+  DBL            takeout
+* 4D (over 4C)   nat, FG (PH: FNJ to 4S)
+  4H             to play
+  4S             to play
+  5C (over 4D)   to play
+  5D (over 4C)   to play
+```)
+
+Commented-out alternatives from the original LaTeX source (1s.tex):
 // Alternative structure idea that we currently do not use:
 === 1#S— <sec:1S-alt>
 

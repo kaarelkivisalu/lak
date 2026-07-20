@@ -222,7 +222,7 @@
   4N     5S(332), quant
 ```)
 
-/* Commented followups from the LaTeX source (1n.tex), for 2C (as 3C) and 3D (as 3D):
+/* Commented followups from the LaTeX source (1n.tex), for 2C (renumbered from 3C) and 3D (unchanged):
 #bt(```
   followups for 2C (4+C, GF; written when this bid was 3C)
     3C   no S fit

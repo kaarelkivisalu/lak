@@ -3,19 +3,19 @@
 == 1#H— <sec:1H>
 
 #bt(```
-  1S      7+, 4+S, F1
-  1N      7-11, no H fit
-  2m      11+, 5+m, no H fit
-  2H      5-9, 3+H
-* 2N      11-12 or 17+, 3+H, F3H
+  1S   7+, 4+S, F1
+  1N   7-11, no H fit
+  2m   11+, 5+m, no H fit
+  2H   5-9, 3+H
+* 2N   11-12 or 17+, 3+H, F3H
 *   3m      4+m, F1
 *   3H      MIN, no side suit
 *   3S/4m   MAX, splinter
 *   3N      MAX, 5H(332)
 *   4H      MAX, 6H(322) or 7H(222)
-  3H      0-5, 4+H
-  3N      13-16, no H fit, BAL
-  4H      13-16, 3+H
+  3H   0-5, 4+H
+  3N   13-16, no H fit, BAL
+  4H   13-16, 3+H
 ```)
 
 === 1#H—(2#N minors)— <sec:1M-2N>
@@ -28,7 +28,169 @@
   3S    nat, NF
 ```)
 
-/* Commented-out alternatives from the original LaTeX source (1h.tex):
+/* Draft rewrite of interference-over-1H from the LaTeX source (comp.tex): a
+much larger structure (fit-jumps, transfer responses to DBL/1N) than the
+single live `(2N minors)` subsection above. `comp.tex` is not currently
+`\input` by lak.tex, and this draft has not been folded back into 1h.tex, so
+none of it is part of the current system yet — kept here only for reference.
+Translated to the same `#bt` notation as live content (so it compiles as-is
+if the wrapper is ever removed), including a fix of one apparent source typo
+(the last subsection's short title says "(4m)" while its LaTeX section-title
+argument says "(3m)"; the content is clearly about 4-level minor overcalls,
+so "(4m)" is used here).
+
+=== 1#H—(#dbl)—
+
+#bt(```
+  RDBL   strength
+  1S     4+S, F1
+* 1N     TRF to C, F2C
+* 2C     TRF to D, F2D
+* 2D     8+, 3+H, F2H
+  2H     0-7, 3+H
+* 2S     FJ to 3H
+* 2N     4+H, INV+
+* 3m     FJ to 3H
+  3H     4+H, PRE
+  3S     FJ to 4H
+  3N     to play
+  4m     FJ to 4H
+  4H     to play
+```)
+
+=== 1#H—(1#S)—
+
+#bt(```
+  DBL   takeout
+  1N    nat
+  2m    nat, F1
+  2H    3+H
+  2S    3H, INV+
+* 2N    4+H, INV+
+* 3m    FJ to 3H
+  3H    PRE, 4+H
+  3S    splinter
+  3N    to play, with stopper
+* 4m    FJ to 4H
+  4H    to play
+  5m    to play
+```)
+
+=== 1#H—(1#N)—
+
+#bt(```
+  DBL   strength
+* 2C    5+S 3+H
+* 2D    8+, 3+H, F2H
+  2H    0-7, 3+H
+  2S    nat, NF
+* 3m    FJ to 3H
+  3H    PRE
+* 3S    FJ to 4H
+* 4m    FJ to 4H
+  4H    to play
+  4S    to play
+  5m    to play
+```)
+
+=== 1#H—(2#m)—
+
+#bt(```
+  DBL            takeout
+  2D             nat, F1
+  2H             3+H
+  2S             nat, F1
+* 2N             4+H, INV+
+* 3C (over 2D)   nat, FG (PH: FNJ to 3H)
+* 3D (over 2C)   FJ to 3H
+  3m             3H, INV+
+  3H             4+H, PRE
+* 3S             FJ to 4H
+  3N             to play, with stopper
+  4m             splinter
+* 4om            FJ to 4H
+  4H             to play
+  4S             to play
+  5om            to play
+```)
+
+=== 1#H—(2#H Michaels)—
+
+#bt(```
+  DBL   strength
+  2S    3+H, INV+
+* 2N    C or D
+* 3m    FNJ to 3H
+  3H    MIX
+  3N    to play, with S stopper
+* 4m    FJ to 4H
+  4H    preemptive
+```)
+
+=== 1#H—(2#S)—
+
+#bt(```
+  DBL   takeout
+* 2N    4+H, INV+
+* 3m    nat, FG (PH: FNJ to 3H)
+  3H    3+H, NF
+* 3S    H flag, FG
+  3N    to play, with stopper
+* 4m    FJ to 4H
+* 4H    MIX
+  5m    to play
+```)
+
+=== 1#H—(2#N minors)—
+
+#bt(```
+  DBL   penalty interest against at least one suit
+* 3C    5+S, GF
+* 3D    11+, 3+H, INV+
+* 3H    MIX
+  3S    nat, NF
+  4m    splinter
+  4H    to play
+```)
+
+=== 1#H—(3#m)—
+
+#bt(```
+  DBL            takeout
+* 3D (over 3C)   nat, FG (PH: FNJ to 3H)
+  3H             3+H, NF
+* 3S             nat, FG (PH: FNJ to 4H)
+  3N             to play, with stopper
+* 4m             H flag, FG
+  4C (over 3D)   nat, FG
+* 4D (over 3C)   FJ
+* 4H             MIX
+  4S             to play
+  5om            to play
+```)
+
+=== 1#H—(3#S)—
+
+#bt(```
+  DBL   takeout
+  3N    to play, with stopper
+* 4m    nat, FG (PH: FNJ to 4H)
+  4H    to play
+  5m    to play
+```)
+
+=== 1#H—(4#m)—
+
+#bt(```
+  DBL            takeout
+* 4D (over 4C)   nat, FG (PH: FNJ to 4H)
+  4H             to play
+  4S             to play
+  5C (over 4D)   to play
+  5D (over 4C)   to play
+```)
+
+Commented-out alternatives from the original LaTeX source (1h.tex):
 Alternative structure idea that we currently do not use:
 
 === 1#H— <sec:1H-alt>

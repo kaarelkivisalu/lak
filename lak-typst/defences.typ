@@ -4,6 +4,49 @@
 
 Equal level conversion only over 1#M openings with o#M and #D, see #ref(<def:1M-X>, supplement: none).
 
+== General approach
+
+All bids specified in further sections override general approach bids.
+
+=== (bid)—overcall—(pass)—
+
+#bt(```
+  direct raise any level      PRE
+  non-game jump in new suit   FJ
+  cheapest cue                INV+ raise
+  jump cue to 3 level         MIX with 4+ cards
+  jump cue to 4 level         splinter
+  2N                          { INV+ raise with 4+ cards = opposite 1M overcall / nat, INV = else }
+```)
+
+=== (bid)—overcall—(#dbl)—
+
+#bt(```
+  RDBL                        { _Rosenkranz double_ = at 1 level / strength = else }
+  direct raise any level      PRE
+  new suit                    { FNJ = opposite 2 level overcall at 3 level / natural = else }
+  non-game jump in new suit   FJ
+  cheapest cue                good raise
+  jump cue to 3 level         MIX with 4+ cards
+  jump cue to 4 level         splinter
+  2N                          { INV+ raise with 4+ cards = opposite 1M overcall / MIX = opposite 2 level overcall / nat, INV = else }
+```)
+
+A Rosenkranz double asks partner to lead your suit: you have a top honour (AKQ) but not enough to support them.
+
+=== (bid)—overcall—(raise)—
+
+#bt(```
+  RDBL                        { _Rosenkranz double_ = at 1 level / strength = else }
+  direct raise any level      PRE
+  new suit                    { FNJ = opposite 2 level overcall at 3 level / natural = else }
+  non-game jump in new suit   FJ
+  cheapest cue                good raise
+  jump cue to 3 level         MIX with 4+ cards
+  jump cue to 4 level         splinter
+  2N                          { INV+ raise with 4+ cards = opposite 1M overcall / { MIX = cuebid at 3 level / good raise = no cuebid at 3 level } = opposite 2 level overcall / nat, INV = else }
+```)
+
 == Against Strong 1#C
 
 #bt(```

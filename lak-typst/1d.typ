@@ -156,6 +156,10 @@ As a responder assume that opener has 10--13(14) BAL until told otherwise.
   4H    to play
 ```)
 
+// Draft change in the LaTeX source (comp.tex, not yet folded into the live
+// 1d.tex): DBL is meant to become 4H (a splinter-style shortness-showing
+// double) rather than negative. Not part of the current system yet.
+
 === 1#D—(1#N)—
 
 Same as #link(<sec:v1N>)[against 1#N].

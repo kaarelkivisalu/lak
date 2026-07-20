@@ -51,6 +51,18 @@
 #include "conventions.typ"
 #include "slam.typ"
 
+// ---- Competitive bidding ----
+// Dead in the LaTeX source (`% \chapter{Competitive bidding} % \input{comp}`):
+// superseded by the interference sections folded into each opening's own
+// chapter (1c.typ, 1d.typ, 1h.typ, 1s.typ) — see their own `/* ... */` blocks
+// for `comp.tex`'s in-progress draft content not yet folded back in.
+// = Competitive bidding
+// #include "comp.typ"
+
+// ---- Doubles and redoubles ----
+= Doubles and redoubles
+#include "doubles.typ"
+
 // ---- Defensive bidding ----
 = Defensive bidding
 #include "defences.typ"
