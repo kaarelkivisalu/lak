@@ -14,6 +14,19 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v7
 
+      - name: Determine version
+        id: version
+        run: |
+          if [ "${{ github.ref_type }}" = "tag" ]; then
+            echo "version=${{ github.ref_name }}" >> "$GITHUB_OUTPUT"
+          else
+            echo "version=" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Write LaTeX version file
+        if: steps.version.outputs.version != ''
+        run: echo '\renewcommand{\lakversion}{${{ steps.version.outputs.version }}}' > lak/version.tex
+
       - name: Compile
         uses: xu-cheng/latex-action@v4
         with:
@@ -31,7 +44,7 @@ jobs:
           typst-version: ~0.15
 
       - name: Compile Typst
-        run: typst compile lak-typst/lak.typ lak-typst/lak-typst.pdf
+        run: typst compile --input version="${{ steps.version.outputs.version }}" lak-typst/lak.typ lak-typst/lak-typst.pdf
 
       - name: Release
         uses: softprops/action-gh-release@v3
