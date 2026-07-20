@@ -99,19 +99,33 @@
 // superscript (e.g. the `+` in `5+H`) is its own run at a shifted baseline
 // and smaller size, so — even with an explicit `stroke:` and `evade: false`
 // — the line still jumped up around it and picked up the local run's colour.
-// Measuring the content and drawing a single flat line under/through the
-// whole thing sidesteps run-level decoration entirely. This assumes `body`
-// renders on one line, which holds everywhere these are used (bid/meaning
-// cell text, one alternative of a `dcases`/`dcasesr` brace at a time — see
-// `_braces`/`_maybe-braces`, which apply this per-piece rather than to an
-// entire multi-line brace at once).
-#let _diffline(body, col, at: bottom) = context {
-  let sz = measure(body)
-  box(width: sz.width, height: sz.height, {
-    body
-    place(at, line(length: sz.width, stroke: col + 0.5pt))
-  })
-}
+// Measuring the content and drawing a single flat line under/through it
+// sidesteps run-level decoration entirely — but only works for content that
+// renders on one line: a `dcases`/`dcasesr` brace or a long prose sentence
+// (typdiff wraps whole diffed sentences in `#diff-added[...]`, which also
+// resolves to this — see typst_pr_diff.py) can span multiple lines, and a
+// single flat line under a multi-line box would draw across only the last
+// line's height at full (unconstrained) width, overflowing the page.
+// So: measure `body` unconstrained and at the actual available width: if
+// wrapping doesn't change its height, it's one line — draw the flat line.
+// Otherwise fall back to native `underline`/`strike`, which — despite the
+// run-jump around superscripts — wraps correctly and evades descenders,
+// both of which matter more for a multi-line span than one straight line.
+#let _diffline(body, col, at: bottom) = layout(avail => context {
+  let natural = measure(body)
+  let wrapped = measure(body, width: avail.width)
+  if wrapped.height <= natural.height + 1pt {
+    box(width: natural.width, height: natural.height, {
+      body
+      place(at, dy: if at == bottom { 1.5pt } else { 0pt },
+        line(length: natural.width, stroke: col + 0.6pt))
+    })
+  } else if at == bottom {
+    underline(stroke: col, offset: 3pt, evade: true, body)
+  } else {
+    strike(stroke: col, body)
+  }
+})
 #let diff-added(body) = _diffline(text(fill: diffaddcol, body), diffaddcol, at: bottom)
 #let diff-deleted(body) = _diffline(text(fill: diffdelcol, body), diffdelcol, at: horizon)
 
