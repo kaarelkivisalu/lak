@@ -2,13 +2,15 @@
 
 == 2#H— <sec:2H>
 
-Assume 6#plus#H unless NV vs. VUL.
+This is a strong single-suited hand. Responder should assume a 6#plus#H suit
+unless the vulnerability is favourable, in which case a lighter 5-card suit
+is possible.
 
 #bt(```
   2S   14+, 5+S, F1
   2N   14+, asks
     = (bid)
-      * step 1   PASS
+      * step 1   PASS or 5-card suit
         step 2   DBL/RDBL
         step *   next bids
     3C   MIN, bad suit
@@ -17,8 +19,9 @@ Assume 6#plus#H unless NV vs. VUL.
     3S   MAX, good suit
   3C   14+, 5+C, F1
   3D   14+, 5+D, F1
-  3H   0-13, 3+H, preempt
+  3N   asks for a stopper, GF
   4H   to play
+  4N   quantitative
 ```)
 
 /* Commented-out alternative from the original LaTeX source (2h.tex):

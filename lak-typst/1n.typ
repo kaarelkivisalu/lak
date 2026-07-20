@@ -3,7 +3,7 @@
 == 1#N— <sec:1N>
 
 #bt(```
-  2C        _Stayman_ { below INV, short C / *5M, INV / 4M, INV+ / *54 or 64 MM, INV+ }
+  2C        _Stayman_ { below INV, short C / *5M, INV, may have 4+m / 4M, INV+, denies 5M / *54 or 64 MM, INV+ }
     2D>1N2C2D   no 4+M
     2H>1N2C2H   4--5H, may have 4S
     2S>1N2C2S   4--5S, no 4H

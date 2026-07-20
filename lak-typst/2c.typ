@@ -15,13 +15,16 @@
 * 3CDH      11+, 6+ cards in the next higher suit, INV+
     transfer   decline INV (even with singleton)
     other      accept INV
-* 3S        6S 4H GF
+* 3S        6S 4H, GF, better than a direct 4S
   3N        to play
   4C        5-9, preemptive, at least 3C usually 4C
   4H        to play
-  4S        to play
+  4N        RKC for clubs
   5C        to play
 ```)
+
+If the opening bid is doubled, a redouble shows a good club suit and asks
+partner to pass any further action from the opponents for penalty.
 
 === 2#C—2#D— <2C2D>
 
