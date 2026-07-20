@@ -139,9 +139,14 @@
         line(length: sz.width, stroke: col + 0.6pt))
     })
   } else if at == bottom {
-    underline(stroke: col, evade: true, body)
+    // `offset:` is pinned rather than left `auto`: auto is computed per run
+    // from that run's own font metrics, and a coloured suit symbol (e.g.
+    // `#H`, `#N`) has different ascent/descent than surrounding Latin text
+    // even though it isn't baseline-shifted — enough to visibly kink the
+    // line at the symbol otherwise. A fixed offset applies uniformly.
+    underline(stroke: col, evade: true, offset: 2.5pt, body)
   } else {
-    strike(stroke: col, body)
+    strike(stroke: col, offset: -0.32em, body)
   }
 }
 #let diff-added(body) = _diffline(text(fill: diffaddcol, body), diffaddcol, at: bottom)
