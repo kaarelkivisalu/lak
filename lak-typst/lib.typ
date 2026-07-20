@@ -14,16 +14,14 @@
 #let H = text(fill: heartcol)[♥]
 #let S = [♠]
 #let N = text(fill: notrumpcol)[⊙]
-// A real Unicode superscript-plus glyph (U+207A), not `super[+]`: `super`
-// synthesizes the raised look with a baseline shift, which — unlike a size
-// change alone — starts a new text *run*. Typst decorates (underline/strike)
-// per run, so a synthesized superscript inside a `diff-added`/`diff-deleted`
-// span broke the line into visibly offset segments; a native glyph like this
-// one needs no such transform, so it never splits the run in the first place.
-#let plus = "⁺"
-#let dbl  = text(size: 0.82em)[DBL]
-#let rdbl = text(size: 0.82em)[RDBL]
-#let pass = text(size: 0.82em)[PASS]
+#let plus = super[+]
+// Lowercase input, like `att`/`enc`/`disc` below: `smallcaps` only shrinks
+// lowercase letters to cap-height capitals — feeding it already-uppercase
+// text leaves it unchanged (full-size), since true small caps only apply to
+// what would otherwise be lowercase.
+#let dbl  = smallcaps[dbl]
+#let rdbl = smallcaps[rdbl]
+#let pass = smallcaps[pass]
 
 // ---- Category abbreviations (\m \M \mm \MM) ----
 #let m = [m]
@@ -37,10 +35,6 @@
 #let disc = smallcaps[disc]
 
 // ---- Ordinals (\nth{1} -> 1st ...) ----
-// Native Unicode superscript letters (U+02E2 etc.), not `super[..]` — same
-// run-splitting reason as `plus` above; see `_ord-super` for the shared
-// mapping used by `_notation-core`'s own ordinal-suffix detection.
-#let _ord-super = ("st": "ˢᵗ", "nd": "ⁿᵈ", "rd": "ʳᵈ", "th": "ᵗʰ")
 #let nth(n) = {
   let s = str(n)
   let suf = if s.ends-with("11") or s.ends-with("12") or s.ends-with("13") { "th" }
@@ -48,7 +42,7 @@
     else if s.ends-with("2") { "nd" }
     else if s.ends-with("3") { "rd" }
     else { "th" }
-  [#n#_ord-super.at(suf)]
+  [#n#super[#suf]]
 }
 
 // ---- Inline highlight (\colorbox{yellow!40}{...}) ----
@@ -105,23 +99,53 @@
 #let diffdelcol = rgb("#cc0000")
 #let diffaddbg  = rgb("#eaf2ff")
 #let diffdelbg  = rgb("#fdeaea")
-// `stroke:` is set explicitly rather than left `auto`: with `auto`, the line
-// picks up the *local* fill of whatever it crosses (e.g. a coloured suit
-// symbol), so a diff-added suit inside a diffed sentence got a green/red/blue
-// underline instead of a uniform diff-added one. Plain native `underline`/
-// `strike` otherwise: earlier attempts to fix a jump in the line around a
-// superscript `+` by hand-drawing it (measuring the content and placing a
-// flat line, falling back to native only for content wide enough to need to
-// wrap) turned out to be treating the symptom — see `plus`/`_ord-super`
-// above for the actual fix (native Unicode superscript glyphs instead of
-// synthesized ones), which removes the jump at the source and means this
-// can just be `underline`/`strike` like any other use of them: evades
-// descenders, wraps a multi-line span (a long typdiff-diffed sentence, or a
-// `dcases`/`dcasesr` alternative) correctly, and doesn't need a `layout()`/
-// `context` (which — bonus problem — forced a paragraph break when used
-// inside heading content, since headings need their content laid out inline).
-#let diff-added(body) = underline(stroke: diffaddcol, evade: true, text(fill: diffaddcol, body))
-#let diff-deleted(body) = strike(stroke: diffdelcol, text(fill: diffdelcol, body))
+// Native `underline`/`strike` decorate per *text run*, not per line: a
+// superscript (e.g. the `+` in `5+H`, from `super[+]`) is its own run at a
+// shifted baseline and smaller size, so — even with an explicit `stroke:`
+// and `evade: false` — the line still jumped up around it and picked up
+// the local run's colour. Measuring the content and drawing a single flat
+// line under/through it sidesteps run-level decoration entirely — but only
+// works for content that renders on one line: a long typdiff-diffed prose
+// sentence, or (in principle) a very long bid/meaning cell, can need to wrap
+// across multiple lines, and a single flat line under a multi-line box would
+// draw across only the last line's height at full (unconstrained) width,
+// running off the page.
+//
+// So: below `_diff-line-width` (matching `conf`'s usable text width — the
+// widest a single line can physically be in this document), draw the flat
+// line; every bid-table cell and `dcases`/`dcasesr` alternative is far
+// under that in practice (checked against the longest ones in this
+// document), so this is really "is this bid-table content or prose", not a
+// literal wrap prediction. At or above the threshold, fall back to native
+// `underline`/`strike` — despite the run-jump around a superscript, it wraps
+// correctly and evades descenders, both of which matter more for a
+// multi-line span than one straight line.
+//
+// This used to ask `layout()` for the actually available width instead of
+// using a fixed threshold, to predict wrapping precisely rather than
+// guessing — but `layout()` needs its content laid out as its own region,
+// which (a) forced a paragraph break when used inside heading content,
+// moving every later heading, and (b) returned unreliable widths inside a
+// `dcasesr` grid cell, causing spurious wraps (and so spurious evade gaps)
+// on some alternatives but not others within the same brace. Plain
+// `context` + `measure()`, with no `layout()`, has neither problem.
+#let _diff-line-width = 16cm
+#let _diffline(body, col, at: bottom) = context {
+  let sz = measure(body)
+  if sz.width < _diff-line-width {
+    box(width: sz.width, height: sz.height, {
+      body
+      place(at, dy: if at == bottom { 1.5pt } else { 0pt },
+        line(length: sz.width, stroke: col + 0.6pt))
+    })
+  } else if at == bottom {
+    underline(stroke: col, evade: true, body)
+  } else {
+    strike(stroke: col, body)
+  }
+}
+#let diff-added(body) = _diffline(text(fill: diffaddcol, body), diffaddcol, at: bottom)
+#let diff-deleted(body) = _diffline(text(fill: diffdelcol, body), diffdelcol, at: horizon)
 
 // Inner recursive renderer: builds the (possibly nested) table. Followups
 // recurse through here so the top-level wrapper's page-break and link styling
@@ -226,27 +250,43 @@
 // see the `([XYZ])\+([0-9]+)` case in `_notation`, the only caller.
 #let _step(v, n) = if v == "X" { $X+#n$ } else if v == "Y" { $Y+#n$ } else { $Z+#n$ }
 
+// Sentinel marking a `+` that should render as a superscript (one attached to a
+// preceding token, as in 5+ / INV+), as opposed to a standalone "+" meaning
+// "and" (as in "5H + 4m"), which stays on the baseline.
+#let _plus = "\u{0001}"
+
+// Render a run of non-word characters, turning superscript sentinels into `+`.
+#let _plain(t) = {
+  let acc = []
+  for (i, p) in t.split(_plus).enumerate() {
+    if i > 0 { acc += super[+] }
+    acc += [#p]
+  }
+  acc
+}
+
 // Render a text fragment with bridge notation (suits, +, en-dashes, variables).
-// A `+` right after a digit/letter (5+, INV+) and an ordinal suffix right
-// after a digit (#nth's "1st", "2nd", …) are both substituted for their
-// native Unicode superscript form directly — see `plus`/`_ord-super` above
-// for why not `super[..]`. Both substitutions run before the word-matching
-// loop below, whose `[A-Za-z]+` pattern doesn't match the (non-ASCII)
-// superscript letters they produce, so it leaves them alone.
 #let _notation-core(s) = {
   if s == "" { return [] }
   s = s.replace("--", "–")
   s = s.replace(regex("([0-9)])-([0-9(])"), m => m.captures.at(0) + "–" + m.captures.at(1))
-  s = s.replace(regex("([0-9A-Za-z)])\\+"), m => m.captures.at(0) + plus)
-  s = s.replace(regex("(\\d)(st|nd|rd|th)\\b"), m => m.captures.at(0) + _ord-super.at(m.captures.at(1)))
+  s = s.replace(regex("([0-9A-Za-z)])\\+"), m => m.captures.at(0) + _plus)
   let out = ()
   let idx = 0
   for m in s.matches(regex("[A-Za-z]+")) {
-    if m.start > idx { out.push([#(s.slice(idx, m.start))]) }
-    out.push(_word(m.text))
+    if m.start > idx { out.push(_plain(s.slice(idx, m.start))) }
+    let w = m.text
+    // An ordinal suffix directly after a digit (as in `#nth`'s "1st", "2nd", …)
+    // is superscripted; the same word standing alone is left as plain text.
+    let is-ordinal-suffix = w == "st" or w == "nd" or w == "rd" or w == "th"
+    if is-ordinal-suffix and m.start > 0 and s.at(m.start - 1).match(regex("[0-9]")) != none {
+      out.push(super[#w])
+    } else {
+      out.push(_word(w))
+    }
     idx = m.end
   }
-  if idx < s.len() { out.push([#(s.slice(idx))]) }
+  if idx < s.len() { out.push(_plain(s.slice(idx))) }
   out.join()
 }
 
