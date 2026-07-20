@@ -14,7 +14,13 @@
 #let H = text(fill: heartcol)[♥]
 #let S = [♠]
 #let N = text(fill: notrumpcol)[⊙]
-#let plus = super[+]
+// A real Unicode superscript-plus glyph (U+207A), not `super[+]`: `super`
+// synthesizes the raised look with a baseline shift, which — unlike a size
+// change alone — starts a new text *run*. Typst decorates (underline/strike)
+// per run, so a synthesized superscript inside a `diff-added`/`diff-deleted`
+// span broke the line into visibly offset segments; a native glyph like this
+// one needs no such transform, so it never splits the run in the first place.
+#let plus = "⁺"
 #let dbl  = text(size: 0.82em)[DBL]
 #let rdbl = text(size: 0.82em)[RDBL]
 #let pass = text(size: 0.82em)[PASS]
@@ -31,6 +37,10 @@
 #let disc = smallcaps[disc]
 
 // ---- Ordinals (\nth{1} -> 1st ...) ----
+// Native Unicode superscript letters (U+02E2 etc.), not `super[..]` — same
+// run-splitting reason as `plus` above; see `_ord-super` for the shared
+// mapping used by `_notation-core`'s own ordinal-suffix detection.
+#let _ord-super = ("st": "ˢᵗ", "nd": "ⁿᵈ", "rd": "ʳᵈ", "th": "ᵗʰ")
 #let nth(n) = {
   let s = str(n)
   let suf = if s.ends-with("11") or s.ends-with("12") or s.ends-with("13") { "th" }
@@ -38,7 +48,7 @@
     else if s.ends-with("2") { "nd" }
     else if s.ends-with("3") { "rd" }
     else { "th" }
-  [#n#super[#suf]]
+  [#n#_ord-super.at(suf)]
 }
 
 // ---- Inline highlight (\colorbox{yellow!40}{...}) ----
@@ -95,39 +105,23 @@
 #let diffdelcol = rgb("#cc0000")
 #let diffaddbg  = rgb("#eaf2ff")
 #let diffdelbg  = rgb("#fdeaea")
-// Native `underline`/`strike` decorate per *text run*, not per line: a
-// superscript (e.g. the `+` in `5+H`) is its own run at a shifted baseline
-// and smaller size, so — even with an explicit `stroke:` and `evade: false`
-// — the line still jumped up around it and picked up the local run's colour.
-// Measuring the content and drawing a single flat line under/through it
-// sidesteps run-level decoration entirely — but only works for content that
-// renders on one line: a `dcases`/`dcasesr` brace or a long prose sentence
-// (typdiff wraps whole diffed sentences in `#diff-added[...]`, which also
-// resolves to this — see typst_pr_diff.py) can span multiple lines, and a
-// single flat line under a multi-line box would draw across only the last
-// line's height at full (unconstrained) width, overflowing the page.
-// So: measure `body` unconstrained and at the actual available width: if
-// wrapping doesn't change its height, it's one line — draw the flat line.
-// Otherwise fall back to native `underline`/`strike`, which — despite the
-// run-jump around superscripts — wraps correctly and evades descenders,
-// both of which matter more for a multi-line span than one straight line.
-#let _diffline(body, col, at: bottom) = layout(avail => context {
-  let natural = measure(body)
-  let wrapped = measure(body, width: avail.width)
-  if wrapped.height <= natural.height + 1pt {
-    box(width: natural.width, height: natural.height, {
-      body
-      place(at, dy: if at == bottom { 1.5pt } else { 0pt },
-        line(length: natural.width, stroke: col + 0.6pt))
-    })
-  } else if at == bottom {
-    underline(stroke: col, offset: 3pt, evade: true, body)
-  } else {
-    strike(stroke: col, body)
-  }
-})
-#let diff-added(body) = _diffline(text(fill: diffaddcol, body), diffaddcol, at: bottom)
-#let diff-deleted(body) = _diffline(text(fill: diffdelcol, body), diffdelcol, at: horizon)
+// `stroke:` is set explicitly rather than left `auto`: with `auto`, the line
+// picks up the *local* fill of whatever it crosses (e.g. a coloured suit
+// symbol), so a diff-added suit inside a diffed sentence got a green/red/blue
+// underline instead of a uniform diff-added one. Plain native `underline`/
+// `strike` otherwise: earlier attempts to fix a jump in the line around a
+// superscript `+` by hand-drawing it (measuring the content and placing a
+// flat line, falling back to native only for content wide enough to need to
+// wrap) turned out to be treating the symptom — see `plus`/`_ord-super`
+// above for the actual fix (native Unicode superscript glyphs instead of
+// synthesized ones), which removes the jump at the source and means this
+// can just be `underline`/`strike` like any other use of them: evades
+// descenders, wraps a multi-line span (a long typdiff-diffed sentence, or a
+// `dcases`/`dcasesr` alternative) correctly, and doesn't need a `layout()`/
+// `context` (which — bonus problem — forced a paragraph break when used
+// inside heading content, since headings need their content laid out inline).
+#let diff-added(body) = underline(stroke: diffaddcol, evade: true, text(fill: diffaddcol, body))
+#let diff-deleted(body) = strike(stroke: diffdelcol, text(fill: diffdelcol, body))
 
 // Inner recursive renderer: builds the (possibly nested) table. Followups
 // recurse through here so the top-level wrapper's page-break and link styling
@@ -232,43 +226,27 @@
 // see the `([XYZ])\+([0-9]+)` case in `_notation`, the only caller.
 #let _step(v, n) = if v == "X" { $X+#n$ } else if v == "Y" { $Y+#n$ } else { $Z+#n$ }
 
-// Sentinel marking a `+` that should render as a superscript (one attached to a
-// preceding token, as in 5+ / INV+), as opposed to a standalone "+" meaning
-// "and" (as in "5H + 4m"), which stays on the baseline.
-#let _plus = "\u{0001}"
-
-// Render a run of non-word characters, turning superscript sentinels into `+`.
-#let _plain(t) = {
-  let acc = []
-  for (i, p) in t.split(_plus).enumerate() {
-    if i > 0 { acc += super[+] }
-    acc += [#p]
-  }
-  acc
-}
-
 // Render a text fragment with bridge notation (suits, +, en-dashes, variables).
+// A `+` right after a digit/letter (5+, INV+) and an ordinal suffix right
+// after a digit (#nth's "1st", "2nd", …) are both substituted for their
+// native Unicode superscript form directly — see `plus`/`_ord-super` above
+// for why not `super[..]`. Both substitutions run before the word-matching
+// loop below, whose `[A-Za-z]+` pattern doesn't match the (non-ASCII)
+// superscript letters they produce, so it leaves them alone.
 #let _notation-core(s) = {
   if s == "" { return [] }
   s = s.replace("--", "–")
   s = s.replace(regex("([0-9)])-([0-9(])"), m => m.captures.at(0) + "–" + m.captures.at(1))
-  s = s.replace(regex("([0-9A-Za-z)])\\+"), m => m.captures.at(0) + _plus)
+  s = s.replace(regex("([0-9A-Za-z)])\\+"), m => m.captures.at(0) + plus)
+  s = s.replace(regex("(\\d)(st|nd|rd|th)\\b"), m => m.captures.at(0) + _ord-super.at(m.captures.at(1)))
   let out = ()
   let idx = 0
   for m in s.matches(regex("[A-Za-z]+")) {
-    if m.start > idx { out.push(_plain(s.slice(idx, m.start))) }
-    let w = m.text
-    // An ordinal suffix directly after a digit (as in `#nth`'s "1st", "2nd", …)
-    // is superscripted; the same word standing alone is left as plain text.
-    let is-ordinal-suffix = w == "st" or w == "nd" or w == "rd" or w == "th"
-    if is-ordinal-suffix and m.start > 0 and s.at(m.start - 1).match(regex("[0-9]")) != none {
-      out.push(super[#w])
-    } else {
-      out.push(_word(w))
-    }
+    if m.start > idx { out.push([#(s.slice(idx, m.start))]) }
+    out.push(_word(m.text))
     idx = m.end
   }
-  if idx < s.len() { out.push(_plain(s.slice(idx))) }
+  if idx < s.len() { out.push([#(s.slice(idx))]) }
   out.join()
 }
 
@@ -331,10 +309,11 @@
 // `_braces` runs) can refer to `_braces` itself once it's already bound.
 //
 // `status` (the enclosing row's added/deleted/none) is threaded all the way
-// down so each alternative gets its *own* diff-added/diff-deleted wrapping —
-// applying it once to the whole (possibly multi-line, multi-alternative)
-// brace from the outside would hand `_diffline` a tall multi-line box and
-// draw one flat line under the bottom of it, not one line per alternative.
+// down so each alternative gets its own diff-added/diff-deleted wrapping and,
+// crucially, so a `* `-highlighted alternative swaps its usual yellow for the
+// matching diff colour the same way a highlighted whole row does (`_row-fill`)
+// — that swap has to happen per alternative, since a brace can freely mix
+// highlighted and non-highlighted alternatives within the same (single) row.
 #let _braces(inner, status: none) = {
   let diffwrap = _diffwrap-for(status)
   let parse-alt(a) = {
