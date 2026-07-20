@@ -90,10 +90,12 @@ jobs:
       #
       # The ref lives outside refs/heads/ (and refs/tags/) so it never shows
       # up as a branch or tag in the GitHub UI, doesn't interact with branch
-      # protection, and isn't picked up by branch-triggered workflows. Both
-      # raw.githubusercontent.com and the github.com /raw/ redirect resolve
-      # any full ref path this way — the same mechanism GitHub uses to serve
-      # refs/pull/N/head.
+      # protection, and isn't picked up by branch-triggered workflows.
+      # raw.githubusercontent.com resolves any full ref path this way — the
+      # same mechanism GitHub uses to serve refs/pull/N/head. The
+      # github.com/OWNER/REPO/raw/REF/PATH redirector does NOT: it 404s for
+      # any ref outside refs/heads/ (verified against refs/pull/N/head too),
+      # so URLs must hit raw.githubusercontent.com directly, not that shortcut.
       - name: Push diff images to scratch ref
         if: steps.diff.outputs.changed == 'true'
         id: scratch
@@ -114,7 +116,7 @@ jobs:
             echo
             for p in /tmp/diffpages/*.png; do
               name="$(basename "$p")"
-              url="${{ github.server_url }}/${{ github.repository }}/raw/${ref}/${name}"
+              url="https://raw.githubusercontent.com/${{ github.repository }}/${ref}/${name}"
               echo "![${name}](${url})"
               echo
             done
