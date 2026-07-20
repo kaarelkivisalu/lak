@@ -3,19 +3,19 @@
 == 1#S— <sec:1S>
 
 #bt(```
-  1N   7-11, no S fit
-  2m   11+, 5+m, unBAL
-  2H   11+, 5+H
-  2S   5-9, 3+S
-* 2N   11-12 or 17+, 3+S, F3S
-    * 3CDH   4+m, F1
-      3S     MIN, no side suit
-      4CDH   MAX, splinter
-      3N     MAX, 5S(332)
-      4S     MAX, 6S(322) or 7S(222)
-  3S   0-5, 4+S
-  3N   13-16, no S fit, BAL
-  4S   13-16, 3+S
+  1N     7-11, no S fit
+  2m     11+, 5+m, unBAL
+  2H     11+, 5+H
+  2S     5-9, 3+S
+* 2N     11-12 or 17+, 3+S, F3S
+*   3CDH   4+m, F1
+*   3S     MIN, no side suit
+*   4CDH   MAX, splinter
+*   3N     MAX, 5S(332)
+*   4S     MAX, 6S(322) or 7S(222)
+  3S     0-5, 4+S
+  3N     13-16, no S fit, BAL
+  4S     13-16, 3+S
 ```)
 
 === 1#S—(2#N minors)—

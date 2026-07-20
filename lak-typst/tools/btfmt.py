@@ -8,8 +8,12 @@ independently within each group of sibling rows (i.e. rows sharing the same
 parent — the same units that render as one sub-table).
 
 It only ever touches the run of spaces between a bid and its description; bid
-text, `>label` links, `* ` highlight markers, `= header` rows, indentation and
-`{ … }` cells are preserved exactly.
+text, `>label` links, `= header` rows, indentation and `{ … }` cells are
+preserved exactly. A `* ` highlight marker is normalized to lead the line
+(before any indentation spaces) so highlighted rows line up in one column
+regardless of nesting depth — Typst's own parser doesn't require this and
+still accepts `*` anywhere after indentation, so this is purely a formatting
+convention.
 
 Usage (run from lak-typst/, or point paths at it from elsewhere):
     uv run --project tools tools/btfmt.py FILE.typ [FILE.typ …]  # rewrite in place
@@ -50,8 +54,12 @@ def parse_row(line: str) -> Row:
     lead = len(line) - len(line.lstrip(' '))
     body = line[lead:]
     hl = body.startswith('* ')
-    content = body[2:].lstrip(' ') if hl else body
-    prefix = ' ' * lead + ('* ' if hl else '')
+    if hl:
+        rest = body[2:].lstrip(' ')
+        lead += len(body) - 2 - len(rest)
+        body = rest
+    content = body
+    prefix = ('* ' if hl else '') + ' ' * lead
     col0 = len(prefix)
 
     if content.startswith('= '):

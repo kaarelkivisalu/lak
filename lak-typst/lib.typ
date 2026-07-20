@@ -2,11 +2,11 @@
 // Mirrors the macros from the original LaTeX `preamble.tex`.
 
 // ---- Colours (dvipsnames, expressed as CMYK for fidelity) ----
-#let clubcol    = cmyk(91%, 0%, 88%, 12%)  // ForestGreen
+#let clubcol = cmyk(91%, 0%, 88%, 12%)  // ForestGreen
 #let diamondcol = cmyk(0%, 42%, 100%, 0%)  // YellowOrange
-#let heartcol   = cmyk(0%, 100%, 100%, 0%) // Red
+#let heartcol = cmyk(0%, 100%, 100%, 0%) // Red
 #let notrumpcol = cmyk(94%, 11%, 0%, 0%)   // Cerulean
-#let hlcol      = yellow.lighten(60%)      // yellow!40
+#let hlcol = yellow.lighten(60%)      // yellow!40
 
 // ---- Suit / bid symbols (\C \D \H \S \N and friends) ----
 #let C = text(fill: clubcol)[♣]
@@ -19,7 +19,7 @@
 // lowercase letters to cap-height capitals — feeding it already-uppercase
 // text leaves it unchanged (full-size), since true small caps only apply to
 // what would otherwise be lowercase.
-#let dbl  = smallcaps[dbl]
+#let dbl = smallcaps[dbl]
 #let rdbl = smallcaps[rdbl]
 #let pass = smallcaps[pass]
 
@@ -30,18 +30,16 @@
 #let MM = [MM]
 
 // ---- Small-caps signal names (\att \enc \disc) ----
-#let att  = smallcaps[att]
-#let enc  = smallcaps[enc]
+#let att = smallcaps[att]
+#let enc = smallcaps[enc]
 #let disc = smallcaps[disc]
 
 // ---- Ordinals (\nth{1} -> 1st ...) ----
 #let nth(n) = {
   let s = str(n)
-  let suf = if s.ends-with("11") or s.ends-with("12") or s.ends-with("13") { "th" }
-    else if s.ends-with("1") { "st" }
-    else if s.ends-with("2") { "nd" }
-    else if s.ends-with("3") { "rd" }
-    else { "th" }
+  let suf = if s.ends-with("11") or s.ends-with("12") or s.ends-with("13") { "th" } else if s.ends-with("1") {
+    "st"
+  } else if s.ends-with("2") { "nd" } else if s.ends-with("3") { "rd" } else { "th" }
   [#n#super[#suf]]
 }
 
@@ -63,20 +61,18 @@
   // A little vertical breathing room so multi-line brace rows do not crowd
   // their neighbours (single-line rows are unaffected).
   let h = gh + 5pt
-  box(baseline: 50%, height: h, stack(dir: ltr, spacing: 3pt,
-    box(height: h, align(horizon, brace)),
-    box(height: h, align(horizon, g)),
-  ))
+  box(baseline: 50%, height: h, stack(dir: ltr, spacing: 3pt, box(height: h, align(horizon, brace)), box(
+    height: h,
+    align(horizon, g),
+  )))
 }
 // dcases: single-column brace list of alternatives.
 #let dcases(..items) = _braced(
-  grid(columns: 1, row-gutter: 0.4em, align: left, ..items.pos())
+  grid(columns: 1, row-gutter: 0.4em, align: left, ..items.pos()),
 )
 // dcasesr: two-column brace, each row an (alternative, condition) pair.
 #let dcasesr(..pairs) = {
-  let cells = pairs.pos()
-    .map(p => (p.at(0), if p.len() > 1 { p.at(1) } else { [] }))
-    .flatten()
+  let cells = pairs.pos().map(p => (p.at(0), if p.len() > 1 { p.at(1) } else { [] })).flatten()
   _braced(grid(
     columns: (auto, auto), column-gutter: 1.2em, row-gutter: 0.4em, align: left,
     ..cells,
@@ -96,8 +92,8 @@
 // `bt` to rows whose source line starts with a `+ `/`- ` sentinel — see `_lines`.
 #let diffaddcol = rgb("#0000ff")
 #let diffdelcol = rgb("#cc0000")
-#let diffaddbg  = rgb("#eaf2ff")
-#let diffdelbg  = rgb("#fdeaea")
+#let diffaddbg = rgb("#eaf2ff")
+#let diffdelbg = rgb("#fdeaea")
 // Native `underline`/`strike` decorate per *text run*, not per line: a
 // superscript (e.g. the `+` in `5+H`, from `super[+]`) is its own run at a
 // shifted baseline and smaller size, so — even with an explicit `stroke:`
@@ -134,8 +130,7 @@
   if sz.width < _diff-line-width {
     box(width: sz.width, height: sz.height, {
       body
-      place(at, dy: if at == bottom { 1.5pt } else { 0pt },
-        line(length: sz.width, stroke: col + 0.6pt))
+      place(at, dy: if at == bottom { 1.5pt } else { 0pt }, line(length: sz.width, stroke: col + 0.6pt))
     })
   } else if at == bottom {
     // `offset:` is pinned rather than left `auto`: auto is computed per run
@@ -162,15 +157,11 @@
 // a highlighted row that changed still reads as "highlighted", not as an
 // unrelated addition/deletion.
 #let _hl-fill(status) = {
-  if status == "added" { diffaddbg }
-  else if status == "deleted" { diffdelbg }
-  else { hlcol }
+  if status == "added" { diffaddbg } else if status == "deleted" { diffdelbg } else { hlcol }
 }
 #let _row-fill(hl, status) = if hl { _hl-fill(status) } else { none }
 #let _diffwrap-for(status) = {
-  if status == "added" { diff-added }
-  else if status == "deleted" { diff-deleted }
-  else { body => body }
+  if status == "added" { diff-added } else if status == "deleted" { diff-deleted } else { body => body }
 }
 
 #let _render(rows) = {
@@ -186,7 +177,8 @@
       cells.push(table.cell(fill: f, r.desc))
     } else if type(r) == dictionary and r.kind == "fu" {
       cells.push(table.cell(
-        colspan: 2, inset: (x: 0pt, y: 2.5pt),
+        colspan: 2,
+        inset: (x: 0pt, y: 2.5pt),
         pad(left: fuindent, _render(r.rows)),
       ))
     }
@@ -234,13 +226,9 @@
 
 // Render one alphabetic word.
 #let _word(w) = {
-  if w == "PASS" { pass }
-  else if w == "DBL" { dbl }
-  else if w == "RDBL" { rdbl }
-  else if w == "X" { $X$ }
-  else if w == "Y" { $Y$ }
-  else if w == "Z" { $Z$ }
-  else if w.clusters().all(c => _suit.keys().contains(c)) {
+  if w == "PASS" { pass } else if w == "DBL" { dbl } else if w == "RDBL" { rdbl } else if w == "X" { $X$ } else if (
+    w == "Y"
+  ) { $Y$ } else if w == "Z" { $Z$ } else if w.clusters().all(c => _suit.keys().contains(c)) {
     w.clusters().map(c => _suit.at(c)).join()
   } else { [#w] }
 }
@@ -298,8 +286,9 @@
 //   X+1 / Y+2 / Z+3  — a Kickback-style step above a variable suit, as math.
 #let _notation(s) = {
   if s == "" { return [] }
-  if not (s.contains("`") or s.contains("_") or s.contains("](")
-      or s.contains("X+") or s.contains("Y+") or s.contains("Z+")) {
+  if not (
+    s.contains("`") or s.contains("_") or s.contains("](") or s.contains("X+") or s.contains("Y+") or s.contains("Z+")
+  ) {
     return _notation-core(s)
   }
   let out = []
@@ -307,10 +296,11 @@
   for m in s.matches(regex("`([^`]*)`|_([^_]*)_|\\[([^\\]]*)\\]\\(([^)]*)\\)|([XYZ])\\+([0-9]+)")) {
     if m.start > idx { out += _notation-core(s.slice(idx, m.start)) }
     let c = m.captures
-    if c.at(0) != none { out += [#(c.at(0))] }
-    else if c.at(1) != none { out += emph(_notation-core(c.at(1))) }
-    else if c.at(2) != none { out += link(label(c.at(3)), _notation-core(c.at(2))) }
-    else { out += _step(c.at(4), c.at(5)) }
+    if c.at(0) != none { out += [#(c.at(0))] } else if c.at(1) != none {
+      out += emph(_notation-core(c.at(1)))
+    } else if c.at(2) != none { out += link(label(c.at(3)), _notation-core(c.at(2))) } else {
+      out += _step(c.at(4), c.at(5))
+    }
     idx = m.end
   }
   if idx < s.len() { out += _notation-core(s.slice(idx)) }
@@ -329,11 +319,22 @@
   let sl = sep.len()
   while i < n {
     let c = s.at(i)
-    if c == "{" { depth += 1; cur += c; i += 1 }
-    else if c == "}" { depth -= 1; cur += c; i += 1 }
-    else if depth == 0 and s.slice(i, calc.min(i + sl, n)) == sep {
-      parts.push(cur); cur = ""; i += sl
-    } else { cur += c; i += 1 }
+    if c == "{" {
+      depth += 1
+      cur += c
+      i += 1
+    } else if c == "}" {
+      depth -= 1
+      cur += c
+      i += 1
+    } else if depth == 0 and s.slice(i, calc.min(i + sl, n)) == sep {
+      parts.push(cur)
+      cur = ""
+      i += sl
+    } else {
+      cur += c
+      i += 1
+    }
   }
   parts.push(cur)
   parts
@@ -396,23 +397,38 @@
 #let _parse-row(txt) = {
   let status = none
   let t = txt
-  if t.starts-with("+ ") { status = "added"; t = t.slice(2).trim(at: start) }
-  else if t.starts-with("- ") { status = "deleted"; t = t.slice(2).trim(at: start) }
+  if t.starts-with("+ ") {
+    status = "added"
+    t = t.slice(2).trim(at: start)
+  } else if t.starts-with("- ") {
+    status = "deleted"
+    t = t.slice(2).trim(at: start)
+  }
   let hl = false
-  if t.starts-with("* ") { hl = true; t = t.slice(2).trim() }
+  if t.starts-with("* ") {
+    hl = true
+    t = t.slice(2).trim()
+  }
   let diffwrap = _diffwrap-for(status)
   let bid = t
   let desc = ""
   if t.contains(" | ") {
     let p = t.split(" | ")
-    bid = p.at(0).trim(); desc = p.slice(1).join(" | ").trim()
+    bid = p.at(0).trim()
+    desc = p.slice(1).join(" | ").trim()
   } else {
     let m = t.match(regex("  +"))
-    if m != none { bid = t.slice(0, m.start).trim(); desc = t.slice(m.end).trim() }
-    else { bid = t.trim() }
+    if m != none {
+      bid = t.slice(0, m.start).trim()
+      desc = t.slice(m.end).trim()
+    } else { bid = t.trim() }
   }
   let lbl = none
-  if bid.contains(">") { let bp = bid.split(">"); bid = bp.at(0).trim(); lbl = bp.at(1).trim() }
+  if bid.contains(">") {
+    let bp = bid.split(">")
+    bid = bp.at(0).trim()
+    lbl = bp.at(1).trim()
+  }
   let bidc = _notation(bid)
   if lbl != none { bidc = link(label(lbl), bidc) }
   let descc = _maybe-braces(desc, status: status)

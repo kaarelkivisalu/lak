@@ -7,11 +7,11 @@
   2H        8-11, 5+H, NF
   2S        8-11, 5+S, NF
 * 2N        puppet to 3C (to play or some 55 GF)
-    * 3C   forced
-        PASS   preemptive raise in C
-        3D     5S 5H, GF
-        3H     5H 5D, GF
-        3S     5S 5D, GF
+*     3C   forced
+*       PASS   preemptive raise in C
+*       3D     5S 5H, GF
+*       3H     5H 5D, GF
+*       3S     5S 5D, GF
 * 3CDH      11+, 6+ cards in the next higher suit, INV+
     transfer   decline INV (even with singleton)
     other      accept INV
@@ -29,13 +29,13 @@
 * 2H     4S or 4H
 * 2S     12-15, no 4-card major
 * 2N     14-15, stoppers in both majors, no 4-card major
-    * 3D   ST in C
-      3H   5H, GF
-      3S   5S, GF
+*     3D   ST in C
+*     3H   5H, GF
+*     3S   5S, GF
 * 3C     10-11, no 4-card major
-    * 3D   ST in C
-      3H   5H, GF
-      3S   5S, GF
+*     3D   ST in C
+*     3H   5H, GF
+*     3S   5S, GF
   3DHS   5-card suit, GF
 ```)
 

@@ -7,13 +7,13 @@
 Not used after 1#C opening. It is on in some competitive situations (not if opponents bid after $Z$).
 
 #block[
-1#D—1#H—1#S— \
-1#D—1#H—1#N— \
-1#D—1#S—1#N— \
-1#H—1#S—1#N— \
-1#D—(1#H)—#dbl—1#S— \
-1#D—(1#H)—#dbl—1#N— \
-1#D—(1#S)—#dbl—1#N—
+  1#D—1#H—1#S— \
+  1#D—1#H—1#N— \
+  1#D—1#S—1#N— \
+  1#H—1#S—1#N— \
+  1#D—(1#H)—#dbl—1#S— \
+  1#D—(1#H)—#dbl—1#N— \
+  1#D—(1#S)—#dbl—1#N—
 ]
 
 #bt(```
@@ -26,7 +26,7 @@ Not used after 1#C opening. It is on in some competitive situations (not if oppo
   3C                  to play
 * 3D                  5Y5D, slam interest
 * 3Y                  6+ suit, slam interest
-    * 3N    to play
-      `*`   control for Y
+*     3N    to play
+*     `*`   control for Y
 * double jump shift   splinter for the last natural suit
 ```)
