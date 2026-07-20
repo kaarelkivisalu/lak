@@ -115,10 +115,11 @@ jobs:
           } >> "$GITHUB_OUTPUT"
 
       - name: Sticky PR comment
+        if: steps.diff.outputs.changed == 'true'
         uses: marocchino/sticky-pull-request-comment@v3
         with:
           header: typst-visual-diff
           message: |
             ### Typst visual diff
 
-            ${{ steps.diff.outputs.changed == 'false' && 'No visual differences detected.' || steps.scratch.outputs.message }}
+            ${{ steps.scratch.outputs.message }}
