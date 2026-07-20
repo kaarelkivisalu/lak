@@ -7,7 +7,7 @@ Assume 6#plus#H unless NV vs. VUL.
 #bt(```
   2S   14+, 5+S, F1
   2N   14+, asks
-    = (bid)
+    (bid)
       * step 1   PASS
         step 2   DBL/RDBL
         step *   next bids
@@ -25,7 +25,7 @@ Assume 6#plus#H unless NV vs. VUL.
 #bt(```
   2S   F1
   2N   strong ask, F3H
-    = (bid)
+    (bid)
       PASS   good
       DBL    medium
       3S     bad

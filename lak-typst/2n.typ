@@ -29,7 +29,7 @@
     3N   5H
       4D   transfer to 4H
   3D   transfer to H { 5+H / 5H4S }
-    = 3H
+    3H
       3S   choose a game (indicating exactly 5H)
       3N   5H4S, no SI if no fit, NF
   3H   transfer to S, not 5S3-5H

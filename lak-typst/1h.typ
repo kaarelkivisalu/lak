@@ -76,7 +76,7 @@ Alternative structure idea that we currently do not use:
 === 1#H—1#N— <1H1N>
 
 #bt(```
-  = (bid)
+  (bid)
     X   takeout
   PASS   10-13, { BAL / 4S 5H, no 4m }
   2C     4+C
@@ -92,7 +92,7 @@ Alternative structure idea that we currently do not use:
 === 1#H—2#C— <1H2C>
 
 #bt(```
-  = (bid)
+  (bid)
     X       penalty
     3C      3C, unBAL
     3 cue   4+C, shortness in opp's suit
@@ -123,7 +123,7 @@ Alternative structure idea that we currently do not use:
 === 1#H—2#N— <1H2N>
 
 #bt(```
-  = (bid)
+  (bid)
     X      shortness in their suit
     PASS   waiting
   3C       10-13

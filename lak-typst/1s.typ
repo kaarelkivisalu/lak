@@ -53,7 +53,7 @@
 === 1#S—1#N— <1S1N>
 
 #bt(```
-  = (bid)
+  (bid)
     DBL   takeout, could be 6(331)
   PASS   10-13, BAL
   2C     4+C, unBAL
@@ -68,7 +68,7 @@
 === 1#S—2#C— <1S2C>
 
 #bt(```
-  = (bid)
+  (bid)
     DBL     penalty
     3C      3C, unBAL
     3 cue   4+C, shortness in opp's suit
@@ -114,7 +114,7 @@
 === 1#S—2#N <1S2N>
 
 #bt(```
-  = (bid)
+  (bid)
     DBL    shortness in their suit
     PASS   waiting
   3C       10-13

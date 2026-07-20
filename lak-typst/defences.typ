@@ -22,12 +22,12 @@ Equal level conversion only over 1#M openings with o#M and #D, see #ref(<def:1M-
 === (1#M)—#pass—(2#M)—#dbl—
 
 #bt(```
-  = (RDBL)
-    = system on
+  (RDBL)
+    system on
   2S           5+S, below INV
   2N           _Lebensohl_ (usually puppet to 3C)
-    = (DBL)
-      = system on
+    (DBL)
+      system on
     3C        usually forced
       PASS         below INV, C suit
       3X below M   5+X, below INV
@@ -56,8 +56,8 @@ Equal level conversion only over 1#M openings with o#M and #D, see #ref(<def:1M-
   DBL          responsive
   2S           5+S, below INV
   2N           _Lebensohl_ (usually puppet to 3C)
-    = (DBL)
-      = system on
+    (DBL)
+      system on
     3C        usually forced
       PASS         below INV, C suit
       3X below M   5+X, below INV
@@ -109,12 +109,12 @@ Equal level conversion only over 1#M openings with o#M and #D, see #ref(<def:1M-
 
 #bt(```
   DBL            { 12+, 3+ cards in unbid suits, shortness in X / 18+, 5+ strong suit = rebid suit / 18+, semiBAL, with stopper = rebid N }
-    = (RDBL)
-      = system on
+    (RDBL)
+      system on
     2Y           5+Y, below INV
     2N           _Lebensohl_ (usually puppet to 3C)
-      = (DBL)
-        = system on
+      (DBL)
+        system on
       3C        usually forced
         PASS         below INV, C suit
         3Y below X   5+Y, below INV
