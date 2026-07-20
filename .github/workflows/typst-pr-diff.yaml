@@ -80,25 +80,33 @@ jobs:
             done
           fi
 
-      # Inline images, pushed to a per-PR scratch branch and embedded via
+      # Inline images, pushed to a per-PR scratch ref and embedded via
       # raw.githubusercontent.com so they render directly in the PR
       # conversation — wrapped in a single collapsed <details> block, since a
       # multi-page diff would otherwise dominate the conversation. The blank
       # lines right after <summary> and before </details> are required for
       # GitHub to render the markdown image syntax inside the HTML block
       # instead of showing it as literal text.
-      - name: Push diff images to scratch branch
+      #
+      # The ref lives outside refs/heads/ (and refs/tags/) so it never shows
+      # up as a branch or tag in the GitHub UI, doesn't interact with branch
+      # protection, and isn't picked up by branch-triggered workflows. Both
+      # raw.githubusercontent.com and the github.com /raw/ redirect resolve
+      # any full ref path this way — the same mechanism GitHub uses to serve
+      # refs/pull/N/head.
+      - name: Push diff images to scratch ref
         if: steps.diff.outputs.changed == 'true'
         id: scratch
         run: |
-          branch="typst-pr-diff-images/${{ github.event.pull_request.number }}"
+          ref="refs/typst-diff-images/${{ github.event.pull_request.number }}"
+          local_branch="typst-pr-diff-images-tmp"
           dir="$(mktemp -d)"
-          git worktree add --orphan -b "$branch" "$dir"
+          git worktree add --orphan -b "$local_branch" "$dir"
           cp /tmp/diffpages/*.png "$dir"/
           git -C "$dir" add .
           git -C "$dir" -c user.name="github-actions[bot]" -c user.email="github-actions[bot]@users.noreply.github.com" \
             commit -m "Typst PR diff images for #${{ github.event.pull_request.number }}"
-          git -C "$dir" push --force origin "$branch"
+          git -C "$dir" push --force origin "refs/heads/$local_branch:$ref"
           {
             echo "message<<EOF"
             echo "<details>"
@@ -106,7 +114,7 @@ jobs:
             echo
             for p in /tmp/diffpages/*.png; do
               name="$(basename "$p")"
-              url="${{ github.server_url }}/${{ github.repository }}/raw/${branch}/${name}"
+              url="${{ github.server_url }}/${{ github.repository }}/raw/${ref}/${name}"
               echo "![${name}](${url})"
               echo
             done
