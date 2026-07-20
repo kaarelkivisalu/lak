@@ -129,13 +129,13 @@ Equal level conversion only over 1#M openings with o#M and #D, see #ref(<def:1M-
     3N           to play, no stopper
     4Y below X   5+Y, GF
   2Y             10--17, 5+ cards
-    * = (3X)
-      DBL   responsive, 10+, length in unbid suits, no support for Y
-    PASS      0--7
-    3X        strong raise in Y, GF
-    3Y        8--10, 3+ Y
-    3Z        5+ suit, F1
-    4 not Y   splinter
+*   (3X)
+*     DBL   responsive, 10+, length in unbid suits, no support for Y
+*   PASS      0--7
+*   3X        strong raise in Y, GF
+*   3Y        8--10, 3+ Y
+*   3Z        5+ suit, F1
+*   4 not Y   splinter
   2N             14--17, semiBAL, with stopper
 * 3Y below X     12--17, (5)6+ cards
 * 3Y above X     16+, very strong 6+ cards
@@ -186,7 +186,7 @@ Treat as weak 2$X$.
 
 #bt(```
   DBL     penalty-oriented
-    * bid   5S or 6+ card suit
+*     bid   5S or 6+ card suit
 * 4N      55+ mm
   other   natural
 ```)
@@ -195,7 +195,7 @@ Treat as weak 2$X$.
 
 #bt(```
   DBL     penalty-oriented
-    * bid   6+ card suit
+*     bid   6+ card suit
 * 4N      takeout
   other   natural
 ```)

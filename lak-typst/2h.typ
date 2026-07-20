@@ -8,9 +8,9 @@ Assume 6#plus#H unless NV vs. VUL.
   2S   14+, 5+S, F1
   2N   14+, asks
     (bid)
-      * step 1   PASS
-        step 2   DBL/RDBL
-        step *   next bids
+*       step 1   PASS
+*       step 2   DBL/RDBL
+*       step *   next bids
     3C   MIN, bad suit
     3D   MIN, good suit
     3H   MAX, bad suit

@@ -78,7 +78,7 @@
 #bt(```
   2S   5S, INV
   2N   4S, INV
-    * 3H   5H, accept
+*     3H   5H, accept
   3C   4S 5+C, GF
   3D   4S 5+D, GF
   3H   4H, INV
@@ -151,17 +151,17 @@
 
 #bt(```
 * 2S      { 5H 5 other, INV / 5S 5H, GF / 6+H, mild ST, splinter }
-    * 2N   waiting
-        * 3C       5H 5C, INV
-          3D       5H 5D, INV
-          3H       5S 5H, INV
-          3S       5S 5H, ST
-          3N 4CD   6+H mild ST, LMH splinter
-    * 3H   declines INV, 3H
-    * 4H   accepts INV, 3+H
+*     2N   waiting
+*         3C       5H 5C, INV
+*         3D       5H 5D, INV
+*         3H       5S 5H, INV
+*         3S       5S 5H, ST
+*         3N 4CD   6+H mild ST, LMH splinter
+*     3H   declines INV, 3H
+*     4H   accepts INV, 3+H
 * 2N      6+H, INV to game or slam
-    * 3H   declines INV
-    * 3S   accepts INV
+*     3H   declines INV
+*     3S   accepts INV
   3C      4+C, GF
   3D      4+D, GF
 * 3H      6+H, mild INV (needs 3H, MAX)
@@ -255,45 +255,45 @@
 
 #bt(```
   2N   MIN
-    * PASS   to play
-      3C     6+C, to play
-      3D     6C 4D, GF
-      3M     6+C, short M, GF
-      3N     6+C, light BAL ST
-      4C     6+C, short D, GF
-      4D     RKC C
-      4N     quant with 6C
+*     PASS   to play
+*     3C     6+C, to play
+*     3D     6C 4D, GF
+*     3M     6+C, short M, GF
+*     3N     6+C, light BAL ST
+*     4C     6+C, short D, GF
+*     4D     RKC C
+*     4N     quant with 6C
   3C   MAX
-    * PASS   to play
-      3D     6C 4D, GF
-      3M     6+C, short M, GF
-      3N     was invite to 3N
-      4C     6+C, short D, GF
-      4D     RKC C
-      4N     quant with 6C
-      5N     pick between 6C/6N
+*     PASS   to play
+*     3D     6C 4D, GF
+*     3M     6+C, short M, GF
+*     3N     was invite to 3N
+*     4C     6+C, short D, GF
+*     4D     RKC C
+*     4N     quant with 6C
+*     5N     pick between 6C/6N
 ```)
 
 === 1#N—2#N— <1N2N>
 
 #bt(```
   3C   rejects a D-based invite, may have MAX but 2D
-    * PASS   55 mm, no game
-      3D     to play
-      3M     6+D, short M, GF
-      3N     6+D, to play
-      4C     6+D, short C, GF
-      4D     RKC D
-      4N     quant with 6D
-      5N     choose 6N or 6D
+*     PASS   55 mm, no game
+*     3D     to play
+*     3M     6+D, short M, GF
+*     3N     6+D, to play
+*     4C     6+D, short C, GF
+*     4D     RKC D
+*     4N     quant with 6D
+*     5N     choose 6N or 6D
   3D   3+D, accepts 3D-based invite, with side stops
-    * PASS   55 mm, no game
-      3M     6+D, short M, GF
-      3N     6+D, was invite to game
-      4C     6+D, short C, GF
-      4D     RKC D
-      4N     quant with 6D
-      5N     choose 6N or 6D
+*     PASS   55 mm, no game
+*     3M     6+D, short M, GF
+*     3N     6+D, was invite to game
+*     4C     6+D, short C, GF
+*     4D     RKC D
+*     4N     quant with 6D
+*     5N     choose 6N or 6D
 ```)
 
 === 1#N—3#C— <1N3C>

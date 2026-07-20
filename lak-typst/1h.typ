@@ -3,19 +3,19 @@
 == 1#H— <sec:1H>
 
 #bt(```
-  1S   7+, 4+S, F1
-  1N   7-11, no H fit
-  2m   11+, 5+m, no H fit
-  2H   5-9, 3+H
-* 2N   11-12 or 17+, 3+H, F3H
-    * 3m      4+m, F1
-      3H      MIN, no side suit
-      3S/4m   MAX, splinter
-      3N      MAX, 5H(332)
-      4H      MAX, 6H(322) or 7H(222)
-  3H   0-5, 4+H
-  3N   13-16, no H fit, BAL
-  4H   13-16, 3+H
+  1S      7+, 4+S, F1
+  1N      7-11, no H fit
+  2m      11+, 5+m, no H fit
+  2H      5-9, 3+H
+* 2N      11-12 or 17+, 3+H, F3H
+*   3m      4+m, F1
+*   3H      MIN, no side suit
+*   3S/4m   MAX, splinter
+*   3N      MAX, 5H(332)
+*   4H      MAX, 6H(322) or 7H(222)
+  3H      0-5, 4+H
+  3N      13-16, no H fit, BAL
+  4H      13-16, 3+H
 ```)
 
 === 1#H—(2#N minors)— <sec:1M-2N>
@@ -28,7 +28,7 @@
   3S    nat, NF
 ```)
 
-/* Commented-out alternatives from the original LaTeX source (1h.tex): 
+/* Commented-out alternatives from the original LaTeX source (1h.tex):
 Alternative structure idea that we currently do not use:
 
 === 1#H— <sec:1H-alt>

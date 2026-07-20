@@ -4,7 +4,7 @@
 
 #bt(```
   2H        to play
-    * 2S   4315
+*     2S   4315
   2S        to play
   2N>2D2N   asks
   3C        to play
@@ -32,13 +32,13 @@ If opponents double 2#D, #rdbl asks for better major, #pass to request opener to
 
 #bt(```
 * 3C   MIN
-    * = 3D asks for a 3-card major
-        3H   4315
-        3S   3415
-        3N   44 majors
+*     3D asks for a 3-card major
+*       3H   4315
+*       3S   3415
+*       3N   44 majors
 * 3D   MAX, 44 majors, GF
-    * 3H   sets H for cues
-    * 3S   sets S for cues
+*     3H   sets H for cues
+*     3S   sets S for cues
 * 3H   MAX, 4315
 * 3S   MAX, 3415
 ```)

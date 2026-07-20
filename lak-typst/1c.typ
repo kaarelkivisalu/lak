@@ -305,7 +305,7 @@ If GF is established, further doubles are for penalty.
 
 #bt(```
 * PASS       0-6 (bad 7) or trap
-    * DBL   takeout
+*     DBL   takeout
 * DBL        7+, no suit to bid below 3N, GF
   3N         to play usually, with stopper
   new suit   5+ cards, GF
