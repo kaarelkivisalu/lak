@@ -1,0 +1,124 @@
+name: Typst PR Visual Diff
+
+on:
+  pull_request:
+    paths:
+      - "lak-typst/**"
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  visual-diff:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - name: Setup Typst
+        uses: typst-community/setup-typst@v5
+        with:
+          typst-version: ~0.15
+
+      - name: Setup uv
+        uses: astral-sh/setup-uv@v8.3.2
+
+      - name: Install poppler-utils, pngquant and typdiff
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y poppler-utils pngquant
+          cargo install typdiff
+
+      # Diffs the whole book as one document, not chapter-by-chapter: flattens
+      # lak.typ's `#include`s into a single source (using NEW's lak.typ as the
+      # structural skeleton — see tools/typst_pr_diff.py's --book mode), then
+      # runs the same typdiff (prose) + tools/btdiff.py (#bt(...) bid tables,
+      # which typdiff alone treats as one opaque block and shows no row-level
+      # differences for) pipeline used for single files. Real cross-chapter
+      # references resolve since the whole book is present, and it applies
+      # the actual `conf` template, so numbering/layout match the real book.
+      # Pruning drops any Part/chapter/subsection with no changes anywhere in
+      # it, so an unrelated untouched chapter contributes nothing.
+      - name: Build whole-book visual diff
+        id: diff
+        run: |
+          set -e
+          mkdir -p /tmp/old-lak-typst /tmp/diffpages
+
+          # Pull just the chapter files NEW's lak.typ references, from the
+          # base ref, into a flat dir — everything tools/typst_pr_diff.py's
+          # --book mode needs to resolve the OLD side of each #include.
+          for f in $(grep -oP '(?<=#include ")[^"]+' lak-typst/lak.typ); do
+            git show "origin/${{ github.base_ref }}:lak-typst/$f" > "/tmp/old-lak-typst/$f" 2>/dev/null || true
+          done
+
+          uv run --project lak-typst/tools lak-typst/tools/typst_pr_diff.py \
+            --book /tmp/old-lak-typst lak-typst -o /tmp/book-diff.typ
+
+          # An empty diff (nothing survived pruning) still has no heading —
+          # only the fixed `#import`/`#show: conf` preamble. Check that
+          # *before* compiling: a still-empty document compiles to one blank
+          # page, not zero, so page count can't tell "no changes" apart from
+          # "one page of changes."
+          if ! grep -q '^=' /tmp/book-diff.typ; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            cp /tmp/book-diff.typ lak-typst/_diff.typ
+            typst compile lak-typst/_diff.typ /tmp/book-diff.pdf
+            rm -f lak-typst/_diff.typ
+
+            pages=$(pdfinfo /tmp/book-diff.pdf | awk '/^Pages:/ {print $2}')
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            echo "pages=$pages" >> "$GITHUB_OUTPUT"
+            pdftoppm -png -r 96 /tmp/book-diff.pdf /tmp/diffpages/page
+            for f in /tmp/diffpages/*.png; do
+              pngquant --force --skip-if-larger --quality=60-90 --ext .png "$f" 2>/dev/null || true
+            done
+          fi
+
+      # Inline images, pushed to a per-PR scratch branch and embedded via
+      # raw.githubusercontent.com so they render directly in the PR
+      # conversation — wrapped in a single collapsed <details> block, since a
+      # multi-page diff would otherwise dominate the conversation. The blank
+      # lines right after <summary> and before </details> are required for
+      # GitHub to render the markdown image syntax inside the HTML block
+      # instead of showing it as literal text.
+      - name: Push diff images to scratch branch
+        if: steps.diff.outputs.changed == 'true'
+        id: scratch
+        run: |
+          branch="typst-pr-diff-images/${{ github.event.pull_request.number }}"
+          dir="$(mktemp -d)"
+          git worktree add --orphan -b "$branch" "$dir"
+          cp /tmp/diffpages/*.png "$dir"/
+          git -C "$dir" add .
+          git -C "$dir" -c user.name="github-actions[bot]" -c user.email="github-actions[bot]@users.noreply.github.com" \
+            commit -m "Typst PR diff images for #${{ github.event.pull_request.number }}"
+          git -C "$dir" push --force origin "$branch"
+          {
+            echo "message<<EOF"
+            echo "<details>"
+            echo "<summary>${{ steps.diff.outputs.pages }} changed page(s) — click to expand</summary>"
+            echo
+            for p in /tmp/diffpages/*.png; do
+              name="$(basename "$p")"
+              url="${{ github.server_url }}/${{ github.repository }}/raw/${branch}/${name}"
+              echo "![${name}](${url})"
+              echo
+            done
+            echo "</details>"
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Sticky PR comment
+        uses: marocchino/sticky-pull-request-comment@v3
+        with:
+          header: typst-visual-diff
+          message: |
+            ### Typst visual diff
+
+            ${{ steps.diff.outputs.changed == 'false' && 'No visual differences detected.' || steps.scratch.outputs.message }}
