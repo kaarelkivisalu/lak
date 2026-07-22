@@ -33,19 +33,22 @@ Passed hand responses:
 === 1#C—1#D— <1C1D>
 
 #bt(```
-  1H   16-20, 5+H
-  1S   16-20, 5+S
-  1N   17-18 (18-19), BAL
-    system on
-  2C   16-20, 5+C
-  2D   16-20, 5+D
-  2H   21+, 5+H, F1
-  2S   21+, 5+S, F1
-  2N   21(22)-24 BAL
-    system on
-  3C   21+, 5+C, F1
-  3D   21+, 5+D, F1
-  3N   25+, BAL
+* 1H   20+
+*   1S  0-4
+*     1N  21-22/22-23
+*       system on
+*     2C  GF
+*       2D  waiting, generally all BAL hands
+*         2N  25-26/26-27
+*         `*`  5+ suit
+*       2M/3m  nat
+*     2N  23-24/24-25
+*     `*`  nat, not GF
+*   1N  5-7, semiBAL
+*     2C  _Baron_ (asking for 4-card suit)
+*   2X  5-7, 5+X
+* 1N  17-18/18-19 BAL
+* `*`  nat NF
 ```)
 
 /* Commented-out alternative from the original LaTeX source (1c.tex):
@@ -205,13 +208,13 @@ Usually no slam when opener has minimum hand (16--19).
 
 #bt(```
   1S      5+S
-* 1N      17-18 (18-19) or 24+, BAL
+  1N      17-18 (18-19) or 24+, BAL
   2C      5+C
   2D      5+D
   2H      5+H
   2S      (4441)
     2N   asks
-* 2N      21(22)-23, BAL
+  2N      21(22)-23, BAL
   3CDHS   flag, slam interest, demand cue-bids
 ```)
 
