@@ -227,10 +227,10 @@ After responder's second bid jump shift shows a splinter with support for last b
     3CDH    4+ cards
     3S      4+S
     3N      to play (usually (4333) even with 4-card support)
-    other   cues, serious 3NT, last train, kickback
+    other   cues, serious 3NT, kickback
   3CDH    4+ cards
   3S      6+S
-  other   cues, serious 3NT, last train, kickback
+  other   cues, serious 3NT, kickback
 ```)
 
 === 1#C—1#N—2#H– <1C1N2H>
@@ -241,37 +241,37 @@ After responder's second bid jump shift shows a splinter with support for last b
     3CD     4+ cards
     3H      4+H
     3N      to play (usually (4333) even with 4-card support)
-    other   cues, serious 3NT, last train, kickback
+    other   cues, serious 3NT, kickback
   3H       6+H
-  other    cues, serious 3NT, last train, kickback
+  other    cues, serious 3NT, kickback
 ```)
 
-=== 1#C—(#dbl)—
+#pagebreak()
+=== 1#C—(#dbl)---
 
 If GF is established, further doubles are for penalty.
 
 #bt(```
-  PASS>1CXPbid   0-5
-  RDBL           6-7
-  1DHS 2C        8+
+  PASS>1CXorXXPbid   0-5
+  RDBL>1CXorXXPbid           6-7
+  1DHS 2C        8+, 5+ suit
   1N             8+, BAL
-    2C      asks lowest 4 card suit
-      2D   4D
-      2H   4H, no 4D
-      2S   4S, no 4H or 4D
-      2N   3334
+    2C  _Baron_ (asking for 4-card suit)
     other   natural
   2DHS           5-7, 6-card suit
   3CDHS          5-7, 7-card suit
 ```)
 
-=== 1#C—(#dbl)—#pass—(bid)— <1CXPbid>
+=== 1#C—(#dbl or bid)—#pass/#rdbl—(bid)— <1CXorXXPbid>
 
 #bt(```
-  DBL   takeout or 23+
-  bid   natural "overcall"
-  cue   Michaels
-  2N    Unusual
+  PASS  17-18/18-19 semiBAL
+  DBL   20+
+  bid   16-19, 5+ cards
+  cue   16-19, Michaels
+  1N    21-22/22-23, BAL, shows stopper
+  2N non-jump    21-24/22-25, BAL, shows stopper
+  2N jump    23-24/24-25, BAL, shows stopper
 ```)
 
 === 1#C—(1$X$ or 2$X$)—
