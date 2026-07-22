@@ -16,9 +16,9 @@ Assume 6#plus#S unless NV vs. VUL.
     3D   MIN, good suit
     3H   MAX, bad suit
     3S   MAX, good suit
-  3C   14+, 5+C, F1
-  3D   14+, 5+D, F1
-  3H   14+, 5+H, F1
+  3C   INV, 5+C
+  3D   INV, 5+D
+  3H   INV, 5+H
   3S   0-13, 3+S, preempt
   4S   to play
 ```)
