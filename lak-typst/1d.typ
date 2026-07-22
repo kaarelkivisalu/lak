@@ -11,12 +11,12 @@
   2H        0-10, 5S 4-5H
   2S        11+, 5S 4-5H, INV opposite 10-13 BAL, F1
   2N        good 11-13, BAL, no 4M, INV
-* 3C        6-10, 54 mm, `P/C`
-  3D        5-10, 6+D
-  3H        6-9, 7+H
-  3S        6-9, 7+S
+  3C        INV, (6)7+C
+  3D        INV, (5)6+D
+  3H        PRE, (6)7+H
+  3S        PRE, (6)7+S
   3N        13-16, BAL, no 4M
-* 4C        6-10, 55+ mm, `P/C`
+  4C        6-9, 7+C
   4D        6-9, 7+D
   4H        good 7 or 8+H, preemptive
   4S        good 7 or 8+S, preemptive
@@ -33,7 +33,7 @@ Passed hand adjustments:
 
 === Interference over 1#D
 
-Negative doubles are used. 2-level free bids (2#D is a free bid) are F1. Support (re)doubles are on.
+Negative doubles are used. 2-level free bids (2#D is a free bid) are NF. Support (re)doubles are on.
 
 As a responder assume that opener has 10--13(14) BAL until told otherwise.
 
@@ -62,9 +62,9 @@ As a responder assume that opener has 10--13(14) BAL until told otherwise.
     DBL   12-15, 3H
 *   2N    good hand with 6D and stopper, NF
 *   3C    55+mm
-  1S   4S, other bids deny 4S
+  1S   4S, unBAL
     `*`   [XYZ](XYZ)
-  1N   10-13(14), no singleton, BAL
+  1N   10-13(14), no singleton, BAL, may have 4S
     `*`   [XYZ](XYZ)
   2C   8+ cards in the minors, not 6D 4C
   2D   10-12, 6+D
@@ -72,6 +72,15 @@ As a responder assume that opener has 10--13(14) BAL until told otherwise.
   2H   { 10-13(14), 4H, BAL / 10-12, 4H, unBAL }
 * 2S   5S 6+D
 * 2N   13-15, 3H 6+D
+	  3C  puppet to 3D, to play 3D/3H or show a missing stopper for 3N
+	    3D  forced
+        Pass/3H  to play
+        3S  missing C stop
+        3N  missing S stop
+	  3D  D flag GF asks n/l/h short
+	  3H  H flag GF asks n/l/h short
+    3N  to play
+	  4H  to play
 * 3C   13-15, 55+ mm
   3D   13-15, 6+D
   3H   13-15, 4H, unBAL
@@ -104,6 +113,15 @@ As a responder assume that opener has 10--13(14) BAL until told otherwise.
 * 2H   5H 6+D
   2S   { 10-13(14), 4S, BAL / 10-12, 4S, unBAL / *3451 }
 * 2N   13-15, 3S 6+D, BAL
+		3C  puppet to 3D, to play 3D/3S, or show a missing stopper for 3N
+			3D  forced
+        Pass/3S  to play
+        3H  missing C stop
+        3N  missing H stop)
+	  3D  D flag GF, asks short (n/l/h)
+	  3S  S flag GF, asks short (n/l/h)
+	  3N  to play
+	  4S  to play
 * 3C   13-15, 55+ mm
   3D   13-15, 6+D
   3S   13-15, 4S, unBAL
@@ -116,43 +134,44 @@ As a responder assume that opener has 10--13(14) BAL until told otherwise.
   1H     4+H
   1S     4+S
   1N     7-11, BAL
+  2C   8+ cards in the minors, not 6D 4C
+  2D   6+D
 ```)
 
 === 1#D—(1#H)—
 
 #bt(```
   DBL   4S
-* 1S    5S
+  1S    5+S, F1
   1N    nat, does not promise stopper
   2C    5+C, F1
   2D    5+D, F1
-* 2H    6+S
-* 2S    INV+, 54+mm
+  2S    preempt
   2N    nat INV, promises stopper
-* 3C    mm, no game, worse than 2S
+  3C    preempt
   3D    6+D, to play
-* 3H    transfer to 3N, stopper that prefer partner declare
+  3H    stopper ask
+  3S    preempt
   3N    to play
-  3m    preempt
+  4m    preempt
   4S    to play
 ```)
 
 === 1#D—(1#S)—
 
 #bt(```
-  DBL   negative
+  DBL   4H
   1N    nat, does not promise stopper
   2C    5+C, F1
   2D    5+D, F1
-  2H    5+H, NF
-* 2S    INV+, 54+mm
+  2H    5+H, F1
   2N    nat INV, promises stopper
-* 3C    mm, no game, worse than 2S
+  3C    preempt
   3D    6+D, to play
-  3H    6+H, GF
-* 3S    transfer to 3N, stopper that prefer partner declare
+  3H    preempt
+  3S    stopper ask
   3N    to play
-  3m    preempt
+  4m    preempt
   4H    to play
 ```)
 

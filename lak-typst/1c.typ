@@ -333,9 +333,3 @@ Example:
   3S/4C   splinter for hearts
   4H      a very bad raise
 ```)
-
-=== The Implied Cue-bid
-
-Before a fit is agreed, bidding a suit that is unreasonable as a possible trump suit at the level of 3#D or higher implies a fit with partner's last bid suit. This is known as an "Implied Cue-bid".
-
-The logic is: you need at least two ways to raise partner to show the difference between a bad or good hand for the auction to date.

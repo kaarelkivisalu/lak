@@ -5,7 +5,7 @@
 #bt(```
   1S      7+, 4+S, F1
   1N      7-11, no H fit
-  2m      11+, 5+m, no H fit
+  2m      4+m, GF
   2H      5-9, 3+H
 * 2N      11-12 or 17+, 3+H, F3H
 *   3m      4+m, F1
