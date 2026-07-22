@@ -20,16 +20,6 @@
   4H      13-16, 3+H
 ```)
 
-=== 1#H—(2#N minors)— <sec:1M-2N>
-
-#bt(```
-  DBL   penalty interest against at least one suit
-* 3C    5+ S, GF
-* 3D    11+, 3+H, INV+
-* 3H    7-10, 3+H
-  3S    nat, NF
-```)
-
 /* Commented-out alternatives from the original LaTeX source (1h.tex):
 Alternative structure idea that we currently do not use:
 

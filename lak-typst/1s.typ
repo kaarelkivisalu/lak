@@ -20,16 +20,6 @@
   4S     13-16, 3+S
 ```)
 
-=== 1#S—(2#N minors)—
-
-#bt(```
-  DBL   penalty interest against at least one suit
-* 3C    5+ H, GF
-* 3D    11+, 3+S, INV+
-  3H    nat, NF
-* 3S    7-10, 3+S
-```)
-
 /* Commented-out alternatives from the original LaTeX source (1s.tex):
 // Alternative structure idea that we currently do not use:
 === 1#S— <sec:1S-alt>
