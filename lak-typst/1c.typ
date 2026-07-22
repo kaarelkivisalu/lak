@@ -268,7 +268,7 @@ If GF is established, further doubles are for penalty.
   PASS  17-18/18-19 semiBAL
   DBL   20+
   bid   16-19, 5+ cards
-  cue   16-19, Michaels
+  cue   16-19, Michaels (if opponents clearly have a single suit)
   1N    21-22/22-23, BAL, shows stopper
   2N non-jump    21-24/22-25, BAL, shows stopper
   2N jump    23-24/24-25, BAL, shows stopper
@@ -281,11 +281,11 @@ Trap is usually with 5 or more cards in their suit (with sure defensive tricks a
 If GF is established, further doubles are for penalty.
 
 #bt(```
-* PASS                0-5 or trap
-  DBL                 { 6-7 = always / *8+, BAL, without stopper, GF (cue later to reveal) = over 2X }
+  PASS                0-5 or trap
+  DBL                 { 6-7 = always / 8+, BAL, without stopper, GF (cue later to reveal) = over 2X }
     over 1X
       PASS        penalty
-      1M          4+M, F1
+*     1M          4+M, F1
       1N>sec:1N   17-18 (18-19), BAL, with stopper, system on, NF
       2m          5+ cards, F1
       2X          GF
@@ -293,15 +293,11 @@ If GF is established, further doubles are for penalty.
       jump suit   6+ cards, GF
   non-jump new suit   8+, 5+ cards, GF
   N bid               8+, BAL, with stopper, GF
-    cheapest C   asks lowest 4 card suit
-      D   4D
-      H   4H, no 4D
-      S   4S, no 4H or 4D
-      N   3334
+    cheapest C   _Baron_ (asking for 4-card suit)
     other        natural
   2-level cue         8+, BAL, without stopper, GF
-* jump shift          5-7 with a long suit and strength in the suit
-* 3-level cue         3-suited hand (short in opponent's suit), GF
+  jump shift          5-7 with a long suit and strength in the suit
+  3-level cue         3-suited hand (short in opponent's suit), GF
 ```)
 
 === 1#C—(3$X$ or 4$X$)—
@@ -312,6 +308,12 @@ If GF is established, further doubles are for penalty.
 * DBL        7+, no suit to bid below 3N, GF
   3N         to play usually, with stopper
   new suit   5+ cards, GF
+  4N  quant (14+ BAL)
+    PASS  16-17, other bids force slam
+    5Y  5Y
+    5N  no 5-card suit
+      6Y  4Y (lookig for 4-4 fit)
+    6Y  6+Y
 ```)
 
 === Waiting 2#N
