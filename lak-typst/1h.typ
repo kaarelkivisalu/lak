@@ -8,12 +8,14 @@
   2m      4+m, GF
   2H      5-9, 3+H
 * 2N      11-12 or 17+, 3+H, F3H
-*   3m      4+m, F1
-*   3H      MIN, no side suit
-*   3S/4m   MAX, splinter
+*   3CDS    shortness, not MIN
+*   3H      MIN
 *   3N      MAX, 5H(332)
+*   4m      MAX, 5+m
 *   4H      MAX, 6H(322) or 7H(222)
+  3m  PRE
   3H      0-5, 4+H
+  3S4m  splinter
   3N      13-16, no H fit, BAL
   4H      13-16, 3+H
 ```)
