@@ -4,28 +4,20 @@
 
 #bt(```
   1N     7-11, no S fit
-  2m     11+, 5+m, unBAL
+  2m     4+m, GF
   2H     11+, 5+H
   2S     5-9, 3+S
 * 2N     11-12 or 17+, 3+S, F3S
-*   3CDH   4+m, F1
-*   3S     MIN, no side suit
-*   4CDH   MAX, splinter
-*   3N     MAX, 5S(332)
-*   4S     MAX, 6S(322) or 7S(222)
+*   3CDH    shortness, not MIN
+*   3S      MIN
+*   3N      MAX, 5S(332)
+*   4CDH    MAX, 5+ suit
+*   4S      MAX, 6S(322) or 7S(222)
+  3CDH  PRE
   3S     0-5, 4+S
   3N     13-16, no S fit, BAL
+  4CDH  splinter
   4S     13-16, 3+S
-```)
-
-=== 1#S—(2#N minors)—
-
-#bt(```
-  DBL   penalty interest against at least one suit
-* 3C    5+ H, GF
-* 3D    11+, 3+S, INV+
-  3H    nat, NF
-* 3S    7-10, 3+S
 ```)
 
 /* Commented-out alternatives from the original LaTeX source (1s.tex):

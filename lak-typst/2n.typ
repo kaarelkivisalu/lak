@@ -37,7 +37,8 @@
   3N   to play
   4C   _Gerber_ 1430
   4D   6+H, ST
+    4S RKC
   4H   6+S, ST
-  4S   bad quant
-  4N   good quant
+    4N RKC
+  4N   quant
 ```)

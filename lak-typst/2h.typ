@@ -5,7 +5,7 @@
 Assume 6#plus#H unless NV vs. VUL.
 
 #bt(```
-  2S   14+, 5+S, F1
+  2S   INV, 5+S
   2N   14+, asks
     (bid)
 *       step 1   PASS
@@ -15,8 +15,8 @@ Assume 6#plus#H unless NV vs. VUL.
     3D   MIN, good suit
     3H   MAX, bad suit
     3S   MAX, good suit
-  3C   14+, 5+C, F1
-  3D   14+, 5+D, F1
+  3C   INV, 5+C
+  3D   INV, 5+D
   3H   0-13, 3+H, preempt
   4H   to play
 ```)

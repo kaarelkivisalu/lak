@@ -65,11 +65,9 @@ Over our preempts (2#H#S, 3#D#H#S) 4#C asks (over 3#C, 4#D asks), then
 ```)
 */
 
-=== Serious 3NT and Last Train
+=== Serious 3NT
 
 When a major suit is trumps and slam is not yet ruled out, 3NT is not natural, but rather a waiting bid that shows a good hand in context. If you bypass 3NT, you deny a good hand in context.
-
-The bid one under 4 of the major also shows a good hand in context, and nothing about the cue-bid suit.
 
 Example:
 
@@ -79,6 +77,6 @@ Example:
   3S   cue-bid, does not say whether serious or not
   3N   Serious 3NT (13-15 as 1H was 10-15), denies a spade cue
   4C   cue-bid, non-serious hand (10-12), denies a space cue, min but not the pits
-  4D   Last Train, non-serious hand (10-12), no spade or club cue
+  4D   cue bid, non-serious hand (10-12), no spade or club cue
   4H   the worst hand (10-11), bad distribution, honour location and slam cards
 ```)

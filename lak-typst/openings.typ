@@ -16,7 +16,6 @@
   3N>sec:3N   Gambling, 7+m with AKQ, no other A or K
   4m          (0)3--9, (7)8+m, PRE
   4M          7+M, to play
-  4N          vanilla Blackwood
   5m          8+m, to play
   5M          11 tricks, missing AK trumps
 ```)

@@ -26,17 +26,18 @@
 === 2#C—2#D— <2C2D>
 
 #bt(```
-* 2H     4S or 4H
-* 2S     12-15, no 4-card major
-* 2N     14-15, stoppers in both majors, no 4-card major
-*     3D   ST in C
-*     3H   5H, GF
-*     3S   5S, GF
-* 3C     10-11, no 4-card major
-*     3D   ST in C
-*     3H   5H, GF
-*     3S   5S, GF
-  3DHS   5-card suit, GF
+  (2M)
+    PASS  MIN
+    2S  MAX, 4S
+    2N  MAX, stopper
+    3C  MAX, no stopper
+    3D  MAX, nat
+    3H over S  MAX, nat
+  2H     MIN, 4H
+  2S     MIN, 4S
+  2N     MAX, no 4-card major
+  3C     MIN, no 4-card major
+  3DHS   MAX, 4+ suit
 ```)
 
 /* Commented-out alternatives from the original LaTeX source (2c.tex):

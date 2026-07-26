@@ -39,8 +39,7 @@
   3N   to play
   4D   _Delayed Texas_, 6H 4S
   4H   _Delayed Texas_, 6S 4H
-  4S   bad quant
-  4N   good quant
+  4N   quant
 ```)
 
 /* Commented-out alternative followups / annotations from the LaTeX source (1n.tex):
@@ -82,13 +81,11 @@
   3C   4S 5+C, GF
   3D   4S 5+D, GF
   3H   4H, INV
-* 3S   any splinter raise (R asks LMH)
+  3S  cue
   3N   to play
-* 4C   RKC H
-* 4D   _Last Train_ (ST in H, BAL)
+  4CD  cue
   4H   to play
-  4S   bad quant
-  4N   good quant
+  4S   RKC H
 ```)
 
 /* Commented followups from the LaTeX source (1n.tex):
@@ -110,17 +107,15 @@
 === 1#N—2#C—2#S— <1N2C2S>
 
 #bt(```
-  2N   4H, INV
+  2N   4-5H, INV
+    3H  3H, accept
   3C   4H 5+C, GF
   3D   4H 5+D, GF
-* 3H   S flag, unBAL, ST
   3S   4S, INV
   3N   to play
-* 4C   RKC S
-* 4D   bad quant
-* 4H   _Last Train_ (ST in S, BAL)
+  4CDH  cue
   4S   to play
-  4N   good quant
+  4N   RKC S
 ```)
 
 /* Commented followups from the LaTeX source (1n.tex):
@@ -299,12 +294,11 @@
 === 1#N—3#C— <1N3C>
 
 #bt(```
-  3D   4M, no 5M
+  3D   no 5M
     3H   4S
     3S   4H
-    3N   no interest in 4M
+    3N   to play
   3M   5M
-  3N   no M
 ```)
 
 === 1#N—(2#C)—

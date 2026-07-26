@@ -33,19 +33,22 @@ Passed hand responses:
 === 1#C—1#D— <1C1D>
 
 #bt(```
-  1H   16-20, 5+H
-  1S   16-20, 5+S
-  1N   17-18 (18-19), BAL
-    system on
-  2C   16-20, 5+C
-  2D   16-20, 5+D
-  2H   21+, 5+H, F1
-  2S   21+, 5+S, F1
-  2N   21(22)-24 BAL
-    system on
-  3C   21+, 5+C, F1
-  3D   21+, 5+D, F1
-  3N   25+, BAL
+* 1H   20+
+*   1S  0-4
+*     1N  21-22/22-23
+*       system on
+*     2C  GF
+*       2D  waiting, generally all BAL hands
+*         2N  25-26/26-27
+*         `*`  5+ suit
+*       2M/3m  nat
+*     2N  23-24/24-25
+*     `*`  nat, not GF
+*   1N  5-7, semiBAL
+*     2C  _Baron_ (asking for 4-card suit)
+*   2X  5-7, 5+X
+* 1N  17-18/18-19 BAL
+* `*`  nat NF
 ```)
 
 /* Commented-out alternative from the original LaTeX source (1c.tex):
@@ -205,13 +208,13 @@ Usually no slam when opener has minimum hand (16--19).
 
 #bt(```
   1S      5+S
-* 1N      17-18 (18-19) or 24+, BAL
+  1N      17-18 (18-19) or 24+, BAL
   2C      5+C
   2D      5+D
   2H      5+H
   2S      (4441)
     2N   asks
-* 2N      21(22)-23, BAL
+  2N      21(22)-23, BAL
   3CDHS   flag, slam interest, demand cue-bids
 ```)
 
@@ -224,10 +227,10 @@ After responder's second bid jump shift shows a splinter with support for last b
     3CDH    4+ cards
     3S      4+S
     3N      to play (usually (4333) even with 4-card support)
-    other   cues, serious 3NT, last train, kickback
+    other   cues, serious 3NT, kickback
   3CDH    4+ cards
   3S      6+S
-  other   cues, serious 3NT, last train, kickback
+  other   cues, serious 3NT, kickback
 ```)
 
 === 1#C—1#N—2#H– <1C1N2H>
@@ -238,37 +241,37 @@ After responder's second bid jump shift shows a splinter with support for last b
     3CD     4+ cards
     3H      4+H
     3N      to play (usually (4333) even with 4-card support)
-    other   cues, serious 3NT, last train, kickback
+    other   cues, serious 3NT, kickback
   3H       6+H
-  other    cues, serious 3NT, last train, kickback
+  other    cues, serious 3NT, kickback
 ```)
 
-=== 1#C—(#dbl)—
+#pagebreak()
+=== 1#C—(#dbl)---
 
 If GF is established, further doubles are for penalty.
 
 #bt(```
-  PASS>1CXPbid   0-5
-  RDBL           6-7
-  1DHS 2C        8+
+  PASS>1CXorXXPbid   0-5
+  RDBL>1CXorXXPbid           6-7
+  1DHS 2C        8+, 5+ suit
   1N             8+, BAL
-    2C      asks lowest 4 card suit
-      2D   4D
-      2H   4H, no 4D
-      2S   4S, no 4H or 4D
-      2N   3334
+    2C  _Baron_ (asking for 4-card suit)
     other   natural
   2DHS           5-7, 6-card suit
   3CDHS          5-7, 7-card suit
 ```)
 
-=== 1#C—(#dbl)—#pass—(bid)— <1CXPbid>
+=== 1#C—(#dbl or bid)—#pass/#rdbl—(bid)— <1CXorXXPbid>
 
 #bt(```
-  DBL   takeout or 23+
-  bid   natural "overcall"
-  cue   Michaels
-  2N    Unusual
+  PASS  17-18/18-19 semiBAL
+  DBL   20+
+  bid   16-19, 5+ cards
+  cue   16-19, Michaels (if opponents clearly have a single suit)
+  1N    21-22/22-23, BAL, shows stopper
+  2N non-jump    21-24/22-25, BAL, shows stopper
+  2N jump    23-24/24-25, BAL, shows stopper
 ```)
 
 === 1#C—(1$X$ or 2$X$)—
@@ -278,11 +281,11 @@ Trap is usually with 5 or more cards in their suit (with sure defensive tricks a
 If GF is established, further doubles are for penalty.
 
 #bt(```
-* PASS                0-5 or trap
-  DBL                 { 6-7 = always / *8+, BAL, without stopper, GF (cue later to reveal) = over 2X }
+  PASS                0-5 or trap
+  DBL                 { 6-7 = always / 8+, BAL, without stopper, GF (cue later to reveal) = over 2X }
     over 1X
       PASS        penalty
-      1M          4+M, F1
+*     1M          4+M, F1
       1N>sec:1N   17-18 (18-19), BAL, with stopper, system on, NF
       2m          5+ cards, F1
       2X          GF
@@ -290,15 +293,11 @@ If GF is established, further doubles are for penalty.
       jump suit   6+ cards, GF
   non-jump new suit   8+, 5+ cards, GF
   N bid               8+, BAL, with stopper, GF
-    cheapest C   asks lowest 4 card suit
-      D   4D
-      H   4H, no 4D
-      S   4S, no 4H or 4D
-      N   3334
+    cheapest C   _Baron_ (asking for 4-card suit)
     other        natural
   2-level cue         8+, BAL, without stopper, GF
-* jump shift          5-7 with a long suit and strength in the suit
-* 3-level cue         3-suited hand (short in opponent's suit), GF
+  jump shift          5-7 with a long suit and strength in the suit
+  3-level cue         3-suited hand (short in opponent's suit), GF
 ```)
 
 === 1#C—(3$X$ or 4$X$)—
@@ -309,6 +308,12 @@ If GF is established, further doubles are for penalty.
 * DBL        7+, no suit to bid below 3N, GF
   3N         to play usually, with stopper
   new suit   5+ cards, GF
+  4N  quant (14+ BAL)
+    PASS  16-17, other bids force slam
+    5Y  5Y
+    5N  no 5-card suit
+      6Y  4Y (lookig for 4-4 fit)
+    6Y  6+Y
 ```)
 
 === Waiting 2#N
@@ -328,9 +333,3 @@ Example:
   3S/4C   splinter for hearts
   4H      a very bad raise
 ```)
-
-=== The Implied Cue-bid
-
-Before a fit is agreed, bidding a suit that is unreasonable as a possible trump suit at the level of 3#D or higher implies a fit with partner's last bid suit. This is known as an "Implied Cue-bid".
-
-The logic is: you need at least two ways to raise partner to show the difference between a bad or good hand for the auction to date.
